@@ -16,6 +16,10 @@ export const signup = (data) => {
 }
 
 export const login = (userData) => {
-    return axios.post('http://localhost:8080/v1/auth', userData) // need to grab this for a login
+    return axios.post('http://localhost:8080/v1/auth', userData) 
 }
 
+export const logout = (token) => {
+    return axios.post('//', token)
+    //need to look at the route tomorrow 
+}

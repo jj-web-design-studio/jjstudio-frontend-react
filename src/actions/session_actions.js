@@ -63,9 +63,12 @@ export const login = user => dispatch => {
 
 
 export const logout = () => dispatch => {
+    let token = localStorage.getItem('jwtToken')
     localStorage.removeItem('jwtToken');
     SessionAPIUtil.setAuthToken(false);
-    dispatch(logoutUser());
+    SessionAPIUtil.logout(token).then(() => {
+        dispatch(logoutUser());
+    })
     //send json back to have it deleted on the frontend
 };
 
