@@ -21,3 +21,31 @@
  .form-field-error {
    border: 2px solid red;
  }
+
+ .input-field {
+   display: flex;
+   flex-direction: column;
+ }
+
+ .header-form p {
+    text-align: center;
+ }
+ .input-field > input {
+    margin-top: 5px;
+    text-align: center;
+    border: .5px solid;
+    border-radius: 4px;
+ }
+
+ .other-form {
+   font-size: 13px;
+ }
+
+ .other-form span:hover {
+   font-weight: 900;
+   cursor:  pointer;
+ }
+
+ #submit-button {
+   border-radius: 4px;
+ }

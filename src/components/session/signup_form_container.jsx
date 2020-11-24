@@ -17,11 +17,11 @@ const mapDispatchToProps = (dispatch) => {
     return ({
         processForm: (form) => dispatch(signup(form)),
         clearErrors: () => dispatch(clearErrors()),
-        otherForm: (
-            <p onClick={() => dispatch(openModal('login'))} className="header-button">
-                Login!
-            </p>
-        ),
+        otherForm: () => dispatch(openModal('login'))
+            // <p onClick={() => dispatch(openModal('login'))} className="header-button">
+            //     Login!
+            // </p>
+        ,
         closeModal: () => dispatch(closeModal()),
     })
 }

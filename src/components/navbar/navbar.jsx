@@ -36,23 +36,23 @@ class AppNavbar extends React.Component {
                             <NavItem>
                                 <NavLink href="https://github.com/justinchung/jcstudio">GitHub</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink href="/">Sign In</NavLink>
-                            </NavItem>
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>
                                     Settings
-              </DropdownToggle>
+                                </DropdownToggle>
                                 <DropdownMenu right>
                                     <DropdownItem>
                                         Option 1
-                </DropdownItem>
+                                </DropdownItem>
                                     <DropdownItem>
                                         Option 2
-                </DropdownItem>
+                                    </DropdownItem>
                                     <DropdownItem divider />
                                 </DropdownMenu>
                             </UncontrolledDropdown>
+                            <NavItem>
+                                <NavLink onClick={() => this.props.openModal('login')}>Log In</NavLink>
+                            </NavItem>
                         </Nav>
                     </Collapse>
                 </Navbar>

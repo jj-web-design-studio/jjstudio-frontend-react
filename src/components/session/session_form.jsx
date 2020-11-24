@@ -69,7 +69,7 @@ class SessionForm extends React.Component {
 
     render() {
         const firstName = (this.props.formType === 'signup') ? (
-            <label>First Name:
+            <label className="input-field">First Name:
                 <input type="text" 
                 onChange={this.handleInput('firstname')}
                 value={this.state.firstname}/>
@@ -77,7 +77,7 @@ class SessionForm extends React.Component {
         ) : ( null )
 
         const lastName = (this.props.formType === 'signup') ? (
-            <label>Last Name:
+            <label className="input-field"> Last Name:
                 <input type="text" 
                 onChange={this.handleInput('lastname')} 
                 value={this.state.lastname} />
@@ -85,7 +85,7 @@ class SessionForm extends React.Component {
         ) : (null)
 
         const email = (
-            <label> Email:
+            <label className="input-field"> Email:
                 <input type="text" 
                 className={this.state.passwordError ? 'login-form-field-valiation' : ''}
                 onChange={this.handleInput('email')} 
@@ -95,7 +95,7 @@ class SessionForm extends React.Component {
         )
 
         const password = (
-            <label> Password:
+            <label className="input-field"> Password:
                 <input type="password" 
                 className={this.state.passwordError ? 'login-form-field-valiation' : ''}
                 onChange={this.handleInput('password')} 
@@ -105,7 +105,7 @@ class SessionForm extends React.Component {
         )
 
         const secondPassword = (this.props.formType === 'signup') ? (
-            <label>Confirm Password:
+            <label className="input-field"> Confirm Password:
                 <input type="password" 
                 className={this.state.password2Error ? 'login-form-field-valiation' : ''}
                 onChange={this.handleInput('password2')}
@@ -116,12 +116,16 @@ class SessionForm extends React.Component {
 
         
         // figure out where to autofocus
-
+        const otherButton = (this.props.formType === 'login' ) ? (
+            <p onClick={this.props.otherForm} className="other-form">Don't have an account yet? <span>Sign up!</span></p>
+        ) : (
+            <p onClick={this.props.otherForm} className="other-form">Already have an account? <span>Log in!</span></p>
+        )
         return (
             <>
                 <div className="login-form-container">
                     <form className="login-form-box" onSubmit={this.handleSubmit}>
-                        <div>
+                        <div className="header-form">
                             <h1>J J | S T U D I O</h1>
                             <p>Make beats</p>
                         </div>
@@ -131,9 +135,10 @@ class SessionForm extends React.Component {
                         {password}
                         {secondPassword}
 
-                        {this.props.otherForm}
+                        {otherButton}
 
-                        <input type="submit" value={this.props.formType} id=""/>    
+                        <input type="submit" value={this.props.formType} id="submit-button" />    
+                        
                     </form>
                 </div>
             </>
