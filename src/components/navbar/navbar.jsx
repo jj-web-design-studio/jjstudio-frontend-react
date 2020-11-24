@@ -26,10 +26,16 @@ class AppNavbar extends React.Component {
     }
 
     render() {
+
+        const logButton = (!this.props.session) ? (
+            < NavLink className="logbutton" onClick = {() => this.props.openModal('login')}> Log In</NavLink >
+        ) : (
+            < NavLink onClick={this.props.logout}> Log Out</NavLink >
+        )
         return (
             <div>
                 <Navbar color="dark" dark expand="sm">
-                    <NavbarBrand href="/">JC Studio</NavbarBrand>
+                    <NavbarBrand href="/">JJ Studio</NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
@@ -51,7 +57,8 @@ class AppNavbar extends React.Component {
                                 </DropdownMenu>
                             </UncontrolledDropdown>
                             <NavItem>
-                                <NavLink onClick={() => this.props.openModal('login')}>Log In</NavLink>
+                                {/* <NavLink onClick={() => this.props.openModal('login')}>Log In</NavLink> */}
+                                {logButton}
                             </NavItem>
                         </Nav>
                     </Collapse>

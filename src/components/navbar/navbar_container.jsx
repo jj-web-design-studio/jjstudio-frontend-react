@@ -6,7 +6,7 @@ import { openModal } from '../../actions/modal_action';
 const mapStateToProps = (state) => {
     // let sessionId = state.session.id
     return ({
-        // user: state.entities.users[sessionId]
+        session: state.session.isAuthenticated
     })
 }
 // will need this when they have a logged in usuer
