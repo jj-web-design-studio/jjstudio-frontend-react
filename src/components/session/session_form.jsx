@@ -13,6 +13,8 @@ class SessionForm extends React.Component {
             email: "",
             password: "",
             password2: "",
+            firstnameError: false,
+            lastnameError: false,
             emailError: false,
             passwordError: false,
             password2Error: false
@@ -48,22 +50,27 @@ class SessionForm extends React.Component {
     handleOnBlur(field) {
         return (e) => {
             if (e.currentTarget === e.target) {
-                console.log('unfocused self');
                 switch( field) {
+                    case "firstname":
+                        this.setState({ firstnameError: this.state.firstname === "" })
+                        break
+                    case "lastname":
+                        this.setState({ lastnameError: this.state.lastname === "" })
+                        break
                     case "password":
                         this.setState({ passwordError: this.state.password.length < 3 })
-                        break;
+                        break
                     case "password2":
-                        this.setState({ password2Error: this.state.password != this.state.password2 })
-                        break;
+                        this.setState({ password2Error: this.state.password !== this.state.password2 })
+                        break
                     case "email":
-                        this.setState({ emailError: !this.state.email.match(VALID_EMAIL_REGEX)})
+                        this.setState({ emailError: !this.state.email.match(VALID_EMAIL_REGEX) })
+                        break
                     default:
                         // Do nothing
                         return;
                 }
             }
-            
         }
     }
 
@@ -71,23 +78,27 @@ class SessionForm extends React.Component {
         const firstName = (this.props.formType === 'signup') ? (
             <label className="input-field">First Name:
                 <input type="text" 
+                className={this.state.firstnameError ? 'form-field-error' : ''}
                 onChange={this.handleInput('firstname')}
-                value={this.state.firstname}/>
+                value={this.state.firstname}
+                onBlur={this.handleOnBlur('firstname')}/>
             </label>
         ) : ( null )
 
         const lastName = (this.props.formType === 'signup') ? (
             <label className="input-field"> Last Name:
                 <input type="text" 
+                className={this.state.lastnameError ? 'form-field-error' : ''}
                 onChange={this.handleInput('lastname')} 
-                value={this.state.lastname} />
+                value={this.state.lastname}
+                onBlur={this.handleOnBlur('lastname')}/>
             </label>
         ) : (null)
 
         const email = (
             <label className="input-field"> Email:
                 <input type="text" 
-                className={this.state.passwordError ? 'login-form-field-valiation' : ''}
+                className={this.state.emailError ? 'form-field-error' : ''}
                 onChange={this.handleInput('email')} 
                 onBlur={this.handleOnBlur('email')}
                 />
@@ -97,7 +108,7 @@ class SessionForm extends React.Component {
         const password = (
             <label className="input-field"> Password:
                 <input type="password" 
-                className={this.state.passwordError ? 'login-form-field-valiation' : ''}
+                className={this.state.passwordError ? 'form-field-error' : ''}
                 onChange={this.handleInput('password')} 
                 onBlur={this.handleOnBlur('password')}
                 />
@@ -107,7 +118,7 @@ class SessionForm extends React.Component {
         const secondPassword = (this.props.formType === 'signup') ? (
             <label className="input-field"> Confirm Password:
                 <input type="password" 
-                className={this.state.password2Error ? 'login-form-field-valiation' : ''}
+                className={this.state.password2Error ? 'form-field-error' : ''}
                 onChange={this.handleInput('password2')}
                 onBlur={this.handleOnBlur('password2')}
                 value={this.state.password2} />
@@ -137,12 +148,10 @@ class SessionForm extends React.Component {
 
                         {otherButton}
 
-                        <input type="submit" value={this.props.formType} id="submit-button" />    
-                        
+                        <input type="submit" value={this.props.formType === "signup" ? "Sign Up" : "Log In"} id="submit-button" />                            
                     </form>
                 </div>
             </>
-
         )
     }
 }
