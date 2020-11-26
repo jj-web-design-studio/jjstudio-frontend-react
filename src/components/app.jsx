@@ -5,6 +5,7 @@ import HomeContainer from "./home/home_container"
 import NavBarContainer from "./navbar/navbar_container"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import KeyboardContainer from './keyboard/keyboard_container';
 
 const App = () => {
     return (
@@ -12,6 +13,7 @@ const App = () => {
             <div>
                 <Modal />
                 <NavBarContainer />
+                <KeyboardContainer />
                 <Switch>
                     {/* <Route exact path = "/" component={HomeContainer} /> */}
                 </Switch>

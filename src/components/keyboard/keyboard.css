@@ -1,0 +1,27 @@
+.keyRow {
+  text-align: center;
+  padding: 1px 0px 1px 0px;
+}
+
+.numRow {
+  margin-left: -50px;
+}
+
+.qweRow {
+
+}
+
+.asdRow {
+
+  margin-left: -20px;
+}
+
+.zxcRow {
+
+}
+
+.key {
+  padding: 20px 25px 20px 25px;
+  margin: 2px;
+  font-size: large;
+}
