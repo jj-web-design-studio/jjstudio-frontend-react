@@ -16,7 +16,7 @@ export const signup = (data) => {
 }
 
 export const login = (userData) => {
-    return axios.post('http://localhost:8080/v1/auth', userData) 
+    return axios.post('/v1/auth', userData) 
 }
 
 export const logout = (token) => {
