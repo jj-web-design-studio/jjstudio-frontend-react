@@ -30,7 +30,7 @@ class AppNavbar extends React.Component {
         const logButton = (!this.props.session) ? (
             < NavLink className="logbutton" onClick = {() => this.props.openModal('login')}> Log In</NavLink >
         ) : (
-            < NavLink onClick={this.props.logout}> Log Out</NavLink >
+            < NavLink className="logbutton" onClick={this.props.logout}> Log Out</NavLink >
         )
         return (
             <div>

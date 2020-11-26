@@ -128,9 +128,9 @@ class SessionForm extends React.Component {
         
         // figure out where to autofocus
         const otherButton = (this.props.formType === 'login' ) ? (
-            <p onClick={this.props.otherForm} className="other-form">Don't have an account yet? <span>Sign up!</span></p>
+            <p className="other-form">Don't have an account yet? <span onClick={this.props.otherForm}>Sign up!</span></p>
         ) : (
-            <p onClick={this.props.otherForm} className="other-form">Already have an account? <span>Log in!</span></p>
+            <p className="other-form">Already have an account? <span onClick={this.props.otherForm}>Log in!</span></p>
         )
         return (
             <>
