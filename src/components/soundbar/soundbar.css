@@ -1,0 +1,10 @@
+.soundBar {
+  background-color: rgb(211, 208, 208);
+  box-shadow: 3px -3px 3px 3px rgb(87, 85, 85);
+}
+
+.soundBtn {
+  display: inline-block;
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+}
