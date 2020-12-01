@@ -1,47 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { withRouter } from "react-router-dom";
-
+import KeyboardDropdown from "./keyboard_dropdown";
 import Key from './key';
+import { NUM_ROW, QWE_ROW, ASD_ROW, ZXC_ROW } from "./keys";
 import './keyboard.css';
 
-const numRow = "1234567890-=";
-
-const qweRow = "QWERTYUIOP[]";
-
-const asdRow = "ASDFGHJKL;'";
-
-const zxcRow = "ZXCVBNM,./";
-
 const Keyboard = (props) => {
-  const { keyboardMapping } = useState(0);
-  const { loadDefaultKeyboard } = props;
+  const { loadDefaultKeyboard, keyboardName, numRowMapping, qweRowMapping, asdRowMapping, zxcRowMapping } = props;
 
   useEffect(() => {
-
+    
     loadDefaultKeyboard();
 
   }, [loadDefaultKeyboard]);
 
   return (
     <div>
+      <div className="keyRow">
+        <KeyboardDropdown current={keyboardName} />
+      </div>
       <div className="numRow keyRow">
-        {numRow.split("").map(name => (
-          <Key key={name} label={name} />
+        {NUM_ROW.map((key) => (
+          <Key key={key.keyCode} keyCode={key.keyCode} label={key.label} soundId={numRowMapping != null ? numRowMapping[key.keyCode] : ""} />
         ))}
       </div>
       <div className="qweRow keyRow">
-        {qweRow.split("").map(name => (
-          <Key key={name} label={name} />
+        {QWE_ROW.map((key) => (
+          <Key key={key.keyCode} keyCode={key.keyCode} label={key.label} soundId={qweRowMapping != null ? qweRowMapping[key.keyCode] : ""} />
         ))}
       </div>
       <div className="asdRow keyRow">
-        {asdRow.split("").map(name => (
-          <Key key={name} label={name} />
+        {ASD_ROW.map((key) => (
+          <Key key={key.keyCode} keyCode={key.keyCode} label={key.label} soundId={asdRowMapping != null ? asdRowMapping[key.keyCode] : ""} />
         ))}
       </div>
       <div className="zxcRow keyRow">
-        {zxcRow.split("").map(name => (
-          <Key key={name} label={name} />
+        {ZXC_ROW.map((key) => (
+          <Key key={key.keyCode} keyCode={key.keyCode} label={key.label} soundId={zxcRowMapping != null ? zxcRowMapping[key.keyCode] : ""} />
         ))}
       </div>
     </div>

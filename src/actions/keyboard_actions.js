@@ -1,4 +1,5 @@
 import * as KeyboardAPIUtil from "../util/keyboard_api_util";
+import * as SoundAPIUtil from "../util/sound_api_util";
 
 export const RECEIVE_KEYBOARD_MAPPING = "RECEIVE_KEYBOARD_MAPPING";
 export const RECEIVE_KEYBOARD_MAPPING_ERRORS = "RECEIVE_KEYBOARD_MAPPING_ERRORS";
@@ -30,7 +31,6 @@ export const loadKeyboard = id => dispatch => (
 
 export const loadDefaultKeyboard = () => dispatch => (
   KeyboardAPIUtil.getDefaultKeyboard().then((res) => {
-    debugger
     dispatch(receiveKeyboardMapping(res.data))
   }).catch(err => {
     dispatch(receiveKeyboardMappingErrors(err.data))

@@ -12,7 +12,7 @@ export const setAuthToken = (token) => {
 }
 
 export const signup = (data) => {
-    return axios.post('http://localhost:8080/v1/users', data);
+    return axios.post('/v1/users', data);
 }
 
 export const login = (userData) => {
