@@ -1,20 +1,54 @@
-import { Button } from 'reactstrap';
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 const Key = (props) => {
-  const handleClick = (e) => {
+  const [ isPlaying, setPlaying ] = useState(false);
+
+  const handleUserKeyDown = useCallback((e) => {
+    const { keyCode } = e;
+    if (keyCode == props.keyCode) {
+      setPlaying(true);
+      // Play sound
+    }
+  }, [props]);
+
+  const handleUserKeyUp = useCallback((e) => {
+    const { keyCode }  = e;
+    if (keyCode == props.keyCode) {
+      setPlaying(false);
+    }
+  }, [props]);
+
+  useEffect(() => {
+
+    window.addEventListener('keydown', handleUserKeyDown);
+    window.addEventListener('keyup', handleUserKeyUp);
+    
+    return () => {
+      window.removeEventListener('keydown', handleUserKeyDown);
+      window.removeEventListener('keyup', handleUserKeyUp);
+    };
+
+  }, [handleUserKeyDown]);
+
+  const onMouseDown = (e) => {
     e.preventDefault();
-    console.log(e);
-  }
+    setPlaying(true);
+  };
+
+  const onMouseUp = (e) => {
+    e.preventDefault();
+    setPlaying(false);
+  };
 
   return (
-    <Button
-      className="key"
+    <div
+      className={ isPlaying ? "key active" : "key"}
       color = "secondary"
-      onClick={handleClick}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
     >
       {props.label}
-    </Button>
+    </div>
   )
 }
 
