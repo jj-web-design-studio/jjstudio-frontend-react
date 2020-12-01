@@ -1,19 +1,27 @@
+.keyBoard {
+  padding: 20px 0px 20px 0px;
+  background: rgb(17,189,224);
+  background: linear-gradient(180deg, rgba(17,189,224,1) 0%, rgba(237,237,252,1) 50%, rgba(126,121,212,1) 100%);
+}
+
 .keyRow {
   text-align: center;
   padding: 1px 0px 1px 0px;
 }
 
 .key {
-  background-color: grey;
+  background-color: rgb(211, 208, 208);
   display: inline-block;
   padding: 20px 25px 20px 25px;
   margin: 4px;
   font-size: large;
   border-radius: 5px;
+  border: solid black;
+  border-width: 1px;
 }
 
 .active {
-  border: solid goldenrod;
+  border: solid gold;
   border-width: 2px;
   margin: 2px;
   padding: 15px 20px 15px 20px;

@@ -15,7 +15,7 @@ const Keyboard = (props) => {
   }, [loadDefaultKeyboard]);
 
   return (
-    <div>
+    <div className="keyBoard">
       <div className="keyRow">
         <KeyboardDropdown current={keyboardName} />
       </div>

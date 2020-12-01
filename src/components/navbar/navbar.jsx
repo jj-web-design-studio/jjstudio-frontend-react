@@ -34,13 +34,13 @@ class AppNavbar extends React.Component {
         )
         return (
             <div>
-                <Navbar color="dark" dark expand="sm">
-                    <NavbarBrand href="/">JJ Studio</NavbarBrand>
+                <Navbar className="nav" color="light" light expand="sm">
+                    <NavbarBrand href="/">J J | S T U D I O </NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
                             <NavItem>
-                                <NavLink href="https://github.com/justinchung/jcstudio">GitHub</NavLink>
+                                <NavLink href="https://github.com/jj-web-design-studio">GitHub</NavLink>
                             </NavItem>
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>
