@@ -5,6 +5,7 @@ import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import StopIcon from '@material-ui/icons/Stop';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
+import MetronomeSlider from './metronome_slider';
 import './soundbar.css';
 
 const SoundBar = (props) => {
@@ -12,47 +13,55 @@ const SoundBar = (props) => {
   const [ isPlaying, setPlaying ] = useState(false);
   const [ numRows, setRows ] = useState(1);
 
-  const recordButton = (
-    <div className="soundBtn">
-      <AdjustIcon 
-        color={ isRecording ? "secondary" : "" }
-        onClick={() => {setRecording(!isRecording)}}
-      />
+  const playAndRecordButtons = (
+    <div>
+      <div className="soundBtn">
+        <AdjustIcon 
+          color={ isRecording ? "secondary" : "" }
+          onClick={() => {setRecording(!isRecording)}}
+        />
+      </div>
+      <div className="soundBtn">
+        { isPlaying ?
+        <StopIcon onClick={() => {setPlaying(!isPlaying)}} /> :
+        <PlayCircleFilledIcon onClick={() => {setPlaying(!isPlaying)}} /> }
+      </div>
     </div>
   )
 
-  const playButton = (
-    <div className="soundBtn">
-      { isPlaying ?
-      <StopIcon onClick={() => {setPlaying(!isPlaying)}} /> :
-      <PlayCircleFilledIcon onClick={() => {setPlaying(!isPlaying)}} /> }
-    </div>
-  )
-  
   const rowIncrementer = (
-    <div className="soundBtn">
-      <RemoveCircleIcon onClick={() => { numRows > 1 ? setRows(numRows - 1) : setRows(1) }} />
-      Rows: {numRows}
-      <AddCircleIcon onClick={() => { setRows(numRows + 1)}}/>
+    <div>
+      <div className="soundBtn">
+        <RemoveCircleIcon onClick={() => { numRows > 1 ? setRows(numRows - 1) : setRows(1) }} />
+      </div>
+      <div className="soundBtn">
+        Rows: {numRows}
+      </div>
+      <div className="soundBtn">
+        <AddCircleIcon onClick={() => { setRows(numRows + 1) }}/>
+      </div>
     </div>
   )
 
   const metronomeSlider = (
     <div className="soundBtn">
-      Metronome
+      <MetronomeSlider />
       {/*TODO: Figure out how to do metronome slider, might need to create separate component*/}
     </div>
   )
 
   return (
+    <div>
     <div className="soundBar">
-      {recordButton}
-      {playButton}
+      {playAndRecordButtons}
       {rowIncrementer}
       {metronomeSlider}
     </div>
-  )
+    <div className="box myanimation">
 
+    </div>
+    </div>
+  )
 }
 
 export default withRouter(SoundBar);

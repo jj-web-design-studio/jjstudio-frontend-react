@@ -1,10 +1,45 @@
 .soundBar {
   background-color: rgb(211, 208, 208);
   box-shadow: 3px -3px 3px 3px rgb(87, 85, 85);
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 40px;
+  vertical-align: middle;
 }
 
 .soundBtn {
   display: inline-block;
   text-align: center;
   padding: 5px 5px 5px 5px;
+}
+
+.metronome {
+  display: flex;
+  vertical-align: middle;
+}
+
+.slider {
+  width: 150px;
+}
+
+.box {
+  width: 20px;
+  height: 200px;
+  background-color: red;
+  border: solid 1px black;
+  animation-name: myanimation;
+  animation-duration: 5.9s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  position: absolute;
+}
+
+@keyframes myanimation
+{
+    from {
+        left: 0;
+    }
+    to {
+        left: 100%;
+    }
 }

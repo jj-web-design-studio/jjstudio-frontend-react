@@ -19,7 +19,6 @@ const Key = (props) => {
   }, [props]);
 
   useEffect(() => {
-
     window.addEventListener('keydown', handleUserKeyDown);
     window.addEventListener('keyup', handleUserKeyUp);
     
