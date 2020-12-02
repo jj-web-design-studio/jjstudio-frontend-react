@@ -57,8 +57,7 @@ const SoundBar = (props) => {
       {rowIncrementer}
       {metronomeSlider}
     </div>
-    <div className="box myanimation">
-
+    <div className={!isRecording ? "box" : "box animation"}>
     </div>
     </div>
   )
