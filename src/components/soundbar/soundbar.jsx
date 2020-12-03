@@ -3,7 +3,8 @@ import { withRouter } from "react-router-dom";
 
 import MetronomeSlider from "./metronome_slider";
 import Note from "./note";
-import PlayAndRecordButton from "./play_and_record_btn";
+import RecordButton from "./record_button";
+import PlayButton from "./play_button";
 
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
@@ -60,7 +61,7 @@ const SoundBar = (props) => {
   }, [soundArray, handleUserKeyDown]);
 
   const rowIncrementer = (
-    <div>
+    <div className="soundBtn">
       <div className="soundBtn">
         <RemoveCircleIcon
           onClick={() => {
@@ -79,15 +80,20 @@ const SoundBar = (props) => {
     </div>
   );
 
-  const playAndRecordButtons = (
-    <PlayAndRecordButton
+  const recordButton = (
+    <RecordButton
       isRecording={isRecording}
+      onClickRecording={() => {
+        setRecording(!isRecording);
+      }}
+    />
+  );
+
+  const playButton = (
+    <PlayButton
       isPlaying={isPlaying}
       onClickPlaying={() => {
         setPlaying(!isPlaying);
-      }}
-      onClickRecording={() => {
-        setRecording(!isRecording);
       }}
     />
   );
@@ -108,7 +114,10 @@ const SoundBar = (props) => {
   return (
     <div>
       <div className="soundBar">
-        {playAndRecordButtons}
+        <div className="soundBtn">
+          {recordButton}
+          {playButton}
+        </div>
         {rowIncrementer}
         <MetronomeSlider />
       </div>
