@@ -1,66 +1,109 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useCallback } from "react";
 import { withRouter } from "react-router-dom";
-import AdjustIcon from '@material-ui/icons/Adjust';
-import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
-import StopIcon from '@material-ui/icons/Stop';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
-import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
-import MetronomeSlider from './metronome_slider';
-import './soundbar.css';
+
+import MetronomeSlider from "./metronome_slider";
+import Note from "./note";
+import PlayAndRecordButton from "./play_and_record_btn";
+
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
+
+import "./soundbar.css";
 
 const SoundBar = (props) => {
-  const [ isRecording, setRecording ] = useState(false);
-  const [ isPlaying, setPlaying ] = useState(false);
-  const [ numRows, setRows ] = useState(1);
+  const [isRecording, setRecording] = useState(false);
+  const [isPlaying, setPlaying] = useState(false);
+  const [numRows, setRows] = useState(1);
+  const [soundArray, setSoundArray] = useState([]);
+  const [windowWidth, setWindowWidth] = useState(0);
 
-  const playAndRecordButtons = (
-    <div>
-      <div className="soundBtn">
-        <AdjustIcon 
-          color={ isRecording ? "secondary" : "" }
-          onClick={() => {setRecording(!isRecording)}}
-        />
-      </div>
-      <div className="soundBtn">
-        { isPlaying ?
-        <StopIcon onClick={() => {setPlaying(!isPlaying)}} /> :
-        <PlayCircleFilledIcon onClick={() => {setPlaying(!isPlaying)}} /> }
-      </div>
-    </div>
-  )
+  const handleUserKeyDown = useCallback(
+    (e) => {
+      const { keyCode } = e;
+      if (keyCode === 16) {
+        setRecording(!isRecording);
+        return;
+      }
+      const recordingLine = document.getElementById("recording-line");
+      const calculatedLeft = window
+        .getComputedStyle(recordingLine)
+        .getPropertyValue("left");
+      const calculatedLeftCleaned = calculatedLeft.slice(
+        0,
+        calculatedLeft.length - 2
+      );
+
+      setSoundArray(
+        soundArray.concat({
+          left: (calculatedLeftCleaned / windowWidth) * 100 + "%",
+        })
+      );
+    },
+    [isRecording, soundArray, windowWidth]
+  );
+
+  useEffect(() => {
+    setWindowWidth(window.innerWidth);
+
+    window.addEventListener("keydown", handleUserKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleUserKeyDown);
+    };
+  }, [soundArray, handleUserKeyDown]);
 
   const rowIncrementer = (
     <div>
       <div className="soundBtn">
-        <RemoveCircleIcon onClick={() => { numRows > 1 ? setRows(numRows - 1) : setRows(1) }} />
+        <RemoveCircleIcon
+          onClick={() => {
+            numRows > 1 ? setRows(numRows - 1) : setRows(1);
+          }}
+        />
       </div>
+      <div className="soundBtn">Rows: {numRows}</div>
       <div className="soundBtn">
-        Rows: {numRows}
-      </div>
-      <div className="soundBtn">
-        <AddCircleIcon onClick={() => { setRows(numRows + 1) }}/>
+        <AddCircleIcon
+          onClick={() => {
+            setRows(numRows + 1);
+          }}
+        />
       </div>
     </div>
-  )
+  );
 
-  const metronomeSlider = (
-    <div className="soundBtn">
-      <MetronomeSlider />
-      {/*TODO: Figure out how to do metronome slider, might need to create separate component*/}
-    </div>
-  )
+  const playAndRecordButtons = (
+    <PlayAndRecordButton
+      isRecording={isRecording}
+      isPlaying={isPlaying}
+      onClickPlaying={() => {
+        setPlaying(!isPlaying);
+      }}
+      onClickRecording={() => {
+        setRecording(!isRecording);
+      }}
+    />
+  );
+
+  const recordingLine = (
+    <div className={!isRecording ? "" : "animation"} id="recording-line" />
+  );
 
   return (
     <div>
-    <div className="soundBar">
-      {playAndRecordButtons}
-      {rowIncrementer}
-      {metronomeSlider}
+      <div className="soundBar">
+        {playAndRecordButtons}
+        {rowIncrementer}
+        <MetronomeSlider />
+      </div>
+      {recordingLine}
+      <div>
+        {soundArray.map((sound) => {
+          return <Note left={sound.left} />;
+        })}
+      </div>
     </div>
-    <div className={!isRecording ? "box" : "box animation"}>
-    </div>
-    </div>
-  )
-}
+  );
+};
 
 export default withRouter(SoundBar);

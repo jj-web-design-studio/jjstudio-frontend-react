@@ -27,7 +27,7 @@ const Key = (props) => {
       window.removeEventListener('keyup', handleUserKeyUp);
     };
 
-  }, [handleUserKeyDown]);
+  });
 
   const onMouseDown = (e) => {
     e.preventDefault();

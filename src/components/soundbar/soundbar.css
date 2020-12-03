@@ -22,11 +22,9 @@
   width: 150px;
 }
 
-.box {
-  width: 20px;
-  height: 200px;
-  background-color: red;
-  border: solid 1px black;
+#recording-line {
+  width: 1px;
+  height: 100%;
 }
 
 .animation {
@@ -35,6 +33,8 @@
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   position: absolute;
+  background-color: red;
+  border: solid 1px red;
 }
 
 @keyframes myanimation
