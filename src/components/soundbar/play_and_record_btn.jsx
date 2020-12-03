@@ -1,5 +1,3 @@
-import React from "react";
-
 import AdjustIcon from "@material-ui/icons/Adjust";
 import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import StopIcon from "@material-ui/icons/Stop";
