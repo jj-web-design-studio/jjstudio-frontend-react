@@ -27,14 +27,22 @@
   height: 100%;
 }
 
+.recording-line-active {
+  background-color: red;
+  border: solid 1px red;
+}
+
+.playing-line-active {
+  background-color: grey;
+  border: solid 1px grey;
+}
+
 .animation {
   animation-name: myanimation;
   animation-duration: 5.9s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   position: absolute;
-  background-color: red;
-  border: solid 1px red;
 }
 
 @keyframes myanimation

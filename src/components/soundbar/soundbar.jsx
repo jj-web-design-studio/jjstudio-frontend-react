@@ -19,9 +19,13 @@ const SoundBar = (props) => {
 
   const handleUserKeyDown = useCallback(
     (e) => {
+      e.preventDefault();
       const { keyCode } = e;
       if (keyCode === 16) {
         setRecording(!isRecording);
+        return;
+      } else if (keyCode === 32) {
+        setPlaying(!isPlaying);
         return;
       }
 
@@ -42,7 +46,7 @@ const SoundBar = (props) => {
         );
       }
     },
-    [isRecording, soundArray, windowWidth]
+    [isRecording, isPlaying, soundArray, windowWidth]
   );
 
   useEffect(() => {
@@ -89,7 +93,16 @@ const SoundBar = (props) => {
   );
 
   const recordingLine = (
-    <div className={!isRecording ? "" : "animation"} id="recording-line" />
+    <div
+      className={
+        isRecording
+          ? "animation recording-line-active"
+          : isPlaying
+          ? "animation playing-line-active"
+          : ""
+      }
+      id="recording-line"
+    />
   );
 
   return (
