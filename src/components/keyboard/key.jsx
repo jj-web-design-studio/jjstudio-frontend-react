@@ -1,32 +1,37 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from "react";
 
 const Key = (props) => {
-  const [ isPlaying, setPlaying ] = useState(false);
+  const [isPlaying, setPlaying] = useState(false);
 
-  const handleUserKeyDown = useCallback((e) => {
-    const { keyCode } = e;
-    if (keyCode == props.keyCode) {
-      setPlaying(true);
-      // Play sound
-    }
-  }, [props]);
+  const handleUserKeyDown = useCallback(
+    (e) => {
+      const { keyCode } = e;
+      if (keyCode == props.keyCode) {
+        setPlaying(true);
+        // Play sound
+      }
+    },
+    [props]
+  );
 
-  const handleUserKeyUp = useCallback((e) => {
-    const { keyCode }  = e;
-    if (keyCode == props.keyCode) {
-      setPlaying(false);
-    }
-  }, [props]);
+  const handleUserKeyUp = useCallback(
+    (e) => {
+      const { keyCode } = e;
+      if (keyCode == props.keyCode) {
+        setPlaying(false);
+      }
+    },
+    [props]
+  );
 
   useEffect(() => {
-    window.addEventListener('keydown', handleUserKeyDown);
-    window.addEventListener('keyup', handleUserKeyUp);
-    
-    return () => {
-      window.removeEventListener('keydown', handleUserKeyDown);
-      window.removeEventListener('keyup', handleUserKeyUp);
-    };
+    window.addEventListener("keydown", handleUserKeyDown);
+    window.addEventListener("keyup", handleUserKeyUp);
 
+    return () => {
+      window.removeEventListener("keydown", handleUserKeyDown);
+      window.removeEventListener("keyup", handleUserKeyUp);
+    };
   });
 
   const onMouseDown = (e) => {
@@ -41,14 +46,14 @@ const Key = (props) => {
 
   return (
     <div
-      className={ isPlaying ? "key active" : "key"}
-      color = "secondary"
+      className={isPlaying ? "key active" : "key"}
+      color="secondary"
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
     >
       {props.label}
     </div>
-  )
-}
+  );
+};
 
 export default Key;
