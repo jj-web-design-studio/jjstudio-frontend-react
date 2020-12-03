@@ -54,3 +54,7 @@
         left: 100%;
     }
 }
+
+.hover {
+  opacity: .5;
+}
