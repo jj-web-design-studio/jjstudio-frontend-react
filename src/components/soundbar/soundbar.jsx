@@ -24,20 +24,23 @@ const SoundBar = (props) => {
         setRecording(!isRecording);
         return;
       }
-      const recordingLine = document.getElementById("recording-line");
-      const calculatedLeft = window
-        .getComputedStyle(recordingLine)
-        .getPropertyValue("left");
-      const calculatedLeftCleaned = calculatedLeft.slice(
-        0,
-        calculatedLeft.length - 2
-      );
 
-      setSoundArray(
-        soundArray.concat({
-          left: (calculatedLeftCleaned / windowWidth) * 100 + "%",
-        })
-      );
+      if (isRecording) {
+        const recordingLine = document.getElementById("recording-line");
+        const calculatedLeft = window
+          .getComputedStyle(recordingLine)
+          .getPropertyValue("left");
+        const calculatedLeftCleaned = calculatedLeft.slice(
+          0,
+          calculatedLeft.length - 2
+        );
+
+        setSoundArray(
+          soundArray.concat({
+            left: (calculatedLeftCleaned / windowWidth) * 100 + "%",
+          })
+        );
+      }
     },
     [isRecording, soundArray, windowWidth]
   );
