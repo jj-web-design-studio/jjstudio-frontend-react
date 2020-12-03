@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
 import KeyboardDropdown from "./keyboard_dropdown";
 import Key from './key';
@@ -6,7 +7,9 @@ import { NUM_ROW, QWE_ROW, ASD_ROW, ZXC_ROW } from "./keys";
 import './keyboard.css';
 
 const Keyboard = (props) => {
-  const { loadDefaultKeyboard, keyboardName, numRowMapping, qweRowMapping, asdRowMapping, zxcRowMapping } = props;
+  const isAuthenticated  = useSelector(state => state.session.isAuthenticated);
+
+  const { loadDefaultKeyboard, loadKeyboardNameList, keyboardName, numRowMapping, qweRowMapping, asdRowMapping, zxcRowMapping } = props;
 
   useEffect(() => {
     
@@ -17,7 +20,7 @@ const Keyboard = (props) => {
   return (
     <div className="keyBoard">
       <div className="keyRow">
-        <KeyboardDropdown current={keyboardName} />
+        { isAuthenticated ? <KeyboardDropdown current={keyboardName} loadKeyboardNameList={loadKeyboardNameList} /> : <></>}
       </div>
       <div className="numRow keyRow">
         {NUM_ROW.map((key) => (

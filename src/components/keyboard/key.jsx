@@ -1,27 +1,35 @@
 import { useCallback, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const Key = (props) => {
+  const modal = useSelector((state) => state.ui.modal);
   const [isPlaying, setPlaying] = useState(false);
 
   const handleUserKeyDown = useCallback(
     (e) => {
-      const { keyCode } = e;
-      if (keyCode == props.keyCode) {
-        setPlaying(true);
-        // Play sound
+      if (modal === null) {
+        e.preventDefault();
+        const { keyCode } = e;
+        if (keyCode == props.keyCode) {
+          setPlaying(true);
+          // Play sound
+        }
       }
     },
-    [props]
+    [modal, props]
   );
 
   const handleUserKeyUp = useCallback(
     (e) => {
-      const { keyCode } = e;
-      if (keyCode == props.keyCode) {
-        setPlaying(false);
+      if (modal === null) {
+        e.preventDefault();
+        const { keyCode } = e;
+        if (keyCode == props.keyCode) {
+          setPlaying(false);
+        }
       }
     },
-    [props]
+    [modal, props]
   );
 
   useEffect(() => {
