@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const Key = (props) => {
   const [isPlaying, setPlaying] = useState(false);

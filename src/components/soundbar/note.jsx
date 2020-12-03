@@ -1,6 +1,13 @@
-import React from "react";
-
 const Note = (props) => {
+
+  const handleOnDrag = (e) => {
+    
+  }
+
+  const handleOnDragEnd = (e) => {
+
+  }
+
   return (
     <div
       style={{
@@ -10,6 +17,8 @@ const Note = (props) => {
         backgroundColor: "blue",
         position: "absolute",
       }}
+      onDrag={handleOnDrag}
+      onDragEnd={handleOnDragEnd}
     />
   );
 };
