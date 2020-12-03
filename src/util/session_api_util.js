@@ -3,7 +3,6 @@ import axios from "axios";
 
 //Will set the authToken if someone is logged in
 export const setAuthToken = (token) => {
-    debugger
     if (token) {
         axios.defaults.headers.common['Authorization'] = token;
     } else {
