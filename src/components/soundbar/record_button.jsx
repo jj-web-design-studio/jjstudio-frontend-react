@@ -2,19 +2,19 @@ import { useState } from "react";
 import AdjustIcon from "@material-ui/icons/Adjust";
 
 const RecordButton = (props) => {
-  const [isHoveringRecord, setHoveringRecord] = useState(false);
+  const [isHovering, setHovering] = useState(false);
 
   return (
     <div className="soundBtn">
       <AdjustIcon
-        className={isHoveringRecord ? "hover" : ""}
+        className={isHovering ? "hover" : ""}
         color={props.isRecording ? "secondary" : ""}
-        onClick={props.onClickRecording}
+        onClick={props.onClick}
         onMouseEnter={() => {
-          setHoveringRecord(true);
+          setHovering(true);
         }}
         onMouseLeave={() => {
-          setHoveringRecord(false);
+          setHovering(false);
         }}
       />
     </div>

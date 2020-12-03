@@ -3,30 +3,30 @@ import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import StopIcon from "@material-ui/icons/Stop";
 
 const PlayButton = (props) => {
-  const [isHoveringPlay, setHoveringPlay] = useState(false);
+  const [isHovering, setHovering] = useState(false);
 
   return (
     <div className="soundBtn">
       {props.isPlaying ? (
         <StopIcon
-          className={isHoveringPlay ? "hover" : ""}
-          onClick={props.onClickPlaying}
+          className={isHovering ? "hover" : ""}
+          onClick={props.onClick}
           onMouseEnter={() => {
-            setHoveringPlay(true);
+            setHovering(true);
           }}
           onMouseLeave={() => {
-            setHoveringPlay(false);
+            setHovering(false);
           }}
         />
       ) : (
         <PlayCircleFilledIcon
-          className={isHoveringPlay ? "hover" : ""}
-          onClick={props.onClickPlaying}
+          className={isHovering ? "hover" : ""}
+          onClick={props.onClick}
           onMouseEnter={() => {
-            setHoveringPlay(true);
+            setHovering(true);
           }}
           onMouseLeave={() => {
-            setHoveringPlay(false);
+            setHovering(false);
           }}
         />
       )}
