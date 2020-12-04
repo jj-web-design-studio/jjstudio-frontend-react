@@ -8,7 +8,7 @@ const RecordButton = (props) => {
     <div className="soundBtn">
       <AdjustIcon
         className={isHovering ? "hover" : ""}
-        color={props.isRecording ? "secondary" : ""}
+        color={props.isRecording ? "secondary" : "inherit"}
         onClick={props.onClick}
         onMouseEnter={() => {
           setHovering(true);
