@@ -46,7 +46,7 @@ const SoundBar = (props) => {
 
           setSoundArray(
             soundArray.concat({
-              left: (calculatedLeftCleaned / windowWidth) * 100 + "%",
+              left: (calculatedLeftCleaned / windowWidth) * 100,
             })
           );
         }
@@ -129,7 +129,7 @@ const SoundBar = (props) => {
       {recordingLine}
       <div>
         {soundArray.map((sound) => {
-          return <Note left={sound.left} />;
+          return <Note left={sound.left} windowWidth={windowWidth} />;
         })}
       </div>
     </div>
