@@ -48,7 +48,6 @@ export const signup = user => dispatch => (
 // but might change with how springboot works
 export const login = user => dispatch => { 
     return SessionAPIUtil.login(user).then(res => {
-        debugger
         const { jwt } = res.data;
         localStorage.setItem('jwtToken', jwt);
         SessionAPIUtil.setAuthToken(jwt);
