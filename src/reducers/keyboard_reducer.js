@@ -1,12 +1,17 @@
-import { RECEIVE_KEYBOARD_MAPPING } from '../actions/keyboard_actions';
+import { RECEIVE_KEYBOARD_MAPPING, RECEIVE_KEYBOARD_NAME_LIST } from '../actions/keyboard_actions';
 
 function KeyboardReducer(state = {}, action) {
-  Object.freeze(state);
-  let nextState = Object.assign({}, state);
   switch (action.type) {
     case RECEIVE_KEYBOARD_MAPPING:
-      nextState = action.keyboardMapping;
-      return nextState;
+      return {
+        ...state,
+        mapping: action.keyboardMapping
+      }
+    case RECEIVE_KEYBOARD_NAME_LIST:
+      return {
+        ...state,
+        nameList: action.keyboardNameList
+      }
     default:
       return state;
   }
