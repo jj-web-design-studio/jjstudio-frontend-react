@@ -9,5 +9,5 @@ export const getDefaultKeyboard = () => {
 }
 
 export const getKeyboardNameList = () => {
-  return axios.get("v1/me/keyboards");
+  return axios.get("/v1/me/keyboards");
 }
