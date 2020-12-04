@@ -30,9 +30,6 @@ const Note = (props) => {
   };
 
   const roundToNearestMultiple = (left) => {
-    console.log("left/0.78125 = " + left/0.78125)
-    console.log("Math.floor(left/0.7812) = " + Math.floor(left/0.7812))
-    console.log("Math.floor(left/0.78125) * 0.78125 = " + Math.floor(left/0.78125) * 0.78125)
     let rounded = (Math.ceil(left/0.78125) * 0.78125) 
     return rounded
   }
