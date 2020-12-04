@@ -59,7 +59,10 @@ const Key = (props) => {
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
     >
-      {props.label}
+      <div className="key-label">
+        {props.label}
+      </div>
+      {props.soundId}
     </div>
   );
 };

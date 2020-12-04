@@ -32,18 +32,23 @@ const Keyboard = (props) => {
             )}
           </div>
           <div className="numRow keyRow">
-            {NUM_ROW.map((key) => (
-              <Key
+            {NUM_ROW.map((key) => {
+              console.log(key.keyCode)
+              if (mapping.numRow != null) {
+                console.log(mapping.numRow)
+                console.log(mapping.numRow[key.keyCode])
+              }
+             return ( <Key
                 key={key.keyCode}
                 keyCode={key.keyCode}
                 label={key.label}
                 soundId={
-                  mapping.numRowMapping != null
-                    ? mapping.numRowMapping[key.keyCode]
+                  mapping.numRowM != null
+                    ? mapping.numRow[key.keyCode.toString()]
                     : ""
                 }
-              />
-            ))}
+              />)
+              })}
           </div>
           <div className="qweRow keyRow">
             {QWE_ROW.map((key) => (
@@ -52,8 +57,8 @@ const Keyboard = (props) => {
                 keyCode={key.keyCode}
                 label={key.label}
                 soundId={
-                  mapping.qweRowMapping != null
-                    ? mapping.qweRowMapping[key.keyCode]
+                  mapping.qweRow != null
+                    ? mapping.qweRow[key.keyCode.toString()]
                     : ""
                 }
               />
@@ -66,8 +71,8 @@ const Keyboard = (props) => {
                 keyCode={key.keyCode}
                 label={key.label}
                 soundId={
-                  mapping.asdRowMapping != null
-                    ? mapping.asdRowMapping[key.keyCode]
+                  mapping.asdRow != null
+                    ? mapping.asdRow[key.keyCode.toString()]
                     : ""
                 }
               />
@@ -80,8 +85,8 @@ const Keyboard = (props) => {
                 keyCode={key.keyCode}
                 label={key.label}
                 soundId={
-                  mapping.zxcRowMapping != null
-                    ? mapping.zxcRowMapping[key.keyCode]
+                  mapping.zxcRow != null
+                    ? mapping.zxcRow[key.keyCode.toString()]
                     : ""
                 }
               />
