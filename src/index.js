@@ -6,7 +6,13 @@ import jwt_decode from 'jwt-decode'; // might need this??
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  let store = configureStore({});
+  let preloadedState = {
+    keyboard: {
+      currentKeyboardId: "default"
+    }
+  };
+
+  let store = configureStore(preloadedState);
   const root = document.getElementById('root');
 
   ReactDOM.render(<Root store={store} />, root)
