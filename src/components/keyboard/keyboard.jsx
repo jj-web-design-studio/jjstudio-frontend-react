@@ -5,17 +5,20 @@ import KeyboardDropdown from "./keyboard_dropdown";
 import Key from "./key";
 import { NUM_ROW, QWE_ROW, ASD_ROW, ZXC_ROW } from "./keys";
 import "./keyboard.css";
+import * as SoundAPIUtil from "../../util/sound_api_util";
 
 const Keyboard = (props) => {
   const isAuthenticated = useSelector((state) => state.session.isAuthenticated);
 
-  const { loadDefaultKeyboard, loadKeyboardNameList } = props;
+  const currentKeyboardId = useSelector((state) => state.keyboard.currentKeyboardId);
+
+  const { loadKeyboardMapping, loadKeyboardNameList } = props;
 
   const { mapping } = props;
 
   useEffect(() => {
-    loadDefaultKeyboard();
-  }, [loadDefaultKeyboard]);
+    loadKeyboardMapping(currentKeyboardId);
+  }, [currentKeyboardId, isAuthenticated, loadKeyboardMapping]);
 
   return (
     <div>
@@ -33,12 +36,7 @@ const Keyboard = (props) => {
           </div>
           <div className="numRow keyRow">
             {NUM_ROW.map((key) => {
-              console.log(key.keyCode)
-              if (mapping.numRow != null) {
-                console.log(mapping.numRow)
-                console.log(mapping.numRow[key.keyCode])
-              }
-             return ( <Key
+             return <Key
                 key={key.keyCode}
                 keyCode={key.keyCode}
                 label={key.label}
@@ -47,7 +45,7 @@ const Keyboard = (props) => {
                     ? mapping.numRow[key.keyCode.toString()]
                     : ""
                 }
-              />)
+              />
               })}
           </div>
           <div className="qweRow keyRow">

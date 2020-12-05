@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Keyboard from "./keyboard";
-import { loadDefaultKeyboard, loadKeyboardNameList } from "../../actions/keyboard_actions";
+import { loadKeyboardById, loadKeyboardNameList } from "../../actions/keyboard_actions";
 
 const mapStateToProps = (state) => {
   // let sessionId = state.session.id
@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadDefaultKeyboard: () => dispatch(loadDefaultKeyboard()),
+    loadKeyboardMapping: (id) => dispatch(loadKeyboardById(id)),
     loadKeyboardNameList: () => dispatch(loadKeyboardNameList()),
   };
 };
