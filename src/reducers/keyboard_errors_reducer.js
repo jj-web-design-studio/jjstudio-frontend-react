@@ -1,4 +1,9 @@
-import { RECEIVE_KEYBOARD_MAPPING_ERRORS, RECEIVE_KEYBOARD_MAPPING } from '../actions/keyboard_actions';
+import {
+  RECEIVE_KEYBOARD_MAPPING_ERRORS,
+  RECEIVE_KEYBOARD_MAPPING,
+  RECEIVE_KEYBOARD_NAME_LIST,
+  RECEIVE_KEYBOARD_NAME_LIST_ERRORS,
+} from "../actions/keyboard_actions";
 
 let nullErrors = [];
 
@@ -10,6 +15,11 @@ function KeyboardErrorReducer(state = {}, action) {
       nextState = action.errors;
       return nextState;
     case RECEIVE_KEYBOARD_MAPPING:
+      return nullErrors;
+    case RECEIVE_KEYBOARD_NAME_LIST_ERRORS:
+      nextState = action.errors;
+      return nextState;
+    case RECEIVE_KEYBOARD_NAME_LIST:
       return nullErrors;
     default:
       return state;
