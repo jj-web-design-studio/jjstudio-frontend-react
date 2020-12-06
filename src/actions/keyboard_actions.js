@@ -36,15 +36,6 @@ export const loadKeyboardById = (id) => (dispatch) =>
     })
     .catch((err) => dispatch(receiveKeyboardMappingErrors(err.data)));
 
-// export const loadDefaultKeyboard = () => (dispatch) =>
-//   KeyboardAPIUtil.getKeyboardById("default")
-//     .then((res) => {
-//       dispatch(receiveKeyboardMapping(res.data));
-//     })
-//     .catch((err) => {
-//       dispatch(receiveKeyboardMappingErrors(err.data));
-//     });
-
 export const loadKeyboardNameList = () => (dispatch) =>
   KeyboardAPIUtil.getKeyboardNameList()
     .then((res) => {
