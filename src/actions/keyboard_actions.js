@@ -4,6 +4,8 @@ export const RECEIVE_KEYBOARD_MAPPING = "RECEIVE_KEYBOARD_MAPPING";
 export const RECEIVE_KEYBOARD_MAPPING_ERRORS =
   "RECEIVE_KEYBOARD_MAPPING_ERRORS";
 export const RECEIVE_KEYBOARD_NAME_LIST = "RECIEVE_KEYBOARD_NAME_LIST";
+export const RECEIVE_KEYBOARD_NAME_LIST_ERRORS =
+  "RECEIVE_KEYBOARD_NAME_LIST_ERRORS";
 
 // action creators
 export const receiveKeyboardMapping = (keyboardMapping) => {
@@ -27,6 +29,13 @@ export const receiveKeyboardNameList = (keyboardNameList) => {
   };
 };
 
+export const receiveKeyboardNameListErrors = (errors) => {
+  return {
+    type: RECEIVE_KEYBOARD_NAME_LIST_ERRORS,
+    errors,
+  };
+};
+
 // thunk action creators
 
 export const loadKeyboardById = (id) => (dispatch) =>
@@ -34,7 +43,9 @@ export const loadKeyboardById = (id) => (dispatch) =>
     .then((res) => {
       dispatch(receiveKeyboardMapping(res.data));
     })
-    .catch((err) => dispatch(receiveKeyboardMappingErrors(err.data)));
+    .catch((err) => {
+      dispatch(receiveKeyboardMappingErrors(err.data));
+    });
 
 export const loadKeyboardNameList = () => (dispatch) =>
   KeyboardAPIUtil.getKeyboardNameList()
@@ -46,5 +57,5 @@ export const loadKeyboardNameList = () => (dispatch) =>
       dispatch(receiveKeyboardNameList(keyboardNameList));
     })
     .catch((err) => {
-      // do something
+      dispatch(receiveKeyboardNameListErrors(err.data));
     });
