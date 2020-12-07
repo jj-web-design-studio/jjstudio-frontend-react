@@ -21,17 +21,11 @@ export const receiveSoundsError = (errors) => {
 
 // thunk action creators
 export const loadSoundsByIds = (ids) => (dispatch) => {
-  debugger
   SoundAPIUtil.getSoundByIds(ids)
     .then((res) => {
-      debugger
-      console.log(res);
       dispatch(receiveSounds(res.data));
     })
     .catch((err) => {
-      debugger
-      console.log(err);
       dispatch(receiveSoundsError(err.data));
     });
-    debugger
 };
