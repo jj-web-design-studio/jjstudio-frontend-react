@@ -5,7 +5,6 @@ export const RECEIVE_SOUNDS_ERRORS = "RECEIVE_SOUNDS_ERRORS";
 
 // action creators
 export const receiveSounds = (sounds) => {
-  debugger
   return {
     type: RECEIVE_SOUNDS,
     sounds,
@@ -14,7 +13,7 @@ export const receiveSounds = (sounds) => {
 
 export const receiveSoundsError = (errors) => {
   return {
-    type: RECEIVE_SOUNDS_ERROR,
+    type: RECEIVE_SOUNDS_ERRORS,
     errors,
   };
 };
