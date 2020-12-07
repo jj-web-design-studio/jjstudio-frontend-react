@@ -6,7 +6,7 @@ import NavBarContainer from "./navbar/navbar_container"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import KeyboardContainer from './keyboard/keyboard_container';
-import SoundBarContainer from './soundbar/soundbar_container';
+import SoundControlsContainer from './sound_controls/sound_controls_container';
 
 const App = () => {
     return (
@@ -15,7 +15,7 @@ const App = () => {
                 <Modal />
                 <NavBarContainer />
                 <KeyboardContainer />
-                <SoundBarContainer />
+                <SoundControlsContainer />
                 <Switch>
                     {/* <Route exact path = "/" component={HomeContainer} /> */}
                 </Switch>

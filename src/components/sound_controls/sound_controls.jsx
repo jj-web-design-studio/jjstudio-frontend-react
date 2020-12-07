@@ -10,9 +10,9 @@ import PlayButton from "./play_button";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 
-import "./soundbar.css";
+import "./sound_controls.css";
 
-const SoundBar = (props) => {
+const SoundControls = (props) => {
   const modal = useSelector((state) => state.ui.modal);
 
   const [isRecording, setRecording] = useState(false);
@@ -118,7 +118,7 @@ const SoundBar = (props) => {
 
   return (
     <div>
-      <div className="soundBar">
+      <div className="sound-controls">
         <div className="soundBtn">
           {recordButton}
           {playButton}
@@ -136,4 +136,4 @@ const SoundBar = (props) => {
   );
 };
 
-export default withRouter(SoundBar);
+export default withRouter(SoundControls);

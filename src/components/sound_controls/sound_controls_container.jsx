@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import SoundBar from './soundbar';
+import SoundControls from './sound_controls';
 
 const mapStateToProps = (state) => {
   
@@ -11,4 +11,4 @@ const mapDispatchToProps = (dispatch) => {
   })
 }
 
-export default connect(null, null)(SoundBar);
+export default connect(null, null)(SoundControls);
