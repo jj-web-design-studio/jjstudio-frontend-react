@@ -10,7 +10,7 @@ export const base64ToSoundFile = (base64) => {
 
 export const base64ListToSoundFileList = (base64List) => {
   let blobs = [];
-  for (base64 in base64List) {
+  for (let base64 in base64List) {
     blobs.push(base64ToSoundFile(base64));
   }
   return blobs;
