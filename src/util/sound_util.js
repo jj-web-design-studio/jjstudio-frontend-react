@@ -1,3 +1,4 @@
+// Convert base64 string to Blob
 export const base64ToSoundFile = (base64) => {
   const byteCharacters = atob(base64);
   const byteNumbers = new Array(byteCharacters.length);
@@ -8,6 +9,7 @@ export const base64ToSoundFile = (base64) => {
   return new Blob(byteArray, {type: 'audio/mp3'});
 }
 
+// Convert array of base64 string to array of Blob
 export const base64ListToSoundFileList = (base64List) => {
   let blobs = [];
   for (let base64 in base64List) {
