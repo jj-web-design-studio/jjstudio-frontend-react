@@ -23,7 +23,7 @@ const KeyboardDropdown = (props) => {
       <DropdownToggle caret>{props.current}</DropdownToggle>
       <DropdownMenu>
         {keyboardNameList != null ? keyboardNameList.map(name => {
-          return <DropdownItem>{name}</DropdownItem>
+          return <DropdownItem key={name}>{name}</DropdownItem>
         }) : ""}
       </DropdownMenu>
     </Dropdown>
