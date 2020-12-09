@@ -7,7 +7,7 @@ const Key = (props) => {
 
   const handleUserKeyDown = useCallback(
     (e) => {
-      if (modal === null) {
+      if (!modal) {
         e.preventDefault();
         const { keyCode } = e;
         if (keyCode == props.keyCode) {
@@ -21,7 +21,7 @@ const Key = (props) => {
 
   const handleUserKeyUp = useCallback(
     (e) => {
-      if (modal === null) {
+      if (!modal) {
         e.preventDefault();
         const { keyCode } = e;
         if (keyCode == props.keyCode) {
