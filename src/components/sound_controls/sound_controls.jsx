@@ -21,7 +21,7 @@ const SoundControls = (props) => {
 
   const handleUserKeyDown = useCallback(
     (e) => {
-      if (modal === null) {
+      if (!modal) {
         e.preventDefault();
         const { keyCode } = e;
         if (keyCode === 16) {
