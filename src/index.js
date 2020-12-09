@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     store = configureStore(preloadedState)
   } else {
-    store = configureStore({})
+    store = configureStore({keyboard: { currentKeyboardId: "default" }})
   }
 
   const root = document.getElementById('root');
