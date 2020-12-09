@@ -1,45 +1,54 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 
 const Note = (props) => {
-  const [ isDragging, setDragging ] = useState(false);
-  const [ left, setLeft ] = useState(props.left);
+  const [isDragging, setDragging] = useState(false);
+  const [left, setLeft] = useState(props.left);
 
   const noteReference = useRef();
 
   const handleMouseDown = (e) => {
-    if (e.button !== 0) return;
-    setDragging(true);
-    setLeft(e.pageX / props.windowWidth * 100);
- 
     e.stopPropagation();
     e.preventDefault();
+    if (e.button !== 0) return;
+    setDragging(true);
+    setLeft(((e.clientX - 10) / props.windowWidth) * 100);
   };
 
   const handleMouseUp = (e) => {
-    setDragging(false);
     e.stopPropagation();
     e.preventDefault();
+    setDragging(false);
   };
 
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    setLeft(e.pageX / props.windowWidth * 100);
-  
-    e.stopPropagation();
-    e.preventDefault();
-  };
+  const handleMouseMove = useCallback(
+    (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      if (!isDragging) return;
+      setLeft(((e.clientX - 10) / props.windowWidth) * 100);
+    },
+    [isDragging, props.windowWidth]
+  );
 
   const roundToNearestMultiple = (left) => {
-    let rounded = (Math.ceil(left/0.78125) * 0.78125) 
-    return rounded
-  }
+    let rounded = Math.ceil(left / 0.78125) * 0.78125;
+    return rounded;
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [handleMouseMove]);
 
   return (
     <div
       ref={noteReference}
       style={{
-        width: props.windowWidth/128,
-        height: 40,
+        height: 50,
+        width: props.windowWidth / 128,
         left: roundToNearestMultiple(left) + "%",
         backgroundColor: "blue",
         position: "absolute",
