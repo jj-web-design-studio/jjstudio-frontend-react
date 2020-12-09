@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import Note from "./note";
 
 const SoundBar = (props) => {
-  const modal = useSelector((state) => state.modal);
+  const modal = useSelector((state) => state.ui.modal);
   const [soundArray, setSoundArray] = useState([]);
   const { isSelected, isRecording, windowWidth } = props;
 
