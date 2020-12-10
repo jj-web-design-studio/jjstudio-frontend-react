@@ -21,14 +21,14 @@ const SoundControls = (props) => {
 
   const handleUserKeyDown = useCallback(
     (e) => {
-      if (!modal) {
-        e.preventDefault();
-        const { keyCode } = e;
-        if (keyCode === 16) {
-          setRecording(!isRecording);
-        } else if (keyCode === 32) {
-          setPlaying(!isPlaying);
-        }
+      if (modal) return;
+
+      e.preventDefault();
+      
+      if (e.keyCode === 16) {
+        setRecording(!isRecording);
+      } else if (e.keyCode === 32) {
+        setPlaying(!isPlaying);
       }
     },
     [modal, isRecording, isPlaying]
@@ -37,12 +37,12 @@ const SoundControls = (props) => {
   useEffect(() => {
     setWindowWidth(window.innerWidth);
 
-    window.addEventListener("keydown", handleUserKeyDown)
-  
+    window.addEventListener("keydown", handleUserKeyDown);
+
     return () => {
       window.removeEventListener("keydown", handleUserKeyDown);
     };
-  }, [handleUserKeyDown, isRecording]);
+  }, [handleUserKeyDown, isRecording, numRows]);
 
   const rowIncrementer = (
     <div className="soundBtn">
@@ -94,6 +94,18 @@ const SoundControls = (props) => {
       id="recording-line"
     />
   );
+
+  let soundBars = [];
+  for (let i = 0; i < numRows; i++) {
+    soundBars.push(
+      <SoundBar
+        key={i}
+        windowWidth={windowWidth}
+        isSelected={i === numRows - 1}
+        isRecording={isRecording}
+      />
+    );
+  }
 
   return (
     <div>
