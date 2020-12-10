@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
+
 import Note from "./note";
 
 const SoundBar = (props) => {
@@ -7,29 +8,32 @@ const SoundBar = (props) => {
   const [soundArray, setSoundArray] = useState([]);
   const { isSelected, isRecording, windowWidth } = props;
 
+  const shouldRender = useCallback(() => {
+    return isSelected && isRecording && !modal;
+  }, [isSelected, isRecording, modal]);
+
   const handleUserKeyDown = useCallback(
     (e) => {
-      if (isSelected && !modal) {
-        e.preventDefault();
-        const { keyCode } = e;
-        if (keyCode === 16 || keyCode === 32) return;
-        const recordingLine = document.getElementById("recording-line");
-        const calculatedLeft = window
-          .getComputedStyle(recordingLine)
-          .getPropertyValue("left");
-        const calculatedLeftCleaned = calculatedLeft.slice(
-          0,
-          calculatedLeft.length - 2
-        );
+      if (!shouldRender()) return;
 
-        setSoundArray(
-          soundArray.concat({
-            left: (calculatedLeftCleaned / windowWidth) * 100,
-          })
-        );
-      }
+      e.preventDefault();
+      if (e.keyCode === 16 || e.keyCode === 32) return;
+      const recordingLine = document.getElementById("recording-line");
+      const calculatedLeft = window
+        .getComputedStyle(recordingLine)
+        .getPropertyValue("left");
+      const calculatedLeftCleaned = calculatedLeft.slice(
+        0,
+        calculatedLeft.length - 2
+      );
+
+      setSoundArray(
+        soundArray.concat({
+          left: (calculatedLeftCleaned / windowWidth) * 100,
+        })
+      );
     },
-    [isSelected, modal, windowWidth, soundArray]
+    [shouldRender, windowWidth, soundArray]
   );
 
   useEffect(() => {

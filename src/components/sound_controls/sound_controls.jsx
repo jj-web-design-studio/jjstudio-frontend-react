@@ -95,13 +95,6 @@ const SoundControls = (props) => {
     />
   );
 
-  let soundBars = [];
-  for (let i = 0; i < numRows; i++) {
-    soundBars.push(
-      <SoundBar key={i} windowWidth={windowWidth} isSelected={i === numRows - 1} />
-    );
-  }
-
   return (
     <div>
       <div className="sound-controls">
