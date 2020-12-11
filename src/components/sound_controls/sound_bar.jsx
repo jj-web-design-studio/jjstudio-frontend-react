@@ -47,7 +47,12 @@ const SoundBar = (props) => {
   return (
     <div className={isSelected ? "sound-bar" : "sound-bar selected"}>
       {soundArray.map((sound) => {
-        return <Note left={sound.left} windowWidth={windowWidth} />;
+        return (
+          <Note
+            left={sound.left}
+            windowWidth={windowWidth}
+          />
+        );
       })}
     </div>
   );
