@@ -18,13 +18,14 @@ const SoundControls = (props) => {
   const [isPlaying, setPlaying] = useState(false);
   const [numRows, setRows] = useState(1);
   const [windowWidth, setWindowWidth] = useState(0);
+  const [isHoveringBars, setHoveringBars] = useState(false);
 
   const handleUserKeyDown = useCallback(
     (e) => {
       if (modal) return;
 
       e.preventDefault();
-      
+
       if (e.keyCode === 16) {
         setRecording(!isRecording);
       } else if (e.keyCode === 32) {
@@ -95,9 +96,10 @@ const SoundControls = (props) => {
     />
   );
 
-  let soundBars = [];
-  for (let i = 0; i < numRows; i++) {
-    soundBars.push(
+  const soundBars = function() {
+    const soundBars = [];
+    for (let i = 0; i < numRows; i++) {
+      soundBars.push(
       <SoundBar
         key={i}
         windowWidth={windowWidth}
@@ -105,10 +107,30 @@ const SoundControls = (props) => {
         isRecording={isRecording}
       />
     );
+    }
+    return soundBars;
   }
+  
+  const hoverLines = function(increment) {
+    let hoverLines = [];
+    for (let i = 1; i < 16; i++) {
+      hoverLines.push(
+        <div
+          className="hover-line"
+          style={isHoveringBars ? { 
+            left: increment * i + "%", 
+            opacity: i % 4 === 0 ? 1 : 0.4,
+            borderLeft: i % 4 === 0 ? "1px solid grey" : "1px dotted grey"
+          } : {}}
+        />
+      );
+    }
+    return hoverLines;
+  }
+  
 
   return (
-    <div>
+    <div style={{backgroundColor: "lightpink"}}>
       <div className="sound-controls">
         <div className="soundBtn">
           {recordButton}
@@ -118,7 +140,18 @@ const SoundControls = (props) => {
         <MetronomeSlider />
       </div>
       {recordingLine}
-      {soundBars}
+      <div
+        className="sound-bar-wrapper"
+        onMouseEnter={() => {
+          setHoveringBars(true);
+        }}
+        onMouseLeave={() => {
+          setHoveringBars(false);
+        }}
+      >
+        {soundBars()}
+        {hoverLines(6.25)}
+      </div>
     </div>
   );
 };
