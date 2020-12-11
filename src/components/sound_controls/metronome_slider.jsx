@@ -4,7 +4,7 @@ import Slider from '@material-ui/core/Slider';
 const MetronomeSlider = (props) => {
   const [ bpm, setBPM ] = useState(120);
 
-  const handleChange = (event, newBPM) => {
+  const handleChange = (e, newBPM) => {
     console.log(bpm);
     setBPM(newBPM);
   };
