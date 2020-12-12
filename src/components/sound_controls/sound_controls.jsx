@@ -9,6 +9,8 @@ import PlayButton from "./play_button";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 
+import isPlayableKey from "../keyboard/keys";
+
 const BASELINE_MAX_BPM_ANIMATION_SECONDS = 6.4;
 const BASELINE_MAX_BPM = 150;
 const HOVER_LINE_SPACING = 6.25;

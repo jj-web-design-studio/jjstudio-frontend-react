@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
+import { isPlayableKey } from "../keyboard/keys";
 
 import Note from "./note";
 
@@ -8,13 +9,13 @@ const SoundBar = (props) => {
   const [soundArray, setSoundArray] = useState([]);
   const { isSelected, isRecording, windowWidth } = props;
 
-  const shouldRender = useCallback(() => {
-    return isSelected && isRecording && !modal;
+  const shouldRender = useCallback((keyCode) => {
+    return isSelected && isRecording && !modal && isPlayableKey(keyCode);
   }, [isSelected, isRecording, modal]);
 
   const handleUserKeyDown = useCallback(
     (e) => {
-      if (!shouldRender()) return;
+      if (!shouldRender(e.keyCode)) return;
 
       e.preventDefault();
       if (e.keyCode === 16 || e.keyCode === 32) return;
