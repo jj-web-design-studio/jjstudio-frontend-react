@@ -1,17 +1,35 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
-import { isPlayableKey } from "../keyboard/keys";
 
+import { isPlayableKey } from "../keyboard/keys";
 import Note from "./note";
+
+import { makeStyles } from "@material-ui/core/styles";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 const SoundBar = (props) => {
   const modal = useSelector((state) => state.ui.modal);
   const [soundArray, setSoundArray] = useState([]);
+  const [isHoveringOptions, setHoveringOptions] = useState(false);
+  const [isOptionsOpen, setOptionsOpen] = useState(false);
   const { isSelected, isRecording, windowWidth } = props;
 
-  const shouldRender = useCallback((keyCode) => {
-    return isSelected && isRecording && !modal && isPlayableKey(keyCode);
-  }, [isSelected, isRecording, modal]);
+  const useStyles = makeStyles({
+    moreHorizStyle: {
+      position: "absolute",
+      left: 98 + "%",
+      opacity: isHoveringOptions ? 1 : 0.5,
+    },
+  });
+  const classes = useStyles();
+
+  const shouldRender = useCallback(
+    (keyCode) => {
+      console.log(keyCode);
+      return isSelected && isRecording && !modal && isPlayableKey(keyCode);
+    },
+    [isSelected, isRecording, modal]
+  );
 
   const handleUserKeyDown = useCallback(
     (e) => {
@@ -48,14 +66,14 @@ const SoundBar = (props) => {
   return (
     <div className={isSelected ? "sound-bar" : "sound-bar selected"}>
       {soundArray.map((sound) => {
-        return (
-          <Note
-            left={sound.left}
-            windowWidth={windowWidth}
-          />
-        );
+        return <Note left={sound.left} windowWidth={windowWidth} />;
       })}
-    </div>
+      <MoreHorizIcon
+        className={classes.moreHorizStyle}
+        onMouseEnter={() => setHoveringOptions(true)}
+        onMouseLeave={() => setHoveringOptions(false)}
+        onClick={() => setOptionsOpen(true)}
+      />
   );
 };
 
