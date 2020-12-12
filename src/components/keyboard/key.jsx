@@ -9,8 +9,6 @@ const Key = (props) => {
     (e) => {
       if (modal) return;
 
-      e.preventDefault();
-
       if (e.keyCode == props.keyCode) {
         setPlaying(true);
       }
@@ -21,8 +19,6 @@ const Key = (props) => {
   const handleUserKeyUp = useCallback(
     (e) => {
       if (modal) return;
-
-      e.preventDefault();
 
       if (e.keyCode == props.keyCode) {
         setPlaying(false);
@@ -41,23 +37,12 @@ const Key = (props) => {
     };
   });
 
-  const onMouseDown = (e) => {
-    e.preventDefault();
-
-    setPlaying(true);
-  };
-
-  const onMouseUp = (e) => {
-    e.preventDefault();
-    setPlaying(false);
-  };
-
   return (
     <div
       className={isPlaying ? "key active" : "key"}
       color="secondary"
-      onMouseDown={onMouseDown}
-      onMouseUp={onMouseUp}
+      onMouseDown={() => {setPlaying(true)}}
+      onMouseUp={() => {setPlaying(false)}}
     >
       <div className={isPlaying ? "key-label key-active" : "key-label"}>
         {props.label}
