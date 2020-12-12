@@ -74,6 +74,7 @@ const SoundBar = (props) => {
         onMouseLeave={() => setHoveringOptions(false)}
         onClick={() => setOptionsOpen(true)}
       />
+    </div>
   );
 };
 
