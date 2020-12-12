@@ -9,6 +9,7 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 const SoundBar = (props) => {
   const modal = useSelector((state) => state.ui.modal);
+  
   const [soundArray, setSoundArray] = useState([]);
   const [isHoveringOptions, setHoveringOptions] = useState(false);
   const [isOptionsOpen, setOptionsOpen] = useState(false);
