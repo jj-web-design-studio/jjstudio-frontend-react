@@ -52,6 +52,7 @@ const Note = (props) => {
         left: roundToNearestMultiple(left) + "%",
         backgroundColor: "blue",
         position: "absolute",
+        opacity: isDragging ? 0.5 : 1
       }}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
