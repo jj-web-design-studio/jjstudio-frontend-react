@@ -7,13 +7,12 @@ const Key = (props) => {
 
   const handleUserKeyDown = useCallback(
     (e) => {
-      if (!modal) {
-        e.preventDefault();
-        const { keyCode } = e;
-        if (keyCode == props.keyCode) {
-          setPlaying(true);
-          // Play sound
-        }
+      if (modal) return;
+
+      e.preventDefault();
+
+      if (e.keyCode == props.keyCode) {
+        setPlaying(true);
       }
     },
     [modal, props]
@@ -21,12 +20,12 @@ const Key = (props) => {
 
   const handleUserKeyUp = useCallback(
     (e) => {
-      if (!modal) {
-        e.preventDefault();
-        const { keyCode } = e;
-        if (keyCode == props.keyCode) {
-          setPlaying(false);
-        }
+      if (modal) return;
+
+      e.preventDefault();
+
+      if (e.keyCode == props.keyCode) {
+        setPlaying(false);
       }
     },
     [modal, props]
@@ -44,6 +43,7 @@ const Key = (props) => {
 
   const onMouseDown = (e) => {
     e.preventDefault();
+
     setPlaying(true);
   };
 
@@ -59,7 +59,7 @@ const Key = (props) => {
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
     >
-      <div className="key-label">
+      <div className={isPlaying ? "key-label key-active" : "key-label"}>
         {props.label}
       </div>
       {props.soundId}
