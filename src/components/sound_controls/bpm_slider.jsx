@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import Slider from '@material-ui/core/Slider';
 
-const MetronomeSlider = (props) => {
-  const [ bpm, setBPM ] = useState(120);
+const BPMSlider = (props) => {
+  const [ bpm, setBPM ] = useState(props.bpm);
 
-  const handleChange = (e, newBPM) => {
-    console.log(bpm);
-    setBPM(newBPM);
+  const handleChange = (e, newBpm) => {
+    setBPM(newBpm);
+    props.updateBpm(newBpm);
   };
 
   return (
@@ -24,4 +24,4 @@ const MetronomeSlider = (props) => {
   );
 }
 
-export default MetronomeSlider;
+export default BPMSlider;
