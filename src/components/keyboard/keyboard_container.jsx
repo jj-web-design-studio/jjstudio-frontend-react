@@ -9,6 +9,9 @@ import { loadSoundsByIds } from "../../actions/sound_actions";
 const mapStateToProps = (state) => {
   return {
     mapping: state.keyboard.mapping,
+    isAuthenticated: state.session.isAuthenticated,
+    currentKeyboard: state.keyboard.currentKeyboardId,
+    sounds: state.sounds,
   };
 };
 
