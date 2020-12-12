@@ -12,7 +12,6 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap';
-import './navbar.css'
 
 class AppNavbar extends React.Component {
     state = {

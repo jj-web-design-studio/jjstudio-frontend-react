@@ -45,39 +45,11 @@
   position: absolute;
 }
 
-@keyframes myanimation
-{
-    from {
-        left: 0;
-    }
-    to {
-        left: 100%;
-    }
-}
-
-.hover {
-  opacity: .5;
-}
-
-.sound-bar {
-  display: flex;
-  height: 50px;
-  width: 100%;
-}
-
-.selected {
-  border-bottom: 1px solid white;
-}
-
-.sound-bar-wrapper {
-  position: relative;
-}
-
-.hover-line {
-  position: absolute;
-  display: inline;
-  height: 100%;
-  z-index: 2;
-  left: 0;
-  top: 0;
+@keyframes myanimation {
+  from {
+    left: 0;
+  }
+  to {
+    left: 100%;
+  }
 }

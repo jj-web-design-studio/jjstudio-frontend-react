@@ -4,29 +4,23 @@ import { withRouter } from "react-router-dom";
 import KeyboardDropdown from "./keyboard_dropdown";
 import Key from "./key";
 import { NUM_ROW, QWE_ROW, ASD_ROW, ZXC_ROW } from "./keys";
-import "./keyboard.css";
 
 const Keyboard = (props) => {
-  const isAuthenticated = useSelector(state => state.session.isAuthenticated);
 
   const currentKeyboardId = useSelector(state => state.keyboard.currentKeyboardId);
 
-  const sounds = useSelector(state => state.sounds);
-
   const { loadKeyboardMapping, loadKeyboardNameList, loadSoundsByIds } = props;
-
-  const { mapping } = props;
+  const { mapping, isAuthenticated, sounds } = props;
 
   useEffect(() => {
     loadKeyboardMapping(currentKeyboardId).then(() => {
-      // if (isAuthenticated) {
-      //   loadSoundsByIds(["5fcadb14d62a7b2f68b3cb27", "5fcadf1dd62a7b2f68b3cb28"]);
-      // }
-      // TODO: Figure out how to get list of sound IDs and pass to this API
+      if (isAuthenticated) {
+        loadSoundsByIds(["5fcadb14d62a7b2f68b3cb27", "5fcadf1dd62a7b2f68b3cb28"])
+      }
     }).catch((err) => {
       console.log(err);
     });
-  }, [currentKeyboardId, loadKeyboardMapping, loadSoundsByIds, isAuthenticated, sounds]);
+  }, [currentKeyboardId, isAuthenticated, loadKeyboardMapping, loadSoundsByIds]);
 
   return (
     <div>

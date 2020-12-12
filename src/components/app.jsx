@@ -1,12 +1,13 @@
 import React from 'react';
 import Modal from "./modal/modal"
 import { Route, Switch, Redirect } from 'react-router-dom';
-import HomeContainer from "./home/home_container"
 import NavBarContainer from "./navbar/navbar_container"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import KeyboardContainer from './keyboard/keyboard_container';
 import SoundControlsContainer from './sound_controls/sound_controls_container';
+
+import "../styles/app.scss";
 
 const App = () => {
     return (

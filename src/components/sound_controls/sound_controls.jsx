@@ -9,7 +9,7 @@ import PlayButton from "./play_button";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
 
-import "./sound_controls.css";
+// import "./sound_controls.css";
 
 const SoundControls = (props) => {
   const modal = useSelector((state) => state.ui.modal);
