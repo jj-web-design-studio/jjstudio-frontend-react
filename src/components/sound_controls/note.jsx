@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 
 const Note = (props) => {
   const [isDragging, setDragging] = useState(false);
+  const [isHovering, setHovering] = useState(false);
   const [left, setLeft] = useState(props.left);
 
   const noteReference = useRef();
@@ -52,11 +53,14 @@ const Note = (props) => {
         left: roundToNearestMultiple(left) + "%",
         backgroundColor: "blue",
         position: "absolute",
-        opacity: isDragging ? 0.5 : 1
+        opacity: isDragging ? 0.5 : 1,
+        cursor: isDragging ? "grabbing" : isHovering ? "grab" : "" 
       }}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
+      onMouseEnter={() => {setHovering(true)}}
+      onMouseLeave={() => {setHovering(false)}}
     />
   );
 };
