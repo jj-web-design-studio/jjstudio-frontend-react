@@ -3,10 +3,9 @@ import { useSelector } from "react-redux";
 
 import BPMSlider from "./buttons/bpm_slider";
 import SoundBar from "./sound_bar";
-import RecordButton from "./buttons/record_button";
-import PlayButton from "./buttons/play_button";
 import RowIncrementer from "./buttons/row_incrementer";
 import BarLines from "./bar_lines";
+import Metronome from "./metronome/metronome";
 
 const BASELINE_MAX_BPM_ANIMATION_SECONDS = 6.4;
 const BASELINE_MAX_BPM = 150;
@@ -36,6 +35,14 @@ const SoundControls = (props) => {
     },
     [modal, isRecording, isPlaying]
   );
+
+  const toggleRecord = (isRecording) => {
+    setRecording(isRecording);
+  }
+
+  const togglePlay = (isPlaying) => {
+    setPlaying(isPlaying);
+  }
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
@@ -87,20 +94,7 @@ const SoundControls = (props) => {
   return (
     <div style={{ backgroundColor: "lightpink" }}>
       <div className="sound-controls">
-        <div className="soundBtn">
-          <RecordButton
-            isRecording={isRecording}
-            onClick={() => {
-              setRecording(!isRecording);
-            }}
-          />
-          <PlayButton
-            isPlaying={isPlaying}
-            onClick={() => {
-              setPlaying(!isPlaying);
-            }}
-          />
-        </div>
+        <Metronome bpm={bpm} toggleRecord={toggleRecord} togglePlay={togglePlay}/>
         <RowIncrementer setRows={setRows} />
         <BPMSlider bpm={bpm} updateBpm={setBpm} />
       </div>
