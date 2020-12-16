@@ -38,20 +38,21 @@ const SoundControls = (props) => {
 
   const toggleRecord = (isRecording) => {
     setRecording(isRecording);
-  }
+  };
 
   const togglePlay = (isPlaying) => {
     setPlaying(isPlaying);
-  }
+  };
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
 
-    window.addEventListener("keydown", handleUserKeyDown);
+    // Hiding event listener for now
+    // window.addEventListener("keydown", handleUserKeyDown);
 
-    return () => {
-      window.removeEventListener("keydown", handleUserKeyDown);
-    };
+    // return () => {
+    //   window.removeEventListener("keydown", handleUserKeyDown);
+    // };
   }, [handleUserKeyDown, isRecording, isPlaying, numRows, bpm]);
 
   const recordingLine = (
@@ -94,7 +95,11 @@ const SoundControls = (props) => {
   return (
     <div style={{ backgroundColor: "lightpink" }}>
       <div className="sound-controls">
-        <Metronome bpm={bpm} toggleRecord={toggleRecord} togglePlay={togglePlay}/>
+        <Metronome
+          bpm={bpm}
+          toggleRecord={toggleRecord}
+          togglePlay={togglePlay}
+        />
         <RowIncrementer setRows={setRows} />
         <BPMSlider bpm={bpm} updateBpm={setBpm} />
       </div>
