@@ -110,25 +110,33 @@ const Metronome = (props) => {
     timerWorker.current.postMessage({ interval: lookahead });
   }, [props.bpm]);
 
+  const handleClickRecord = () => {
+    togglePlay();
+    if (isPlaying) {
+      setPlaying(false);
+      props.togglePlay(false);
+    } else {
+      setRecording(!isRecording);
+      props.toggleRecord(!isRecording);
+    }
+  };
+
+  const handleClickPlay = () => {
+    togglePlay();
+    if (isRecording) {
+      setRecording(false);
+      props.toggleRecord(false);
+    } else {
+      setPlaying(!isPlaying);
+      props.togglePlay(!isPlaying);
+    }
+  };
+
   return (
     <div>
       <div className="soundBtn">
-        <RecordButton
-          isRecording={isRecording}
-          onClick={() => {
-            togglePlay();
-            setRecording(!isRecording);
-            props.toggleRecord(!isRecording);
-          }}
-        />
-        <PlayButton
-          isPlaying={isPlaying}
-          onClick={() => {
-            togglePlay();
-            setPlaying(!isPlaying);
-            props.togglePlay(!isPlaying);
-          }}
-        />
+        <RecordButton isRecording={isRecording} onClick={handleClickRecord} />
+        <PlayButton isPlaying={isPlaying} onClick={handleClickPlay} />
       </div>
     </div>
   );
