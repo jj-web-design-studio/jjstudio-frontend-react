@@ -31,7 +31,6 @@ const SoundBar = (props) => {
 
   const shouldRender = useCallback(
     (keyCode) => {
-      console.log(keyCode);
       return isSelected && isRecording && !modal && isPlayableKey(keyCode);
     },
     [isSelected, isRecording, modal]

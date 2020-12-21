@@ -10,6 +10,7 @@ const BarLines = (props) => {
     for (let i = 1; i < 16; i++) {
       hoverLines.push(
         <div
+          key={i}
           className="hover-line"
           style={
             shouldRender
