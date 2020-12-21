@@ -9,7 +9,7 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 const SoundBar = (props) => {
   const modal = useSelector((state) => state.ui.modal);
-  
+
   const [soundArray, setSoundArray] = useState([]);
   const [isHoveringOptions, setHoveringOptions] = useState(false);
   const [isOptionsOpen, setOptionsOpen] = useState(false);
@@ -23,6 +23,11 @@ const SoundBar = (props) => {
     },
   });
   const classes = useStyles();
+
+  const updateLeft = (index, left) => {
+    soundArray[index].left = left;
+    setSoundArray(soundArray);
+  };
 
   const shouldRender = useCallback(
     (keyCode) => {
@@ -52,6 +57,7 @@ const SoundBar = (props) => {
           left: (calculatedLeftCleaned / windowWidth) * 100,
         })
       );
+      console.log(soundArray)
     },
     [shouldRender, windowWidth, soundArray]
   );
@@ -66,8 +72,8 @@ const SoundBar = (props) => {
 
   return (
     <div className={isSelected ? "sound-bar" : "sound-bar selected"}>
-      {soundArray.map((sound) => {
-        return <Note left={sound.left} windowWidth={windowWidth} />;
+      {soundArray.map((sound, index) => {
+        return <Note key={index} index={index} left={sound.left} windowWidth={windowWidth} updateLeftInParent={updateLeft} />;
       })}
       <MoreHorizIcon
         className={classes.moreHorizStyle}

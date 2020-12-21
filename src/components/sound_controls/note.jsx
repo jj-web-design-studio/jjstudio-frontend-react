@@ -1,11 +1,9 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 const Note = (props) => {
   const [isDragging, setDragging] = useState(false);
   const [isHovering, setHovering] = useState(false);
   const [left, setLeft] = useState(props.left);
-
-  const noteReference = useRef();
 
   const handleMouseDown = (e) => {
     e.stopPropagation();
@@ -19,6 +17,7 @@ const Note = (props) => {
     e.stopPropagation();
     e.preventDefault();
     setDragging(false);
+    props.updateLeftInParent(props.index, left);
   };
 
   const handleMouseMove = useCallback(
@@ -46,7 +45,6 @@ const Note = (props) => {
 
   return (
     <div
-      ref={noteReference}
       style={{
         height: 50,
         width: props.windowWidth / 128,
