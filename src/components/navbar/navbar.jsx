@@ -12,6 +12,7 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap';
+import { LOGIN, SIGN_UP } from "../modal/modal";
 
 class AppNavbar extends React.Component {
     state = {
@@ -27,7 +28,7 @@ class AppNavbar extends React.Component {
     render() {
 
         const logButton = (!this.props.session) ? (
-            < NavLink className="logbutton" onClick = {() => this.props.openModal('login')}> Log In</NavLink >
+            < NavLink className="logbutton" onClick = {() => this.props.openModal(LOGIN)}> Log In</NavLink >
         ) : (
             < NavLink className="logbutton" onClick={this.props.logout}> Log Out</NavLink >
         )
