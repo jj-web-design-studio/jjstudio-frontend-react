@@ -1,0 +1,23 @@
+.modal-list {
+  list-style-type: none;
+  padding: 0% 5% 0% 5%;
+  height: 100px;
+  overflow-y: scroll;
+}
+
+.modal-list-item {
+  padding: 5px;
+  text-align: center;
+}
+
+.modal-list-item-hover {
+  padding: 5px;
+  text-align: center;
+  background-color: lightgray;
+}
+
+.modal-list-item-selected {
+  padding: 5px;
+  text-align: center;
+  background-color: darkgray;
+}

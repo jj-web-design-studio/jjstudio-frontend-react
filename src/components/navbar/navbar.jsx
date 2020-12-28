@@ -12,7 +12,7 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap';
-import { LOGIN, SIGN_UP } from "../modal/modal";
+import { LOGIN, SIGN_UP } from "../common/modal/modal";
 
 class AppNavbar extends React.Component {
     state = {

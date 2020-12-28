@@ -1,11 +1,15 @@
 import React from "react";
-import { closeModal } from "../../actions/modal_action";
+import { closeModal } from "../../../actions/modal_action";
 import { connect } from "react-redux";
-import LoginFormContainer from "../session/login_form_container";
-import SignupFormContainer from "../session/signup_form_container";
+import LoginFormContainer from "../../session/login_form_container";
+import SignupFormContainer from "../../session/signup_form_container";
+import SaveTrackForm from "../../track/saveTrackForm";
+import LoadTrackForm from "../../track/loadTrackForm";
 
 export const LOGIN = "LOGIN";
-export const SIGN_UP = "SIGNUP";
+export const SIGN_UP = "SIGN_UP";
+export const SAVE_TRACK = "SAVE_TRACK";
+export const LOAD_TRACK = "LOAD_TRACK";
 
 const Modal = ({ modal, closeModal }) => {
   if (!modal) {
@@ -18,6 +22,12 @@ const Modal = ({ modal, closeModal }) => {
       break;
     case SIGN_UP:
       component = <SignupFormContainer />;
+      break;
+    case SAVE_TRACK:
+      component = <SaveTrackForm />;
+      break;
+    case LOAD_TRACK:
+      component = <LoadTrackForm />;
       break;
     default:
       return null;
