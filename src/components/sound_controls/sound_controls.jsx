@@ -6,6 +6,8 @@ import SoundBar from "./sound_bar";
 import RowIncrementer from "./buttons/row_incrementer";
 import BarLines from "./bar_lines";
 import Metronome from "./metronome/metronome";
+import LoadTrackButton from "../track/loadTrackButton";
+import SaveTrackButton from "../track/saveTrackButton";
 
 const BASELINE_MAX_BPM_ANIMATION_SECONDS = 6.4;
 const BASELINE_MAX_BPM = 150;
@@ -102,6 +104,8 @@ const SoundControls = (props) => {
         />
         <RowIncrementer setRows={setRows} />
         <BPMSlider bpm={bpm} updateBpm={setBpm} />
+        <SaveTrackButton />
+        <LoadTrackButton />
       </div>
       {recordingLine}
       <div
