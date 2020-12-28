@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import SessionForm from "./session_form"
-import { signup, clearErrors } from "../../actions/session_actions";
-import { openModal, closeModal } from '../../actions/modal_action';
+import { signup, clearErrors } from "../../actions/sessionActions";
+import { openModal, closeModal } from '../../actions/modalActions';
 
 const mapStateToProps = (state, ownProps) => {
     let errors = state.errors.session

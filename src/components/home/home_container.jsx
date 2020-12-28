@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Home from "./home";
-import { logout } from "../../actions/session_actions";
-import { openModal } from '../../actions/modal_action';
+import { logout } from "../../actions/sessionActions";
+import { openModal } from '../../actions/modalActions';
 
 const mapStateToProps = (state) => {
     // let sessionId = state.session.id

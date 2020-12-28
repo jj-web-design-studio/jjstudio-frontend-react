@@ -3,7 +3,7 @@ import {
   RECEIVE_KEYBOARD_MAPPING,
   RECEIVE_KEYBOARD_NAME_LIST,
   RECEIVE_KEYBOARD_NAME_LIST_ERRORS,
-} from "../actions/keyboard_actions";
+} from "../actions/keyboardActions";
 
 let nullErrors = [];
 
