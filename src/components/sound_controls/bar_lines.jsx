@@ -5,7 +5,7 @@ const isFourthLine = (pos) => {
 const BarLines = (props) => {
   const { spacing, shouldRender } = props;
 
-  const hoverLines = function () {
+  const renderHoverLines = function () {
     let hoverLines = [];
     for (let i = 1; i < 16; i++) {
       hoverLines.push(
@@ -29,7 +29,7 @@ const BarLines = (props) => {
     return hoverLines;
   };
 
-  return <div>{hoverLines()}</div>;
+  return <div>{renderHoverLines()}</div>;
 };
 
 export default BarLines;
