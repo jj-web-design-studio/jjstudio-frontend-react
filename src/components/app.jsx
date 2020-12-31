@@ -5,7 +5,7 @@ import NavBarContainer from "./navbar/navbarContainer"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import KeyboardContainer from './keyboard/keyboardContainer';
-import SoundControlsContainer from './sound_controls/sound_controls_container';
+import SoundControlsContainer from './soundControls/soundControlsContainer';
 
 import "../styles/app.scss";
 

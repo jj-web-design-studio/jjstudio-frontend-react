@@ -1,10 +1,10 @@
 import { useEffect, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
 
-import BPMSlider from "./buttons/bpm_slider";
-import SoundBar from "./sound_bar";
-import RowIncrementer from "./buttons/row_incrementer";
-import BarLines from "./bar_lines";
+import BPMSlider from "./buttons/bpmSlider";
+import SoundBar from "./soundBar";
+import RowIncrementer from "./buttons/rowIncrementer";
+import BarLines from "./barLines";
 import Metronome from "./metronome/metronome";
 import LoadTrackButton from "../track/loadTrackButton";
 import SaveTrackButton from "../track/saveTrackButton";

@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 
-import RecordButton from "../buttons/record_button";
-import PlayButton from "../buttons/play_button";
+import RecordButton from "../buttons/recordButton";
+import PlayButton from "../buttons/playButton";
 
-import * as serviceWorker from "./metronome_worker.js";
+import * as serviceWorker from "./metronomeWorker.js";
 
 const Metronome = (props) => {
   const [isPlaying, setPlaying] = useState(false);

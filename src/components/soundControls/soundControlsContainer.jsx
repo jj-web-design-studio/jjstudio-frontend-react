@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import SoundControls from './sound_controls';
+import SoundControls from './soundControls';
 
 const mapStateToProps = (state) => {
   
