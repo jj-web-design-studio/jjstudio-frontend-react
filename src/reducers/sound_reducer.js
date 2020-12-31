@@ -1,4 +1,4 @@
-import { RECEIVE_SOUNDS, RECEIVE_SOUNDS_ERRORS } from "../actions/soundActions";
+import { RECEIVE_SOUNDS, RECEIVE_SOUNDS_ERRORS } from "../components/soundControls/soundActions";
 
 function SoundReducer(state = {}, action) {
   switch (action.type) {

@@ -3,8 +3,8 @@ import Keyboard from "./keyboard";
 import {
   loadKeyboardById,
   loadKeyboardNameList,
-} from "../../actions/keyboardActions";
-import { loadSoundsByIds } from "../../actions/soundActions";
+} from "./keyboardActions";
+import { loadSoundsByIds } from "../soundControls/soundActions";
 
 const mapStateToProps = (state) => {
   return {

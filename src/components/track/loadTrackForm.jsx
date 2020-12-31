@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { closeModal } from "../../actions/modalActions";
-import { loadTrack } from "../../actions/trackActions";
-import * as TrackAPIUtil from "../../util/trackAPIUtil";
+import { closeModal } from "../common/modal/modalActions";
+import { loadTrack } from "./trackActions";
+import * as TrackAPIUtil from "./trackAPIUtil";
 import List from "../common/list/list";
 
 const LoadTrackForm = (props) => {

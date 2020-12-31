@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { closeModal } from "../../actions/modalActions";
-import { saveTrack } from "../../actions/trackActions";
+import { closeModal } from "../common/modal/modalActions";
+import { saveTrack } from "./trackActions";
 
 const SaveTrackForm = (props) => {
   const [trackName, setTrackName] = useState("");

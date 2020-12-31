@@ -1,4 +1,4 @@
-import * as TrackAPIUtil from "../util/trackAPIUtil";
+import * as TrackAPIUtil from "./trackAPIUtil";
 
 export const RECEIVE_SAVE_TRACK = "RECEIVE_SAVE_TRACK";
 export const RECEIVE_LOAD_TRACK = "RECEIVE_LOAD_TRACK";
