@@ -4,7 +4,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import NavBarContainer from "./navbar/navbar_container"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import KeyboardContainer from './keyboard/keyboard_container';
+import KeyboardContainer from './keyboard/keyboardContainer';
 import SoundControlsContainer from './sound_controls/sound_controls_container';
 
 import "../styles/app.scss";
