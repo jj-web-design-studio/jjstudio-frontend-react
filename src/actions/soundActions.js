@@ -1,4 +1,4 @@
-import * as SoundAPIUtil from "../util/sound_api_util";
+import * as SoundAPIUtil from "../util/soundAPIUtil";
 
 export const RECEIVE_SOUNDS = "RECEIVE_SOUNDS";
 export const RECEIVE_SOUNDS_ERRORS = "RECEIVE_SOUNDS_ERRORS";

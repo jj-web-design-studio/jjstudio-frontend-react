@@ -1,4 +1,4 @@
-import * as SessionAPIUtil from "../util/session_api_util";
+import * as SessionAPIUtil from "../util/sessionAPIUtil";
 import jwt_decode from "jwt-decode";
 
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
