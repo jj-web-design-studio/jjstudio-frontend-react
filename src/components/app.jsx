@@ -1,7 +1,7 @@
 import React from 'react';
 import Modal from "./common/modal/modal";
 import { Route, Switch, Redirect } from 'react-router-dom';
-import NavBarContainer from "./navbar/navbar_container"
+import NavBarContainer from "./navbar/navbarContainer"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import KeyboardContainer from './keyboard/keyboardContainer';
