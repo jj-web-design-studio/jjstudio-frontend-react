@@ -70,6 +70,7 @@ const SoundControls = (props) => {
       soundBars.push(
         <SoundBar
           key={i}
+          rowIndex={i}
           windowWidth={windowWidth}
           isSelected={i === rowCount - 1}
           isRecording={isRecording}

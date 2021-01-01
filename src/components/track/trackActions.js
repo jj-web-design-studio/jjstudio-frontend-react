@@ -5,6 +5,8 @@ export const RECEIVE_LOAD_TRACK = "RECEIVE_LOAD_TRACK";
 export const SET_BPM = "SET_BPM";
 export const INCREMENT_ROW_COUNT = "INCREMENT_ROW_COUNT";
 export const DECREMENT_ROW_COUNT = "DECREMENT_ROW_COUNT";
+export const ADD_NOTE_TO_SOUND_ROW = "ADD_NOTE_TO_SOUND_ROW";
+export const UPDATE_SOUND_ROW = "UPDATE_SOUND_ROW";
 
 // export const receiveSaveTrack = (track) => {
 
@@ -38,6 +40,21 @@ export const decrementRowCount = (rowCount) => {
   };
 };
 
+export const addNoteToSoundRow = (note) => {
+  return {
+    type: ADD_NOTE_TO_SOUND_ROW,
+    note,
+  };
+};
+
+export const updateSoundRow = (soundRow, rowIndex) => {
+  return {
+    type: UPDATE_SOUND_ROW,
+    soundRow,
+    rowIndex,
+  };
+};
+
 export const saveTrack = (track) => {
   return TrackAPIUtil.saveTrack(track)
     .then((res) => {
@@ -51,7 +68,6 @@ export const saveTrack = (track) => {
 export const loadTrack = (id) => (dispatch) => {
   return TrackAPIUtil.getTrackById(id)
     .then((res) => {
-      console.log(res);
       dispatch(receiveLoadTrack(res.data));
     })
     .catch((err) => {

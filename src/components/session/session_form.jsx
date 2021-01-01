@@ -33,6 +33,7 @@ class SessionForm extends React.Component {
         this.props.processForm(user).then(
             () => {
                 this.props.closeModal();
+                
                 // this.props.history.push('/') // need to figure out what route to go to
             }
         )

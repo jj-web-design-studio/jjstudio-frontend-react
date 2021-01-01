@@ -1,19 +1,20 @@
 import { useState, useEffect, useCallback } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, connect } from "react-redux";
 
 import { isPlayableKey } from "../keyboard/keys";
 import Note from "./note";
+import { addNoteToSoundRow, updateSoundRow } from "../track/trackActions";
 
 import { makeStyles } from "@material-ui/core/styles";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 const SoundBar = (props) => {
   const modal = useSelector((state) => state.ui.modal);
+  const { trackContents, addNoteToSoundRow, updateSoundRow } = props;
 
-  const [soundArray, setSoundArray] = useState([]);
   const [isHoveringOptions, setHoveringOptions] = useState(false);
   const [isOptionsOpen, setOptionsOpen] = useState(false);
-  const { isSelected, isRecording, windowWidth } = props;
+  const { rowIndex, isSelected, isRecording, windowWidth } = props;
 
   const useStyles = makeStyles({
     moreHorizStyle: {
@@ -25,8 +26,8 @@ const SoundBar = (props) => {
   const classes = useStyles();
 
   const updateLeft = (index, left) => {
-    soundArray[index].left = left;
-    setSoundArray(soundArray);
+    trackContents[rowIndex][index].left = left;
+    updateSoundRow(trackContents[rowIndex], rowIndex);
   };
 
   const shouldRender = useCallback(
@@ -51,14 +52,13 @@ const SoundBar = (props) => {
         calculatedLeft.length - 2
       );
 
-      setSoundArray(
-        soundArray.concat({
-          left: (calculatedLeftCleaned / windowWidth) * 100,
-        })
-      );
-      console.log(soundArray)
+      addNoteToSoundRow({
+        left: (calculatedLeftCleaned / windowWidth) * 100,
+        soundId: null,
+        rowIndex: rowIndex,
+      });
     },
-    [shouldRender, windowWidth, soundArray]
+    [shouldRender, windowWidth, addNoteToSoundRow, rowIndex]
   );
 
   useEffect(() => {
@@ -67,12 +67,21 @@ const SoundBar = (props) => {
     return () => {
       window.removeEventListener("keydown", handleUserKeyDown);
     };
-  }, [handleUserKeyDown]);
+  }, [handleUserKeyDown, trackContents, rowIndex]);
 
   return (
     <div className={isSelected ? "sound-bar" : "sound-bar selected"}>
-      {soundArray.map((sound, index) => {
-        return <Note key={index} index={index} left={sound.left} windowWidth={windowWidth} updateLeftInParent={updateLeft} />;
+      {trackContents[rowIndex].map((sound, index) => {
+        return (
+          <Note
+            key={index}
+            rowIndex={rowIndex}
+            noteIndex={index}
+            left={sound.left}
+            windowWidth={windowWidth}
+            updateLeftInParent={updateLeft}
+          />
+        );
       })}
       <MoreHorizIcon
         className={classes.moreHorizStyle}
@@ -84,4 +93,21 @@ const SoundBar = (props) => {
   );
 };
 
-export default SoundBar;
+const mapStateToProps = (state) => {
+  return {
+    trackContents: state.track.track.contents,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addNoteToSoundRow: (note) => {
+      dispatch(addNoteToSoundRow(note));
+    },
+    updateSoundRow: (soundRow, rowIndex) => {
+      dispatch(updateSoundRow(soundRow, rowIndex));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SoundBar);

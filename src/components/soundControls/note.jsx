@@ -17,7 +17,7 @@ const Note = (props) => {
     e.stopPropagation();
     e.preventDefault();
     setDragging(false);
-    props.updateLeftInParent(props.index, left);
+    props.updateLeftInParent(props.noteIndex, left);
   };
 
   const handleMouseMove = useCallback(

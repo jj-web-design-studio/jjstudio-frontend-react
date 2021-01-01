@@ -3,7 +3,9 @@ import {
   RECEIVE_LOAD_TRACK,
   SET_BPM,
   INCREMENT_ROW_COUNT,
-  DECREMENT_ROW_COUNT
+  DECREMENT_ROW_COUNT,
+  ADD_NOTE_TO_SOUND_ROW,
+  UPDATE_SOUND_ROW,
 } from "../components/track/trackActions";
 
 function TrackReducer(state = {}, action) {
@@ -27,14 +29,55 @@ function TrackReducer(state = {}, action) {
         },
       };
     case INCREMENT_ROW_COUNT:
+      return {
+        ...state,
+        track: {
+          ...state.track,
+          rowCount: action.rowCount,
+          contents: [...state.track.contents, []],
+        },
+      };
     case DECREMENT_ROW_COUNT:
       return {
         ...state,
         track: {
           ...state.track,
           rowCount: action.rowCount,
-        }
-      }
+          contents: [
+            ...state.track.contents.slice(0, state.track.contents.length - 1),
+          ],
+        },
+      };
+    case ADD_NOTE_TO_SOUND_ROW:
+      return {
+        ...state,
+        track: {
+          ...state.track,
+          contents: [
+            ...state.track.contents.slice(0, action.note.rowIndex),
+            [...state.track.contents[action.note.rowIndex], action.note],
+            ...state.track.contents.slice(
+              action.note.rowIndex + 1,
+              state.track.contents.length
+            ),
+          ],
+        },
+      };
+    case UPDATE_SOUND_ROW:
+      return {
+        ...state,
+        track: {
+          ...state.track,
+          contents: [
+            ...state.track.contents.slice(0, action.rowIndex),
+            action.soundRow,
+            ...state.track.contents.slice(
+              action.rowIndex + 1,
+              state.track.contents.length
+            ),
+          ],
+        },
+      };
     default:
       return state;
   }
