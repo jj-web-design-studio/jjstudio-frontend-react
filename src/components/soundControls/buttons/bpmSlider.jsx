@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { connect } from "react-redux";
 import Slider from '@material-ui/core/Slider';
 import { setBpm } from "../../track/trackActions";
@@ -9,10 +8,6 @@ const BPMSlider = (props) => {
   const handleChange = (e, bpm) => {
     setBpm(bpm);
   };
-
-  useEffect(() => {
-    console.log(bpm);
-  }, [bpm, setBpm]);
 
   return (
     <div className="metronome slider soundBtn">
