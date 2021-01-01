@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import BPMSlider from "./buttons/bpmSlider";
@@ -14,29 +14,14 @@ const BASELINE_MAX_BPM = 150;
 const BAR_LINE_SPACING = 6.25;
 
 const SoundControls = (props) => {
-  const modal = useSelector((state) => state.ui.modal);
+  const track = useSelector((state) => state.track);
+  const bpm = useSelector((state) => state.track.track.bpm);
 
   const [isRecording, setRecording] = useState(false);
   const [isPlaying, setPlaying] = useState(false);
   const [numRows, setRows] = useState(1);
   const [windowWidth, setWindowWidth] = useState(0);
   const [isHoveringBars, setHoveringBars] = useState(false);
-  const [bpm, setBpm] = useState(125);
-
-  const handleUserKeyDown = useCallback(
-    (e) => {
-      if (modal) return;
-
-      e.preventDefault();
-
-      if (e.keyCode === 16) {
-        setRecording(!isRecording);
-      } else if (e.keyCode === 32) {
-        setPlaying(!isPlaying);
-      }
-    },
-    [modal, isRecording, isPlaying]
-  );
 
   const toggleRecord = (isRecording) => {
     setRecording(isRecording);
@@ -55,7 +40,7 @@ const SoundControls = (props) => {
     // return () => {
     //   window.removeEventListener("keydown", handleUserKeyDown);
     // };
-  }, [handleUserKeyDown, isRecording, isPlaying, numRows, bpm]);
+  }, [isRecording, isPlaying, numRows, track]);
 
   const recordingLine = (
     <div
@@ -98,12 +83,11 @@ const SoundControls = (props) => {
     <div style={{ backgroundColor: "lightpink" }}>
       <div className="sound-controls">
         <Metronome
-          bpm={bpm}
           toggleRecord={toggleRecord}
           togglePlay={togglePlay}
         />
         <RowIncrementer setRows={setRows} />
-        <BPMSlider bpm={bpm} updateBpm={setBpm} />
+        <BPMSlider />
         <SaveTrackButton />
         <LoadTrackButton />
       </div>

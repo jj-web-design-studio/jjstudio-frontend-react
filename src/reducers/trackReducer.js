@@ -1,4 +1,8 @@
-import { RECEIVE_SAVE_TRACK, RECEIVE_LOAD_TRACK } from "../components/track/trackActions";
+import {
+  RECEIVE_SAVE_TRACK,
+  RECEIVE_LOAD_TRACK,
+  SET_BPM,
+} from "../components/track/trackActions";
 
 function TrackReducer(state = {}, action) {
   switch (action.type) {
@@ -11,6 +15,14 @@ function TrackReducer(state = {}, action) {
       return {
         ...state,
         track: action.track,
+      };
+    case SET_BPM:
+      return {
+        ...state,
+        track: {
+          ...state.track,
+          bpm: action.bpm,
+        },
       };
     default:
       return state;
