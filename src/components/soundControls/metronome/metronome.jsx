@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { connect } from "react-redux";
 
 import RecordButton from "../buttons/recordButton";
 import PlayButton from "../buttons/playButton";
@@ -142,6 +143,12 @@ const Metronome = (props) => {
   );
 };
 
-export default Metronome;
+const mapStateToProps = (state) => {
+  return {
+    bpm: state.track.track.bpm,
+  };
+};
+
+export default connect(mapStateToProps, null)(Metronome);
 
 serviceWorker.register();

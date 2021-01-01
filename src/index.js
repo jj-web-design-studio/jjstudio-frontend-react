@@ -14,6 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const preloadedState = {
       session: { isAuthenticated: true, user: decodedUser },
       keyboard: { currentKeyboardId: "default" },
+      track: {
+        track: {
+          bpm: 125,
+        },
+      },
     };
     store = configureStore(preloadedState);
     const currentTime = Date.now() / 1000;
@@ -22,7 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "/";
     }
   } else {
-    store = configureStore({ keyboard: { currentKeyboardId: "default" } });
+    store = configureStore({
+      keyboard: { currentKeyboardId: "default" },
+      track: {
+        track: {
+          bpm: 125,
+        },
+      },
+    });
   }
 
   const root = document.getElementById("root");
