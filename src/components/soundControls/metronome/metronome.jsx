@@ -25,6 +25,8 @@ const Metronome = (props) => {
   const noteResolution = 2;
   const noteLength = 0.05;
 
+  const { toggleRecord: toggleRecordParent, togglePlay: togglePlayParent } = props;
+
   const nextNote = () => {
     // Advance current note and time by a 16th note...
     var secondsPerBeat = 60.0 / bpm; // Notice this picks up the CURRENT
@@ -100,8 +102,8 @@ const Metronome = (props) => {
     if (isMetronomeOn.current) togglePlay();
     setPlaying(false);
     setRecording(false);
-    props.toggleRecord(false);
-    props.togglePlay(false);
+    toggleRecordParent(false);
+    togglePlayParent(false);
 
     timerWorker.current = new Worker(serviceWorker.getWorker);
     timerWorker.current.postMessage("stop");
@@ -117,10 +119,10 @@ const Metronome = (props) => {
     togglePlay();
     if (isPlaying) {
       setPlaying(false);
-      props.togglePlay(false);
+      togglePlayParent(false);
     } else {
       setRecording(!isRecording);
-      props.toggleRecord(!isRecording);
+      toggleRecordParent(!isRecording);
     }
   };
 
@@ -128,10 +130,10 @@ const Metronome = (props) => {
     togglePlay();
     if (isRecording) {
       setRecording(false);
-      props.toggleRecord(false);
+      toggleRecordParent(false);
     } else {
       setPlaying(!isPlaying);
-      props.togglePlay(!isPlaying);
+      togglePlayParent(!isPlaying);
     }
   };
 
