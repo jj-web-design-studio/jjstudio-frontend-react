@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       track: {
         track: {
           bpm: 125,
+          rowCount: 1,
         },
       },
     };
@@ -32,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       track: {
         track: {
           bpm: 125,
+          rowCount: 1,
         },
       },
     });

@@ -16,10 +16,10 @@ const BAR_LINE_SPACING = 6.25;
 const SoundControls = (props) => {
   const track = useSelector((state) => state.track);
   const bpm = useSelector((state) => state.track.track.bpm);
+  const rowCount = useSelector((state) => state.track.track.rowCount);
 
   const [isRecording, setRecording] = useState(false);
   const [isPlaying, setPlaying] = useState(false);
-  const [numRows, setRows] = useState(1);
   const [windowWidth, setWindowWidth] = useState(0);
   const [isHoveringBars, setHoveringBars] = useState(false);
 
@@ -40,7 +40,7 @@ const SoundControls = (props) => {
     // return () => {
     //   window.removeEventListener("keydown", handleUserKeyDown);
     // };
-  }, [isRecording, isPlaying, numRows, track]);
+  }, [isRecording, isPlaying, rowCount, track]);
 
   const recordingLine = (
     <div
@@ -66,12 +66,12 @@ const SoundControls = (props) => {
 
   const soundBars = function () {
     const soundBars = [];
-    for (let i = 0; i < numRows; i++) {
+    for (let i = 0; i < rowCount; i++) {
       soundBars.push(
         <SoundBar
           key={i}
           windowWidth={windowWidth}
-          isSelected={i === numRows - 1}
+          isSelected={i === rowCount - 1}
           isRecording={isRecording}
         />
       );
@@ -82,11 +82,8 @@ const SoundControls = (props) => {
   return (
     <div style={{ backgroundColor: "lightpink" }}>
       <div className="sound-controls">
-        <Metronome
-          toggleRecord={toggleRecord}
-          togglePlay={togglePlay}
-        />
-        <RowIncrementer setRows={setRows} />
+        <Metronome toggleRecord={toggleRecord} togglePlay={togglePlay} />
+        <RowIncrementer />
         <BPMSlider />
         <SaveTrackButton />
         <LoadTrackButton />

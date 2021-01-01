@@ -1,17 +1,19 @@
 import { useState } from "react";
-
+import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
+import { incrementRowCount, decrementRowCount } from "../../track/trackActions";
 
 const RowIncrementer = (props) => {
-  const [rows, setRows] = useState(1);
+  const { rowCount, incrementRowCount, decrementRowCount } = props;
+
   const [isHoveringMinus, setHoveringMinus] = useState(false);
   const [isHoveringPlus, setHoveringPlus] = useState(false);
 
   const useStyles = makeStyles({
     removeCircleStyle: {
-      opacity: rows <= 1 ? 0.5 : 1,
+      opacity: rowCount <= 1 ? 0.5 : 1,
     },
   });
   const classes = useStyles();
@@ -22,26 +24,49 @@ const RowIncrementer = (props) => {
         <RemoveCircleIcon
           className={classes.removeCircleStyle}
           onClick={() => {
-            rows > 1 ? setRows(rows - 1) : setRows(1);
-            rows > 1 ? props.setRows(rows - 1) : props.setRows(1);
+            if (rowCount > 1) decrementRowCount(rowCount);
           }}
-          onMouseEnter={() => {setHoveringMinus(true)}}
-          onMouseLeave={() => {setHoveringMinus(false)}}
+          onMouseEnter={() => {
+            setHoveringMinus(true);
+          }}
+          onMouseLeave={() => {
+            setHoveringMinus(false);
+          }}
         />
       </div>
-      <div className="soundBtn">Rows: {rows}</div>
+      <div className="soundBtn">Rows: {rowCount}</div>
       <div className={isHoveringPlus ? "soundBtn hover" : "soundBtn"}>
         <AddCircleIcon
           onClick={() => {
-            setRows(rows + 1);
-            props.setRows(rows + 1);
+            incrementRowCount(rowCount);
           }}
-          onMouseEnter={() => {setHoveringPlus(true)}}
-          onMouseLeave={() => {setHoveringPlus(false)}}
+          onMouseEnter={() => {
+            setHoveringPlus(true);
+          }}
+          onMouseLeave={() => {
+            setHoveringPlus(false);
+          }}
         />
       </div>
     </div>
   );
 };
 
-export default RowIncrementer;
+const mapStateToProps = (state) => {
+  return {
+    rowCount: state.track.track.rowCount,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    incrementRowCount: (rowCount) => {
+      dispatch(incrementRowCount(rowCount));
+    },
+    decrementRowCount: (rowCount) => {
+      dispatch(decrementRowCount(rowCount));
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RowIncrementer);

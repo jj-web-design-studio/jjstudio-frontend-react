@@ -3,6 +3,8 @@ import * as TrackAPIUtil from "./trackAPIUtil";
 export const RECEIVE_SAVE_TRACK = "RECEIVE_SAVE_TRACK";
 export const RECEIVE_LOAD_TRACK = "RECEIVE_LOAD_TRACK";
 export const SET_BPM = "SET_BPM";
+export const INCREMENT_ROW_COUNT = "INCREMENT_ROW_COUNT";
+export const DECREMENT_ROW_COUNT = "DECREMENT_ROW_COUNT";
 
 // export const receiveSaveTrack = (track) => {
 
@@ -17,6 +19,22 @@ export const setBpm = (bpm) => {
   return {
     type: SET_BPM,
     bpm,
+  };
+};
+
+export const incrementRowCount = (rowCount) => {
+  rowCount++;
+  return {
+    type: INCREMENT_ROW_COUNT,
+    rowCount,
+  };
+};
+
+export const decrementRowCount = (rowCount) => {
+  rowCount--;
+  return {
+    type: DECREMENT_ROW_COUNT,
+    rowCount,
   };
 };
 

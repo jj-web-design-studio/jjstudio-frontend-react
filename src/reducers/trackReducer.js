@@ -2,6 +2,8 @@ import {
   RECEIVE_SAVE_TRACK,
   RECEIVE_LOAD_TRACK,
   SET_BPM,
+  INCREMENT_ROW_COUNT,
+  DECREMENT_ROW_COUNT
 } from "../components/track/trackActions";
 
 function TrackReducer(state = {}, action) {
@@ -24,6 +26,15 @@ function TrackReducer(state = {}, action) {
           bpm: action.bpm,
         },
       };
+    case INCREMENT_ROW_COUNT:
+    case DECREMENT_ROW_COUNT:
+      return {
+        ...state,
+        track: {
+          ...state.track,
+          rowCount: action.rowCount,
+        }
+      }
     default:
       return state;
   }
