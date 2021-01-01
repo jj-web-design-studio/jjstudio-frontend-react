@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 import RecordButton from "../buttons/recordButton";
 import PlayButton from "../buttons/playButton";
@@ -7,6 +7,8 @@ import PlayButton from "../buttons/playButton";
 import * as serviceWorker from "./metronomeWorker.js";
 
 const Metronome = (props) => {
+  const bpm = useSelector((state) => state.track.track.bpm);
+
   const [isPlaying, setPlaying] = useState(false);
   const [isRecording, setRecording] = useState(false);
   const [audioContext, setAudioContext] = useState(new AudioContext());
@@ -25,7 +27,7 @@ const Metronome = (props) => {
 
   const nextNote = () => {
     // Advance current note and time by a 16th note...
-    var secondsPerBeat = 60.0 / props.bpm; // Notice this picks up the CURRENT
+    var secondsPerBeat = 60.0 / bpm; // Notice this picks up the CURRENT
     // tempo value to calculate beat length.
     nextNoteTime.current += 0.25 * secondsPerBeat; // Add beat length to last beat time
 
@@ -109,7 +111,7 @@ const Metronome = (props) => {
       } else console.log("message: " + e.data);
     };
     timerWorker.current.postMessage({ interval: lookahead });
-  }, [props.bpm]);
+  }, [bpm]);
 
   const handleClickRecord = () => {
     togglePlay();
@@ -143,12 +145,6 @@ const Metronome = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    bpm: state.track.track.bpm,
-  };
-};
-
-export default connect(mapStateToProps, null)(Metronome);
+export default Metronome;
 
 serviceWorker.register();
