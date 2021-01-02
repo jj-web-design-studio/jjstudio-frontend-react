@@ -6,6 +6,7 @@ import {
   DECREMENT_ROW_COUNT,
   ADD_NOTE_TO_SOUND_ROW,
   UPDATE_SOUND_ROW,
+  UPDATE_TRACK_NAME,
 } from "../components/track/trackActions";
 
 function TrackReducer(state = {}, action) {
@@ -19,6 +20,14 @@ function TrackReducer(state = {}, action) {
       return {
         ...state,
         track: action.track,
+      };
+    case UPDATE_TRACK_NAME:
+      return {
+        ...state,
+        track: {
+          ...state.track,
+          name: action.name,
+        },
       };
     case SET_BPM:
       return {

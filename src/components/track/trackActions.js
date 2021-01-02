@@ -1,7 +1,10 @@
 import * as TrackAPIUtil from "./trackAPIUtil";
+import { closeModal } from "../common/modal/modalActions";
+import { receiveErrors } from "../session/sessionActions";
 
 export const RECEIVE_SAVE_TRACK = "RECEIVE_SAVE_TRACK";
 export const RECEIVE_LOAD_TRACK = "RECEIVE_LOAD_TRACK";
+export const UPDATE_TRACK_NAME = "UPDATE_TRACK_NAME";
 export const SET_BPM = "SET_BPM";
 export const INCREMENT_ROW_COUNT = "INCREMENT_ROW_COUNT";
 export const DECREMENT_ROW_COUNT = "DECREMENT_ROW_COUNT";
@@ -11,11 +14,12 @@ export const UPDATE_SOUND_ROW = "UPDATE_SOUND_ROW";
 // export const receiveSaveTrack = (track) => {
 
 // }
-
-export const receiveLoadTrack = (track) => ({
-  type: RECEIVE_LOAD_TRACK,
-  track,
-});
+export const updateTrackName = (name) => {
+  return {
+    type: UPDATE_TRACK_NAME,
+    name,
+  };
+};
 
 export const setBpm = (bpm) => {
   return {
@@ -55,13 +59,19 @@ export const updateSoundRow = (soundRow, rowIndex) => {
   };
 };
 
-export const saveTrack = (track) => {
+export const receiveLoadTrack = (track) => ({
+  type: RECEIVE_LOAD_TRACK,
+  track,
+});
+
+export const saveTrack = (track) => (dispatch) => {
   return TrackAPIUtil.saveTrack(track)
     .then((res) => {
       console.log(res);
+      dispatch(closeModal());
     })
     .catch((err) => {
-      console.log(err);
+      dispatch(receiveErrors(err.response.data));
     });
 };
 
