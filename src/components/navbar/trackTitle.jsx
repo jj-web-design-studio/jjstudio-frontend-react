@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import SaveTrackButton from "../track/saveTrackButton";
 import LoadTrackButton from "../track/loadTrackButton";
+import DeleteTrackButton from "../track/deleteTrackButton";
 
 const TrackTitle = (props) => {
   const trackName = useSelector((state) => state.track.track.name);
@@ -11,14 +11,14 @@ const TrackTitle = (props) => {
       {!isNewTrack(trackName) ? (
         <div>
           <span>{trackName}</span>
-          <SaveTrackButton />
-          <button>Delete</button>
+          <SaveTrackButton className="track-title-button" />
+          <DeleteTrackButton className="track-title-button"/>
         </div>
       ) : (
         <>
           Unnamed Track
-          <SaveTrackButton />
-          <LoadTrackButton />
+          <SaveTrackButton className="track-title-button"/>
+          <LoadTrackButton className="track-title-button"/>
         </>
       )}
     </div>

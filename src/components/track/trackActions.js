@@ -11,10 +11,8 @@ export const DECREMENT_ROW_COUNT = "DECREMENT_ROW_COUNT";
 export const ADD_NOTE_TO_SOUND_ROW = "ADD_NOTE_TO_SOUND_ROW";
 export const UPDATE_SOUND_ROW = "UPDATE_SOUND_ROW";
 export const CLEAR_TRACK = "CLEAR_TRACK";
+export const DELETE_TRACK = "DELETE_TRACK";
 
-// export const receiveSaveTrack = (track) => {
-
-// }
 export const updateTrackName = (name) => ({
   type: UPDATE_TRACK_NAME,
   name,
@@ -61,10 +59,13 @@ export const clearTrack = () => ({
   type: CLEAR_TRACK,
 });
 
-export const saveTrack = (track) => (dispatch) => {
+export const saveTrack = (trackName, track) => (dispatch) => {
+  track.name = trackName;
   return TrackAPIUtil.saveTrack(track)
     .then((res) => {
-      console.log(res);
+      console.log(res.data);
+      debugger
+      dispatch(loadTrack(res.data));
       dispatch(closeModal());
     })
     .catch((err) => {
@@ -81,3 +82,11 @@ export const loadTrack = (id) => (dispatch) => {
       console.log(err);
     });
 };
+
+export const deleteTrackById = (id) => (dispatch) => {
+  return TrackAPIUtil.deleteTrackById(id).then((res) => {
+    dispatch(closeModal());
+  }).catch((err) => {
+    console.log(err);
+  })
+}

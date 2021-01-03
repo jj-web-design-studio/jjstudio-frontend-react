@@ -43,7 +43,7 @@ const AppNavBar = (props) => {
     <div>
       <Navbar className="nav" color="light" light expand="sm">
         <NavbarBrand href="/">J J | S T U D I O </NavbarBrand>
-        <NavbarText>
+        <NavbarText className="track-title-wrapper">
           <TrackTitle />
         </NavbarText>
         <NavbarToggler onClick={toggle} />

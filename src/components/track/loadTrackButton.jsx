@@ -8,6 +8,7 @@ const LoadTrackButton = (props) => {
 
   return (
     <button
+      className="track-title-button"
       onClick={() => {
         props.openModal(isAuthenticated ? LOAD_TRACK : LOGIN);
       }}

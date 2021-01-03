@@ -17,6 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
       track: {
         track: {
           bpm: 125,
+          timeSignature: {
+            beat: 4,
+            measure: 4,
+          },
           rowCount: 1,
           contents: [[]],
         },
@@ -34,6 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
       track: {
         track: {
           bpm: 125,
+          timeSignature: {
+            beat: 4,
+            measure: 4,
+          },
           rowCount: 1,
           contents: [[]],
         },

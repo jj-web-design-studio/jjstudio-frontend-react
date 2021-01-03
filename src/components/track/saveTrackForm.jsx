@@ -7,12 +7,12 @@ const SaveTrackForm = (props) => {
   const track = useSelector((state) => state.track.track);
   const [trackName, setTrackName] = useState("");
   const [trackNameError, setTrackNameError] = useState(false);
+  const { updateTrackName, closeModal, saveTrack } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.updateTrackName(trackName);
-    props.saveTrack(track);
-    props.closeModal();
+    updateTrackName(trackName);
+    saveTrack(trackName, track);
   };
 
   const handleInput = (e) => {
@@ -54,7 +54,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveTrack: (track) => dispatch(saveTrack(track)),
+    saveTrack: (trackName, track) => dispatch(saveTrack(trackName, track)),
     closeModal: () => dispatch(closeModal()),
     updateTrackName: (name) => dispatch(updateTrackName(name)),
   };

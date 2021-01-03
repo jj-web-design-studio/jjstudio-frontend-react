@@ -9,6 +9,7 @@ const SaveTrackButton = (props) => {
 
   return (
     <button
+      className="track-title-button"
       onClick={() => {
         props.openModal(isAuthenticated ? SAVE_TRACK : LOGIN);
       }}

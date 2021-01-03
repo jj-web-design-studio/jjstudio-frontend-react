@@ -6,8 +6,6 @@ import SoundBar from "./soundBar";
 import RowIncrementer from "./buttons/rowIncrementer";
 import BarLines from "./barLines";
 import Metronome from "./metronome/metronome";
-import LoadTrackButton from "../track/loadTrackButton";
-import SaveTrackButton from "../track/saveTrackButton";
 
 const BASELINE_MAX_BPM_ANIMATION_SECONDS = 6.4;
 const BASELINE_MAX_BPM = 150;
