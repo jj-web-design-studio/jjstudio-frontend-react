@@ -2,6 +2,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { openModal } from "../common/modal/modalActions";
 import { logout } from "../session/sessionActions";
+import { clearTrack } from "../track/trackActions";
 import TrackTitle from "./trackTitle";
 import {
   Collapse,
@@ -58,7 +59,9 @@ const AppNavBar = (props) => {
                 Options
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>New Track</DropdownItem>
+                <DropdownItem onClick={props.clearTrack}>
+                  New Track
+                </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>Manage Sounds</DropdownItem>
                 <DropdownItem divider />
@@ -86,6 +89,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     openModal: (modal) => dispatch(openModal(modal)),
     logout: () => dispatch(logout()),
+    clearTrack: () => dispatch(clearTrack()),
   };
 };
 

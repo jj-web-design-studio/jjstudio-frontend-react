@@ -7,6 +7,7 @@ import {
   ADD_NOTE_TO_SOUND_ROW,
   UPDATE_SOUND_ROW,
   UPDATE_TRACK_NAME,
+  CLEAR_TRACK,
 } from "../components/track/trackActions";
 
 function TrackReducer(state = {}, action) {
@@ -85,6 +86,15 @@ function TrackReducer(state = {}, action) {
               state.track.contents.length
             ),
           ],
+        },
+      };
+    case CLEAR_TRACK:
+      return {
+        ...state,
+        track: {
+          bpm: 125,
+          rowCount: 1,
+          contents: [[]],
         },
       };
     default:

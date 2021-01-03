@@ -13,7 +13,7 @@ const SaveTrackButton = (props) => {
         props.openModal(isAuthenticated ? SAVE_TRACK : LOGIN);
       }}
     >
-      {trackName ? "Update" : "Save"}
+      Save
     </button>
   );
 };

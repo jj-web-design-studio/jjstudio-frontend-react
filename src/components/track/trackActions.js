@@ -10,23 +10,20 @@ export const INCREMENT_ROW_COUNT = "INCREMENT_ROW_COUNT";
 export const DECREMENT_ROW_COUNT = "DECREMENT_ROW_COUNT";
 export const ADD_NOTE_TO_SOUND_ROW = "ADD_NOTE_TO_SOUND_ROW";
 export const UPDATE_SOUND_ROW = "UPDATE_SOUND_ROW";
+export const CLEAR_TRACK = "CLEAR_TRACK";
 
 // export const receiveSaveTrack = (track) => {
 
 // }
-export const updateTrackName = (name) => {
-  return {
-    type: UPDATE_TRACK_NAME,
-    name,
-  };
-};
+export const updateTrackName = (name) => ({
+  type: UPDATE_TRACK_NAME,
+  name,
+});
 
-export const setBpm = (bpm) => {
-  return {
-    type: SET_BPM,
-    bpm,
-  };
-};
+export const setBpm = (bpm) => ({
+  type: SET_BPM,
+  bpm,
+});
 
 export const incrementRowCount = (rowCount) => {
   rowCount++;
@@ -44,24 +41,24 @@ export const decrementRowCount = (rowCount) => {
   };
 };
 
-export const addNoteToSoundRow = (note) => {
-  return {
-    type: ADD_NOTE_TO_SOUND_ROW,
-    note,
-  };
-};
+export const addNoteToSoundRow = (note) => ({
+  type: ADD_NOTE_TO_SOUND_ROW,
+  note,
+});
 
-export const updateSoundRow = (soundRow, rowIndex) => {
-  return {
-    type: UPDATE_SOUND_ROW,
-    soundRow,
-    rowIndex,
-  };
-};
+export const updateSoundRow = (soundRow, rowIndex) => ({
+  type: UPDATE_SOUND_ROW,
+  soundRow,
+  rowIndex,
+});
 
 export const receiveLoadTrack = (track) => ({
   type: RECEIVE_LOAD_TRACK,
   track,
+});
+
+export const clearTrack = () => ({
+  type: CLEAR_TRACK,
 });
 
 export const saveTrack = (track) => (dispatch) => {
