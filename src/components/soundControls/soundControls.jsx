@@ -86,8 +86,6 @@ const SoundControls = (props) => {
         <Metronome toggleRecord={toggleRecord} togglePlay={togglePlay} />
         <RowIncrementer />
         <BPMSlider />
-        <SaveTrackButton />
-        <LoadTrackButton />
       </div>
       {recordingLine}
       <div

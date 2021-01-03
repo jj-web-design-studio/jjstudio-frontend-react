@@ -12,7 +12,7 @@ const LoadTrackButton = (props) => {
         props.openModal(isAuthenticated ? LOAD_TRACK : LOGIN);
       }}
     >
-      Load Track
+      Load
     </button>
   );
 };

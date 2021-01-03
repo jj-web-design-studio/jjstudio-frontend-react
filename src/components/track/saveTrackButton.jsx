@@ -1,9 +1,10 @@
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 import { openModal } from "../common/modal/modalActions";
 import { LOGIN, SAVE_TRACK } from "../common/modal/modal";
 
 const SaveTrackButton = (props) => {
+  const trackName = useSelector((state) => state.track.track.name);
   const { isAuthenticated } = props;
 
   return (
@@ -12,7 +13,7 @@ const SaveTrackButton = (props) => {
         props.openModal(isAuthenticated ? SAVE_TRACK : LOGIN);
       }}
     >
-      Save Track
+      {trackName ? "Update" : "Save"}
     </button>
   );
 };
