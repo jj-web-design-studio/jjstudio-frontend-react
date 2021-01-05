@@ -25,6 +25,9 @@ document.addEventListener("DOMContentLoaded", () => {
           contents: [[]],
         },
       },
+      ui: {
+        proTip: { shouldPromptProTipKeyboard: true },
+      },
     };
     store = configureStore(preloadedState);
     const currentTime = Date.now() / 1000;
@@ -45,6 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
           rowCount: 1,
           contents: [[]],
         },
+      },
+      ui: {
+        proTip: { shouldPromptProTipKeyboard: true },
       },
     });
   }

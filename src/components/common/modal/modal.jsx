@@ -5,11 +5,13 @@ import LoginFormContainer from "../../session/login_form_container";
 import SignupFormContainer from "../../session/signup_form_container";
 import SaveTrackForm from "../../track/saveTrackForm";
 import LoadTrackForm from "../../track/loadTrackForm";
+import ProTipKeyboardModal from "./proTipKeyboardModal";
 
 export const LOGIN = "LOGIN";
 export const SIGN_UP = "SIGN_UP";
 export const SAVE_TRACK = "SAVE_TRACK";
 export const LOAD_TRACK = "LOAD_TRACK";
+export const PRO_TIP_KEYBOARD = "PRO_TIP_KEYBOARD";
 
 const Modal = ({ modal, closeModal }) => {
   if (!modal) {
@@ -28,6 +30,9 @@ const Modal = ({ modal, closeModal }) => {
       break;
     case LOAD_TRACK:
       component = <LoadTrackForm />;
+      break;
+    case PRO_TIP_KEYBOARD:
+      component = <ProTipKeyboardModal />;
       break;
     default:
       return null;

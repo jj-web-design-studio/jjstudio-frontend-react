@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { connect, useSelector } from "react-redux";
-import { closeModal } from "../common/modal/modalActions";
 import { saveTrack, updateTrackName } from "./trackActions";
 
 const SaveTrackForm = (props) => {
   const track = useSelector((state) => state.track.track);
   const [trackName, setTrackName] = useState("");
   const [trackNameError, setTrackNameError] = useState(false);
-  const { updateTrackName, closeModal, saveTrack } = props;
+  const { updateTrackName, saveTrack } = props;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,7 +54,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     saveTrack: (trackName, track) => dispatch(saveTrack(trackName, track)),
-    closeModal: () => dispatch(closeModal()),
     updateTrackName: (name) => dispatch(updateTrackName(name)),
   };
 };

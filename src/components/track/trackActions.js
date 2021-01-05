@@ -62,9 +62,7 @@ export const clearTrack = () => ({
 export const saveTrack = (trackName, track) => (dispatch) => {
   track.name = trackName;
   return TrackAPIUtil.saveTrack(track)
-    .then((res) => {
-      console.log(res.data);
-      debugger
+    .then((res) => {      
       dispatch(loadTrack(res.data));
       dispatch(closeModal());
     })

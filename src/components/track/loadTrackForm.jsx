@@ -19,7 +19,6 @@ const LoadTrackForm = (props) => {
   useEffect(() => {
     TrackAPIUtil.getAllTracks()
       .then((res) => {
-        console.log(res);
         setTracks(res.data);
       })
       .catch((err) => {
