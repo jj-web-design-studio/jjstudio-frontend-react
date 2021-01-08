@@ -1,9 +1,23 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 
 const Note = (props) => {
   const [isDragging, setDragging] = useState(false);
   const [isHovering, setHovering] = useState(false);
+  const [isSelected, setSelected] = useState(false);
   const [left, setLeft] = useState(props.left);
+  const ref = useRef(null);
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 8 && isSelected) {
+      props.deleteNote(props.noteIndex);
+    }
+  };
+
+  const handleClick = (e) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      setSelected(false);
+    }
+  }
 
   const handleMouseDown = (e) => {
     e.stopPropagation();
@@ -36,10 +50,14 @@ const Note = (props) => {
   };
 
   useEffect(() => {
-    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mousemove", handleMouseMove)
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("click", handleClick);
 
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("click", handleClick);
     };
   }, [handleMouseMove]);
 
@@ -52,13 +70,16 @@ const Note = (props) => {
         backgroundColor: "blue",
         position: "absolute",
         opacity: isDragging ? 0.5 : 1,
-        cursor: isDragging ? "grabbing" : isHovering ? "grab" : "" 
+        cursor: isDragging ? "grabbing" : isHovering ? "grab" : "",
+        border: isSelected ? "2px dotted black" : "",
       }}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => {setHovering(true)}}
-      onMouseLeave={() => {setHovering(false)}}
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}
+      onClick={() => setSelected(true)}
+      ref={ref}
     />
   );
 };

@@ -30,6 +30,11 @@ const SoundBar = (props) => {
     updateSoundRow(trackContents[rowIndex], rowIndex);
   };
 
+  const deleteNote = (index) => {
+    trackContents[rowIndex].splice(index, 1);
+    updateSoundRow(trackContents[rowIndex], rowIndex);
+  }
+
   const shouldRender = useCallback(
     (keyCode) => {
       return isSelected && isRecording && !modal && isPlayableKey(keyCode);
@@ -80,6 +85,7 @@ const SoundBar = (props) => {
             left={sound.left}
             windowWidth={windowWidth}
             updateLeftInParent={updateLeft}
+            deleteNote={deleteNote}
           />
         );
       })}
