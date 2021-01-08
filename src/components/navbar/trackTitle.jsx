@@ -21,8 +21,7 @@ const TrackTitle = (props) => {
   };
 
   const shouldBeBlank = () => {
-    console.log(isEmptyTrack());
-    return isNewTrack && trackName === "" && isEmptyTrack();
+    return isNewTrack && isEmptyTrack();
   };
 
   const shoulderRenderInput = () => {
@@ -38,7 +37,7 @@ const TrackTitle = (props) => {
         <></>
       ) : shoulderRenderInput() ? (
         <>
-          <input type="text" onChange={handleChange} value={trackName} />
+          <input type="text" placeholder="Name this track..." onChange={handleChange} value={trackName} />
           <span
             onClick={() => {
               setEditing(false);
