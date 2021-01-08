@@ -19,6 +19,10 @@ import {
   DropdownItem,
   NavbarText,
 } from "reactstrap";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import SettingsIcon from '@material-ui/icons/Settings';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { LOGIN, LOAD_TRACK } from "../common/modal/modal";
 
 const AppNavBar = (props) => {
@@ -31,12 +35,12 @@ const AppNavBar = (props) => {
   const logButton = !props.isAuthenticated ? (
     <NavLink className="logbutton" onClick={() => props.openModal(LOGIN)}>
       {" "}
-      Log In
+      <AccountCircleIcon />
     </NavLink>
   ) : (
     <NavLink className="logbutton" onClick={props.logout}>
       {" "}
-      Log Out
+      <ExitToAppIcon />
     </NavLink>
   );
 
@@ -52,12 +56,12 @@ const AppNavBar = (props) => {
           <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink href="https://github.com/jj-web-design-studio">
-                GitHub
+                <GitHubIcon />
               </NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
+              <DropdownToggle nav>
+                <SettingsIcon />
               </DropdownToggle>
               <DropdownMenu right>
                 <OptionItem label="New Track" onClick={props.clearTrack} />

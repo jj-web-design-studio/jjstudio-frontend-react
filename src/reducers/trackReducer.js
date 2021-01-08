@@ -95,10 +95,14 @@ function TrackReducer(state = {}, action) {
       return {
         ...state,
         track: {
-          name: "Unnamed Track",
+          name: "",
           bpm: 125,
           rowCount: 1,
           contents: [[]],
+          timeSignature: {
+            beat: 4,
+            measure: 4,
+          },
         },
       };
     default:

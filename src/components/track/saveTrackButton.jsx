@@ -1,35 +1,42 @@
+import { useState } from "react";
 import { connect, useSelector } from "react-redux";
 
 import { openModal } from "../common/modal/modalActions";
 import { saveTrack } from "../track/trackActions";
 import { LOGIN } from "../common/modal/modal";
 
+import SaveIcon from "@material-ui/icons/Save";
+import SaveOutlinedIcon from "@material-ui/icons/SaveOutlined";
+import SaveAltIcon from "@material-ui/icons/SaveAlt";
+
 const SaveTrackButton = (props) => {
-  const { isAuthenticated, hasTrackId } = props;
+  const [isHovering, setHovering] = useState(false);
+  const { isAuthenticated, saveTrack, openModal } = props;
   const track = useSelector((state) => state.track.track);
 
   const handleClick = (e) => {
     if (isAuthenticated) {
-      props.saveTrack(track);
+      saveTrack(track);
     } else {
-      props.openModal(LOGIN);
+      openModal(LOGIN);
     }
   };
 
   return (
-    <button
+    <span
       className="track-title-button"
       onClick={handleClick}
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}
     >
-      {hasTrackId ? "Update" : "Save"}
-    </button>
+      {isHovering ? <SaveIcon /> : <SaveOutlinedIcon />}
+    </span>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.session.isAuthenticated,
-    hasTrackId: state.track.track.id != null,
   };
 };
 
