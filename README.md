@@ -1,7 +1,7 @@
 # Set Up
 0. Clone this repository
 ```bash
-git clone https://github.com/jonathan-dwight/jjstudio-frontend.git
+git clone https://github.com/jj-web-design-studio/jjstudio-frontend-react
 ```
 
 1. Install the project dependencies
