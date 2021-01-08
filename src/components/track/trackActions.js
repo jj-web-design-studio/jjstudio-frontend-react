@@ -59,8 +59,7 @@ export const clearTrack = () => ({
   type: CLEAR_TRACK,
 });
 
-export const saveTrack = (trackName, track) => (dispatch) => {
-  track.name = trackName;
+export const saveTrack = (track) => (dispatch) => {
   return TrackAPIUtil.saveTrack(track)
     .then((res) => {      
       dispatch(loadTrack(res.data));

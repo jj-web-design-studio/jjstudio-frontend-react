@@ -1,17 +1,25 @@
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 import { openModal } from "../common/modal/modalActions";
-import { LOGIN, SAVE_TRACK } from "../common/modal/modal";
+import { saveTrack } from "../track/trackActions";
+import { LOGIN } from "../common/modal/modal";
 
 const SaveTrackButton = (props) => {
   const { isAuthenticated, hasTrackId } = props;
+  const track = useSelector((state) => state.track.track);
+
+  const handleClick = (e) => {
+    if (isAuthenticated) {
+      props.saveTrack(track);
+    } else {
+      props.openModal(LOGIN);
+    }
+  };
 
   return (
     <button
       className="track-title-button"
-      onClick={() => {
-        props.openModal(isAuthenticated ? SAVE_TRACK : LOGIN);
-      }}
+      onClick={handleClick}
     >
       {hasTrackId ? "Update" : "Save"}
     </button>
@@ -28,6 +36,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     openModal: (modal) => dispatch(openModal(modal)),
+    saveTrack: (trackName, track) => dispatch(saveTrack(trackName, track)),
   };
 };
 

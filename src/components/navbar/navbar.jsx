@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { connect } from "react-redux";
+import OptionItem from "./optionItem";
 import { openModal } from "../common/modal/modalActions";
 import { logout } from "../session/sessionActions";
 import { clearTrack } from "../track/trackActions";
@@ -18,7 +19,7 @@ import {
   DropdownItem,
   NavbarText,
 } from "reactstrap";
-import { LOGIN } from "../common/modal/modal";
+import { LOGIN, LOAD_TRACK } from "../common/modal/modal";
 
 const AppNavBar = (props) => {
   const [isOpen, setOpen] = useState(false);
@@ -27,7 +28,7 @@ const AppNavBar = (props) => {
     setOpen(!isOpen);
   };
 
-  const logButton = !props.session ? (
+  const logButton = !props.isAuthenticated ? (
     <NavLink className="logbutton" onClick={() => props.openModal(LOGIN)}>
       {" "}
       Log In
@@ -59,9 +60,13 @@ const AppNavBar = (props) => {
                 Options
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem onClick={props.clearTrack}>
-                  New Track
-                </DropdownItem>
+                <OptionItem label="New Track" onClick={props.clearTrack} />
+                <OptionItem
+                  label="Load Track"
+                  onClick={() => {
+                    props.openModal(props.isAuthenticated ? LOAD_TRACK : LOGIN);
+                  }}
+                />
                 <DropdownItem divider />
                 <DropdownItem>Manage Sounds</DropdownItem>
                 <DropdownItem divider />
@@ -81,7 +86,7 @@ const AppNavBar = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    session: state.session.isAuthenticated,
+    isAuthenticated: state.session.isAuthenticated,
   };
 };
 

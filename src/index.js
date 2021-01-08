@@ -10,6 +10,7 @@ const preloadedState = {
   keyboard: { currentKeyboardId: "default" },
   track: {
     track: {
+      name: "Unnamed Track",
       bpm: 125,
       timeSignature: {
         beat: 4,

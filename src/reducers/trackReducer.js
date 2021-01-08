@@ -11,6 +11,7 @@ import {
 } from "../components/track/trackActions";
 
 function TrackReducer(state = {}, action) {
+  // let nextState = Object.assign({}, state);
   switch (action.type) {
     case RECEIVE_SAVE_TRACK:
       return {
@@ -18,6 +19,8 @@ function TrackReducer(state = {}, action) {
         track: action.track,
       };
     case RECEIVE_LOAD_TRACK:
+      // nextState = action.track;
+      // return nextState;
       return {
         ...state,
         track: action.track,
@@ -92,6 +95,7 @@ function TrackReducer(state = {}, action) {
       return {
         ...state,
         track: {
+          name: "Unnamed Track",
           bpm: 125,
           rowCount: 1,
           contents: [[]],
