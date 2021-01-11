@@ -7,7 +7,6 @@ import { LOGIN } from "../common/modal/modal";
 
 import SaveIcon from "@material-ui/icons/Save";
 import SaveOutlinedIcon from "@material-ui/icons/SaveOutlined";
-import SaveAltIcon from "@material-ui/icons/SaveAlt";
 
 const SaveTrackButton = (props) => {
   const [isHovering, setHovering] = useState(false);
