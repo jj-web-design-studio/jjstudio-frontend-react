@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
 import { openModal } from "../common/modal/modalActions";
 import { PRO_TIP_KEYBOARD } from "../common/modal/modal";
+import { Grid } from "@material-ui/core";
 
 const isLeftMouseClick = (e) => {
   return e.button === 0;
@@ -21,12 +22,16 @@ const Key = (props) => {
     }
   };
 
+  const audio = new Audio("/Bass1.wav");
+
   const handleUserKeyDown = useCallback(
     (e) => {
       if (modal !== null) return;
 
       if (e.keyCode == props.keyCode) {
+        console.log('playing')
         setPlaying(true);
+        audio.play();
       }
     },
     [modal, props]
@@ -54,7 +59,13 @@ const Key = (props) => {
   });
 
   return (
-    <div
+    <Grid
+    item
+    xs="1"
+    sm="1"
+    md="1"
+    lg="1"
+    xl="1"
       className={isPlaying ? "key active" : "key"}
       color="secondary"
       onMouseDown={(e) => {
@@ -72,7 +83,8 @@ const Key = (props) => {
         {props.label}
       </div>
       {props.soundId}
-    </div>
+
+    </Grid>
   );
 };
 

@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import KeyboardDropdown from "./keyboardDropdown";
 import Key from "./key";
 import { NUM_ROW, QWE_ROW, ASD_ROW, ZXC_ROW } from "./keys";
+import { Grid } from "@material-ui/core";
 
 const Keyboard = (props) => {
   const currentKeyboardId = useSelector(
@@ -36,20 +37,42 @@ const Keyboard = (props) => {
 
   const renderKeyboardRow = (row) => {
     return (
-      <div className="keyRow">
+      <Grid
+        container
+        item
+        direction="row"
+        justify="center"
+        alignItems="center"
+        className="keyRow"
+        xs="10"
+        sm="10"
+        md="9"
+        lg="9"
+        xl="9"
+      >
         {row.map((key) => {
           return (
             <Key key={key.keyCode} keyCode={key.keyCode} label={key.label} />
           );
         })}
-      </div>
+      </Grid>
     );
   };
 
   return (
     <div>
       {mapping != null ? (
-        <div className="keyBoard">
+        <Grid
+          container
+          xs="12"
+        sm="12"
+        md="12"
+        lg="12"
+        xl="12"
+          justify="center"
+          alignItems="center"
+          className="keyBoard"
+        >
           <div className="keyRow">
             {isAuthenticated ? (
               <KeyboardDropdown
@@ -64,7 +87,7 @@ const Keyboard = (props) => {
           {renderKeyboardRow(QWE_ROW)}
           {renderKeyboardRow(ASD_ROW)}
           {renderKeyboardRow(ZXC_ROW)}
-        </div>
+        </Grid>
       ) : (
         <>No keyboards found!</>
       )}
