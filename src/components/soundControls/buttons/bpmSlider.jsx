@@ -2,6 +2,8 @@ import { connect } from "react-redux";
 import Slider from '@material-ui/core/Slider';
 import { setBpm } from "../../track/trackActions";
 
+import { Grid } from "@material-ui/core";
+
 const BPMSlider = (props) => {
   const { bpm, setBpm } = props;
 
@@ -10,17 +12,19 @@ const BPMSlider = (props) => {
   };
 
   return (
-    <div className="metronome slider soundBtn">
+    <Grid item container xs={4} sm={4} md={4} lg={4} xl={4} justify="flex-end" alignItems="center" className="soundBtn">
+      <Grid item xs={6} sm={6} md={6} lg={6} xl={6}>
       <Slider 
         min={70}
         max={150}
         value={bpm} 
         onChange={handleChange} 
       />
-      <div className="soundBtn">
+      </Grid>
+      <Grid item xs={2} sm={2} md={2} lg={2} xl={2} className="soundBtn">
         {bpm}
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
 }
 

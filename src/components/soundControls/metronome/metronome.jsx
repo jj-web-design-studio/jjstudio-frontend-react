@@ -6,6 +6,8 @@ import PlayButton from "../buttons/playButton";
 
 import * as serviceWorker from "./metronomeWorker.js";
 
+import { Grid } from "@material-ui/core";
+
 const Metronome = (props) => {
   const bpm = useSelector((state) => state.track.track.bpm);
 
@@ -25,7 +27,10 @@ const Metronome = (props) => {
   const noteResolution = 2;
   const noteLength = 0.05;
 
-  const { toggleRecord: toggleRecordParent, togglePlay: togglePlayParent } = props;
+  const {
+    toggleRecord: toggleRecordParent,
+    togglePlay: togglePlayParent,
+  } = props;
 
   const nextNote = () => {
     // Advance current note and time by a 16th note...
@@ -138,12 +143,10 @@ const Metronome = (props) => {
   };
 
   return (
-    <div>
-      <div className="soundBtn">
-        <RecordButton isRecording={isRecording} onClick={handleClickRecord} />
-        <PlayButton isPlaying={isPlaying} onClick={handleClickPlay} />
-      </div>
-    </div>
+    <Grid item container xs={4} sm={4} md={4} lg={4} xl={4} justify="flex-start" alignItems="center" className="soundBtn">
+    <Grid item xs={2} sm={2} md={2} lg={2} xl={3}><RecordButton isRecording={isRecording} onClick={handleClickRecord} /></Grid>
+      <Grid item xs={2} sm={2} md={2} lg={2} xl={3}><PlayButton isPlaying={isPlaying} onClick={handleClickPlay} /></Grid>
+    </Grid>
   );
 };
 

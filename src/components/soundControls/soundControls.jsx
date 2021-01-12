@@ -7,6 +7,8 @@ import RowIncrementer from "./buttons/rowIncrementer";
 import BarLines from "./barLines";
 import Metronome from "./metronome/metronome";
 
+import { Grid } from "@material-ui/core";
+
 const BASELINE_MAX_BPM_ANIMATION_SECONDS = 6.4;
 const BASELINE_MAX_BPM = 150;
 const BAR_LINE_SPACING = 6.25;
@@ -80,11 +82,21 @@ const SoundControls = (props) => {
 
   return (
     <div style={{ backgroundColor: "lightpink" }}>
-      <div className="sound-controls">
+      <Grid
+        container
+        xs={12}
+        sm={12}
+        md={12}
+        lg={12}
+        xl={12}
+        justify="space-between"
+        alignItems="center"
+        className="sound-controls"
+      >
         <Metronome toggleRecord={toggleRecord} togglePlay={togglePlay} />
         <RowIncrementer />
         <BPMSlider />
-      </div>
+      </Grid>
       {recordingLine}
       <div
         className="sound-bar-wrapper"
