@@ -44,11 +44,11 @@ const Keyboard = (props) => {
         justify="center"
         alignItems="center"
         className="keyRow"
-        xs="10"
-        sm="10"
-        md="9"
-        lg="9"
-        xl="9"
+        xs={10}
+        sm={10}
+        md={9}
+        lg={9}
+        xl={9}
         className="keyRow"
       >
         {row.map((key) => {
@@ -65,11 +65,6 @@ const Keyboard = (props) => {
       {mapping != null ? (
         <Grid
           container
-          xs="12"
-        sm="12"
-        md="12"
-        lg="12"
-        xl="12"
           justify="center"
           alignItems="center"
           className="keyBoard"
