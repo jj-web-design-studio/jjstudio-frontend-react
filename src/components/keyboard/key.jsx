@@ -60,11 +60,11 @@ const Key = (props) => {
   return (
     <Grid
     item
-    xs="1"
-    sm="1"
-    md="1"
-    lg="1"
-    xl="1"
+    xs={1}
+    sm={1}
+    md={1}
+    lg={1}
+    xl={1}
       color="secondary"
       onMouseDown={(e) => {
         setPlaying(isLeftMouseClick(e) ? true : false);
