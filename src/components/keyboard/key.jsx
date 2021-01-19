@@ -22,19 +22,18 @@ const Key = (props) => {
     }
   };
 
-  const audio = new Audio("/Bass1.wav");
 
   const handleUserKeyDown = useCallback(
     (e) => {
       if (modal !== null) return;
 
       if (e.keyCode == props.keyCode) {
-        console.log('playing')
+        const audio = new Audio("/clap.wav");
         setPlaying(true);
-        audio.play();
+        if (!isPlaying) audio.play();
       }
     },
-    [modal, props]
+    [modal, props, isPlaying]
   );
 
   const handleUserKeyUp = useCallback(
@@ -66,7 +65,6 @@ const Key = (props) => {
     md="1"
     lg="1"
     xl="1"
-      className={isPlaying ? "key active" : "key"}
       color="secondary"
       onMouseDown={(e) => {
         setPlaying(isLeftMouseClick(e) ? true : false);
@@ -79,11 +77,10 @@ const Key = (props) => {
       }}
       onClick={handleClick}
     >
-      <div className={isPlaying ? "key-label key-active" : "key-label"}>
-        {props.label}
+      <div className={isPlaying ? "key active" : "key"}>
+        <div className="key-label">{props.label}</div>
+        <div className="sound-label">Sound 1</div>
       </div>
-      {props.soundId}
-
     </Grid>
   );
 };

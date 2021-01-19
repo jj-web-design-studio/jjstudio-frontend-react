@@ -7,11 +7,11 @@ const Note = (props) => {
   const [left, setLeft] = useState(props.left);
   const ref = useRef(null);
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = useCallback((e) => {
     if (e.keyCode === 8 && isSelected) {
       props.deleteNote(props.noteIndex);
     }
-  };
+  }, [isSelected, props]);
 
   const handleClick = (e) => {
     if (ref.current && !ref.current.contains(e.target)) {
@@ -59,7 +59,7 @@ const Note = (props) => {
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("click", handleClick);
     };
-  }, [handleMouseMove]);
+  }, [handleMouseMove, handleKeyDown]);
 
   return (
     <div

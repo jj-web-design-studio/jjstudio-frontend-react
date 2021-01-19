@@ -49,6 +49,7 @@ const Keyboard = (props) => {
         md="9"
         lg="9"
         xl="9"
+        className="keyRow"
       >
         {row.map((key) => {
           return (
@@ -73,7 +74,7 @@ const Keyboard = (props) => {
           alignItems="center"
           className="keyBoard"
         >
-          <div className="keyRow">
+          <div>
             {isAuthenticated ? (
               <KeyboardDropdown
                 current={mapping.name}
