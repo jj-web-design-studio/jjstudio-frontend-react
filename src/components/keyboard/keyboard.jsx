@@ -69,16 +69,6 @@ const Keyboard = (props) => {
           alignItems="center"
           className="keyBoard"
         >
-          <div>
-            {isAuthenticated ? (
-              <KeyboardDropdown
-                current={mapping.name}
-                loadKeyboardNameList={loadKeyboardNameList}
-              />
-            ) : (
-              <></>
-            )}
-          </div>
           {renderKeyboardRow(NUM_ROW)}
           {renderKeyboardRow(QWE_ROW)}
           {renderKeyboardRow(ASD_ROW)}
