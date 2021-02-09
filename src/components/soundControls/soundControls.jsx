@@ -20,8 +20,11 @@ const SoundControls = (props) => {
 
   const [isRecording, setRecording] = useState(false);
   const [isPlaying, setPlaying] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(0);
   const [isHoveringBars, setHoveringBars] = useState(false);
+  const [dimensions, setDimensions] = useState({
+    height: window.innerHeight,
+    width: window.innerWidth,
+  });
 
   const toggleRecord = (isRecording) => {
     setRecording(isRecording);
@@ -32,15 +35,30 @@ const SoundControls = (props) => {
   };
 
   useEffect(() => {
-    setWindowWidth(window.innerWidth);
+    function debounce(fn, ms) {
+      let timer;
+      return () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          timer = null;
+          fn.apply(this, ...arguments);
+        }, ms);
+      };
+    }
 
-    // Hiding event listener for now
-    // window.addEventListener("keydown", handleUserKeyDown);
+    const debouncedHandleResize = debounce(function handleResize() {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth,
+      });
+    }, 1000);
 
-    // return () => {
-    //   window.removeEventListener("keydown", handleUserKeyDown);
-    // };
-  }, [isRecording, isPlaying, rowCount, track]);
+    window.addEventListener("resize", debouncedHandleResize);
+
+    return () => {
+      window.removeEventListener("resize", debouncedHandleResize);
+    };
+  }, [isRecording, isPlaying, rowCount, track, dimensions]);
 
   const recordingLine = (
     <div
@@ -71,7 +89,7 @@ const SoundControls = (props) => {
         <SoundBar
           key={i}
           rowIndex={i}
-          windowWidth={windowWidth}
+          windowWidth={dimensions.width}
           isSelected={i === rowCount - 1}
           isRecording={isRecording}
         />
