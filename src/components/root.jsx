@@ -7,6 +7,16 @@ import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 const theme = createMuiTheme({
+  overrides: {
+    MuiCssBaseline: {
+      "@global": {
+        body: {
+          fontcolor: "white",
+          fontWeight: "bold"
+        },
+      },
+    },
+  },
   palette: {
     type: "dark",
   },
@@ -15,10 +25,10 @@ const theme = createMuiTheme({
 const Root = ({ store }) => (
   <Provider store={store}>
     <HashRouter>
-    <ThemeProvider theme={theme}>
-    <CssBaseline>
-      <App />
-      </CssBaseline>
+      <ThemeProvider theme={theme}>
+        <CssBaseline>
+          <App />
+        </CssBaseline>
       </ThemeProvider>
     </HashRouter>
   </Provider>
