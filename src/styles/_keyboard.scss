@@ -1,12 +1,12 @@
 .keyBoard {
   padding: 20px 0px 20px 0px;
-  background: white;
+  background: #3b4161;
   height: 100%;
 }
 
 .keyRow {
   text-align: center;
-  padding: 1px 0px 1px 0px;
+  padding: 0px 0px 0px 0px;
   height: 100%;
   position: relative;
   padding-bottom: 0.1%;
@@ -14,14 +14,15 @@
 
 .key {
   border-radius: 12.5px;
-  border: solid 0.5px rgba(0, 0, 0, 0.28);
+  border: solid 0.5px grey;
   border-width: 1px;
   height: 100%;
-  width: 97%;
+  width: 98%;
 }
 
 .numRow {
   background-color: #b3eeff;
+  left: -3%;
 }
 
 .qweRow {
