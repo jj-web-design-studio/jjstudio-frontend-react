@@ -35,20 +35,20 @@ const AppNavBar = (props) => {
   const logButton = !props.isAuthenticated ? (
     <NavLink className="logbutton" onClick={() => props.openModal(LOGIN)}>
       {" "}
-      <AccountCircleIcon />
+      <AccountCircleIcon color="action" />
     </NavLink>
   ) : (
     <NavLink className="logbutton" onClick={props.logout}>
       {" "}
-      <ExitToAppIcon />
+      <ExitToAppIcon color="action" />
     </NavLink>
   );
 
   return (
     <div>
-      <Navbar className="nav" color="light" light expand="sm">
+      <Navbar className="panel" expand="sm">
         <NavbarBrand href="/">
-          <img src="/logo.png" alt="jjStudio" style={{width: "35px"}}/>
+          J J S T U D I O
         </NavbarBrand>
         <NavbarText className="track-title-wrapper">
           <TrackTitle />
@@ -58,12 +58,12 @@ const AppNavBar = (props) => {
           <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink href="https://github.com/jj-web-design-studio">
-                <GitHubIcon />
+                <GitHubIcon color="action"/>
               </NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav>
-                <SettingsIcon />
+                <SettingsIcon color="action"/>
               </DropdownToggle>
               <DropdownMenu right>
                 <OptionItem label="New Track" onClick={props.clearTrack} />

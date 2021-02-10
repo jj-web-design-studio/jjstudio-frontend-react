@@ -61,6 +61,8 @@ const SoundBar = (props) => {
         left: (calculatedLeftCleaned / windowWidth) * 100,
         soundId: null,
         rowIndex: rowIndex,
+        color: "green",
+        label: "Q"
       });
     },
     [shouldRender, windowWidth, addNoteToSoundRow, rowIndex]
@@ -83,6 +85,8 @@ const SoundBar = (props) => {
             rowIndex={rowIndex}
             noteIndex={index}
             left={sound.left}
+            color={sound.color}
+            label={sound.label}
             windowWidth={windowWidth}
             updateLeftInParent={updateLeft}
             deleteNote={deleteNote}
