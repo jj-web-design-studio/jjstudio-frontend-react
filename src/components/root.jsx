@@ -11,8 +11,11 @@ const theme = createMuiTheme({
     MuiCssBaseline: {
       "@global": {
         body: {
-          fontcolor: "white",
-          fontWeight: "bold"
+          color: "white",
+          fontWeight: "bold",
+        },
+        a: {
+          color: "white",
         },
       },
     },

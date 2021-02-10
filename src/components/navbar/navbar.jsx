@@ -48,7 +48,7 @@ const AppNavBar = (props) => {
     <div>
       <Navbar className="panel" expand="sm">
         <NavbarBrand href="/">
-          J J S T U D I O
+          J J | S T U D I O
         </NavbarBrand>
         <NavbarText className="track-title-wrapper">
           <TrackTitle />
