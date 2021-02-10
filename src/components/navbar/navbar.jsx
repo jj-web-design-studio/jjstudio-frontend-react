@@ -47,7 +47,9 @@ const AppNavBar = (props) => {
   return (
     <div>
       <Navbar className="nav" color="light" light expand="sm">
-        <NavbarBrand href="/">J J | S T U D I O </NavbarBrand>
+        <NavbarBrand href="/">
+          <img src="/logo.png" alt="jjStudio" style={{width: "35px"}}/>
+        </NavbarBrand>
         <NavbarText className="track-title-wrapper">
           <TrackTitle />
         </NavbarText>
