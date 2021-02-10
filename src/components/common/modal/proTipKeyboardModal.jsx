@@ -9,8 +9,8 @@ const ProTipKeyboardModal = (props) => {
   };
 
   return (
-    <div className="login-form-container">
-      <form className="login-form-box">
+    <div className="modal-content">
+      <form className="modal-form">
         <div className="header-form">
           <h1>Pro Tip:</h1>
           <p>Don't click on the keys. Use your keyboard!</p>

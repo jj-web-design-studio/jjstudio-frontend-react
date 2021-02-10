@@ -28,8 +28,8 @@ const LoadTrackForm = (props) => {
   }, []);
 
   return (
-    <div className="login-form-container">
-      <form className="login-form-box" onSubmit={handleSubmit}>
+    <div className="modal-content">
+      <form className="modal-form" onSubmit={handleSubmit}>
         <div className="header-form">
           <h1>J J | S T U D I O</h1>
           <p>

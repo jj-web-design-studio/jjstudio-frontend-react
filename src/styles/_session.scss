@@ -1,10 +1,11 @@
-  .login-form-container {
+  .modal-content {
    display: flex;
    flex-direction: column;
    justify-content: space-between;
  }
 
- .login-form-box {
+ .modal-form {
+   text-align: center;
    display: flex;
    flex-direction: column;
    justify-content: space-between;
@@ -13,8 +14,8 @@
    background: white;
    position: relative;
    border-radius: 3px;
-   width: 310px;
-   background-color: white;
+   width: 350px;
+   background-color: #888888;
  }
 
  .form-field-error {

@@ -18,7 +18,8 @@ const BPMSlider = (props) => {
         min={70}
         max={150}
         value={bpm} 
-        onChange={handleChange} 
+        onChange={handleChange}
+        color="secondary" 
       />
       </Grid>
       <Grid item xs={2} sm={2} md={2} lg={2} xl={2} className="soundBtn">
