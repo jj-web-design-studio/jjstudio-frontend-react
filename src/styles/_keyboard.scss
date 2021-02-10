@@ -1,11 +1,6 @@
 .keyBoard {
   padding: 20px 0px 20px 0px;
-  background: linear-gradient(
-    180deg,
-    rgba(17, 189, 224, 1) 0%,
-    rgba(237, 237, 252, 1) 50%,
-    rgba(126, 121, 212, 1) 100%
-  );
+  background: white;
   height: 100%;
 }
 
@@ -18,12 +13,27 @@
 }
 
 .key {
-  background-color: rgb(211, 208, 208);
-  border-radius: 5px;
-  border: solid black;
+  border-radius: 12.5px;
+  border: solid 0.5px rgba(0, 0, 0, 0.28);
   border-width: 1px;
   height: 100%;
   width: 97%;
+}
+
+.numRow {
+  background-color: #b3eeff;
+}
+
+.qweRow {
+  background-color: #c8f69b;
+}
+
+.asdRow {
+  background-color: #ffb1af;
+}
+
+.zxcRow {
+  background-color: #ffcba5;
 }
 
 .active {

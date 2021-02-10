@@ -3,6 +3,7 @@ import { connect, useSelector } from "react-redux";
 import { openModal } from "../common/modal/modalActions";
 import { PRO_TIP_KEYBOARD } from "../common/modal/modal";
 import { Grid } from "@material-ui/core";
+import { NUM_ROW_INDEX, QWE_ROW_INDEX, ASD_ROW_INDEX, ZXC_ROW_INDEX } from "./keys";
 
 const isLeftMouseClick = (e) => {
   return e.button === 0;
@@ -57,14 +58,29 @@ const Key = (props) => {
     };
   });
 
+  const getKeyClassName = (keyRowIndex) => {
+    switch (keyRowIndex) {
+      case NUM_ROW_INDEX:
+        return isPlaying ? "key numRow active" : "key numRow";
+      case QWE_ROW_INDEX:
+        return isPlaying ? "key qweRow active" : "key qweRow";
+      case ASD_ROW_INDEX:
+        return isPlaying ? "key asdRow active" : "key asdRow";
+      case ZXC_ROW_INDEX:
+        return isPlaying ? "key zxcRow active" : "key zxcRow";
+      default:
+        return isPlaying ? "key active " : "key";
+    }
+  }
+
   return (
     <Grid
-    item
-    xs={1}
-    sm={1}
-    md={1}
-    lg={1}
-    xl={1}
+      item
+      xs={1}
+      sm={1}
+      md={1}
+      lg={1}
+      xl={1}
       color="secondary"
       onMouseDown={(e) => {
         setPlaying(isLeftMouseClick(e) ? true : false);
@@ -77,7 +93,7 @@ const Key = (props) => {
       }}
       onClick={handleClick}
     >
-      <div className={isPlaying ? "key active" : "key"}>
+      <div className={getKeyClassName(props.keyRowIndex)}>
         <div className="key-label">{props.label}</div>
         <div className="sound-label">Sound 1</div>
       </div>

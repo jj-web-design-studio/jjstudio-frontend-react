@@ -49,11 +49,10 @@ const Keyboard = (props) => {
         md={9}
         lg={9}
         xl={9}
-        className="keyRow"
       >
-        {row.map((key) => {
+        {row.mappings.map((key) => {
           return (
-            <Key key={key.keyCode} keyCode={key.keyCode} label={key.label} />
+            <Key key={key.keyCode} keyCode={key.keyCode} keyRowIndex={row.index} label={key.label} />
           );
         })}
       </Grid>
