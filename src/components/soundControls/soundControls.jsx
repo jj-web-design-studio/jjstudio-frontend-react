@@ -99,12 +99,12 @@ const SoundControls = (props) => {
   };
 
   return (
-    <div style={{ backgroundColor: "lightpink" }}>
+    <div style={{ backgroundColor: "#1c1e21" }}>
       <Grid
         container
         justify="space-between"
         alignItems="center"
-        className="sound-controls"
+        className="sound-controls panel"
       >
         <Metronome toggleRecord={toggleRecord} togglePlay={togglePlay} />
         <RowIncrementer />
