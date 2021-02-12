@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { connect, useSelector } from "react-redux";
+import { connect } from "react-redux";
 
 import { openModal } from "../common/modal/modalActions";
 import { saveTrack } from "../track/trackActions";
@@ -10,8 +10,7 @@ import SaveOutlinedIcon from "@material-ui/icons/SaveOutlined";
 
 const SaveTrackButton = (props) => {
   const [isHovering, setHovering] = useState(false);
-  const { isAuthenticated, saveTrack, openModal } = props;
-  const track = useSelector((state) => state.track.track);
+  const { isAuthenticated, track, saveTrack, openModal } = props;
 
   const handleClick = (e) => {
     if (isAuthenticated) {
@@ -36,6 +35,7 @@ const SaveTrackButton = (props) => {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.session.isAuthenticated,
+    track: state.track.track
   };
 };
 
