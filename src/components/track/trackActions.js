@@ -10,6 +10,7 @@ export const INCREMENT_ROW_COUNT = "INCREMENT_ROW_COUNT";
 export const DECREMENT_ROW_COUNT = "DECREMENT_ROW_COUNT";
 export const ADD_NOTE_TO_SOUND_ROW = "ADD_NOTE_TO_SOUND_ROW";
 export const UPDATE_SOUND_ROW = "UPDATE_SOUND_ROW";
+export const DELETE_NOTE_FROM_ROW = "DELETE_NOTE";
 export const CLEAR_TRACK = "CLEAR_TRACK";
 export const DELETE_TRACK = "DELETE_TRACK";
 
@@ -50,6 +51,14 @@ export const updateSoundRow = (soundRow, rowIndex) => ({
   rowIndex,
 });
 
+export const deleteNoteFromRow = (noteIndex, rowIndex) => {
+  debugger
+  return {
+  type: DELETE_NOTE_FROM_ROW,
+  noteIndex,
+  rowIndex,}
+};
+
 export const receiveLoadTrack = (track) => ({
   type: RECEIVE_LOAD_TRACK,
   track,
@@ -61,7 +70,7 @@ export const clearTrack = () => ({
 
 export const saveTrack = (track) => (dispatch) => {
   return TrackAPIUtil.saveTrack(track)
-    .then((res) => {      
+    .then((res) => {
       dispatch(loadTrack(res.data));
       dispatch(closeModal());
     })
@@ -81,9 +90,11 @@ export const loadTrack = (id) => (dispatch) => {
 };
 
 export const deleteTrackById = (id) => (dispatch) => {
-  return TrackAPIUtil.deleteTrackById(id).then((res) => {
-    dispatch(closeModal());
-  }).catch((err) => {
-    console.log(err);
-  })
-}
+  return TrackAPIUtil.deleteTrackById(id)
+    .then((res) => {
+      dispatch(closeModal());
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};

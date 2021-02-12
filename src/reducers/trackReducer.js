@@ -6,6 +6,7 @@ import {
   DECREMENT_ROW_COUNT,
   ADD_NOTE_TO_SOUND_ROW,
   UPDATE_SOUND_ROW,
+  DELETE_NOTE_FROM_ROW,
   UPDATE_TRACK_NAME,
   CLEAR_TRACK,
 } from "../components/track/trackActions";
@@ -84,6 +85,26 @@ function TrackReducer(state = {}, action) {
           contents: [
             ...state.track.contents.slice(0, action.rowIndex),
             action.soundRow,
+            ...state.track.contents.slice(
+              action.rowIndex + 1,
+              state.track.contents.length
+            ),
+          ],
+        },
+      };
+    case DELETE_NOTE_FROM_ROW:
+      const changedElement = [
+        ...state.track.contents[action.rowIndex].slice(0, action.noteIndex),
+        ...state.track.contents[action.rowIndex].slice(action.noteIndex + 1, state.track.contents[action.rowIndex].length),
+      ];
+      
+      return {
+        ...state,
+        track: {
+          ...state.track,
+          contents: [
+            ...state.track.contents.slice(0, action.rowIndex),
+            changedElement,
             ...state.track.contents.slice(
               action.rowIndex + 1,
               state.track.contents.length

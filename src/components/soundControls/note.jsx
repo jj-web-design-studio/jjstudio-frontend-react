@@ -5,33 +5,37 @@ const Note = (props) => {
   const [isHovering, setHovering] = useState(false);
   const [isSelected, setSelected] = useState(false);
   const [left, setLeft] = useState(props.left);
+  const [originalLeft, setOriginalLeft] = useState(props.left);
   const ref = useRef(null);
 
-  const handleKeyDown = useCallback((e) => {
-    if (e.keyCode === 8 && isSelected) {
-      props.deleteNote(props.noteIndex);
-    }
-  }, [isSelected, props]);
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.keyCode === 8 && isSelected) {
+        props.deleteNote(props.noteIndex);
+      }
+    },
+    [isSelected, props]
+  );
 
   const handleClick = (e) => {
     if (ref.current && !ref.current.contains(e.target)) {
       setSelected(false);
     }
-  }
+  };
 
   const handleMouseDown = (e) => {
     e.stopPropagation();
     e.preventDefault();
     if (e.button !== 0) return;
     setDragging(true);
-    setLeft(((e.clientX - 10) / props.windowWidth) * 100);
+    // setLeft(((e.clientX - 10) / props.windowWidth) * 100);
   };
 
   const handleMouseUp = (e) => {
     e.stopPropagation();
     e.preventDefault();
     setDragging(false);
-    props.updateLeftInParent(props.noteIndex, left);
+    if (left !== originalLeft) props.updateLeftInParent(props.noteIndex, left);
   };
 
   const handleMouseMove = useCallback(
@@ -50,7 +54,7 @@ const Note = (props) => {
   };
 
   useEffect(() => {
-    document.addEventListener("mousemove", handleMouseMove)
+    document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("click", handleClick);
 
@@ -62,25 +66,41 @@ const Note = (props) => {
   }, [handleMouseMove, handleKeyDown]);
 
   return (
-    <div
-      style={{
-        height: 50,
-        width: props.windowWidth / 128,
-        left: roundToNearestMultiple(left) + "%",
-        backgroundColor: "blue",
-        position: "absolute",
-        opacity: isDragging ? 0.5 : 1,
-        cursor: isDragging ? "grabbing" : isHovering ? "grab" : "",
-        border: isSelected ? "2px dotted black" : "",
-      }}
-      onMouseDown={handleMouseDown}
-      onMouseUp={handleMouseUp}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setHovering(true)}
-      onMouseLeave={() => setHovering(false)}
-      onClick={() => setSelected(true)}
-      ref={ref}
-    />
+      <div
+        style={{
+          height: 50,
+          width: props.windowWidth / 128,
+          left: roundToNearestMultiple(left) + "%",
+          backgroundColor: props.color,
+          position: "absolute",
+          opacity: isDragging ? 0.5 : 1,
+          cursor: isDragging ? "grabbing" : isHovering ? "grab" : "",
+          border: isSelected ? "2px dotted black" : "",
+        }}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setHovering(true)}
+        onMouseLeave={() => setHovering(false)}
+        onClick={() => setSelected(true)}
+        ref={ref}
+      >
+        {isHovering ? (
+        <div
+        className="note-label"
+          
+        >
+          {props.label}
+        </div>
+      ) : (
+        <div
+        className="note-label"
+          
+        >
+          {props.label}
+        </div>
+      )}
+      </div>
   );
 };
 
