@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { deleteTrackById, clearTrack } from "./trackActions";
+import { deleteTrackById, clearTrack } from "../../actions/trackActions";
 
 const DeleteTrackButton = (props) => {
   const { trackId, deleteTrackById, clearTrack } = props;

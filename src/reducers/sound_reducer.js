@@ -1,7 +1,7 @@
 import {
   RECEIVE_SOUNDS,
   RECEIVE_SOUNDS_ERRORS,
-} from "../components/soundControls/soundActions";
+} from "../actions/soundActions";
 
 function SoundReducer(state = {}, action) {
   switch (action.type) {

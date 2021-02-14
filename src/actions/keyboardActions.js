@@ -1,4 +1,4 @@
-import * as KeyboardAPIUtil from "./keyboardAPIUtil";
+import * as KeyboardAPIUtil from "../components/keyboard/keyboardAPIUtil";
 
 export const RECEIVE_KEYBOARD_MAPPING = "RECEIVE_KEYBOARD_MAPPING";
 export const RECEIVE_KEYBOARD_MAPPING_ERRORS =

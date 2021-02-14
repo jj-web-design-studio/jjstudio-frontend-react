@@ -1,4 +1,4 @@
-import { DEACTIVATE_PRO_TIP_KEYBOARD } from "./proTipActions";
+import { DEACTIVATE_PRO_TIP_KEYBOARD } from "../../actions/proTipActions";
 
 function ProTipReducer(state = {}, action) {
   switch (action.type) {

@@ -1,6 +1,6 @@
-import * as TrackAPIUtil from "./trackAPIUtil";
-import { closeModal } from "../common/modal/modalActions";
-import { receiveErrors } from "../session/sessionActions";
+import * as TrackAPIUtil from "../components/track/trackAPIUtil";
+import { closeModal } from "./modalActions";
+import { receiveErrors } from "./sessionActions";
 
 export const RECEIVE_SAVE_TRACK = "RECEIVE_SAVE_TRACK";
 export const RECEIVE_LOAD_TRACK = "RECEIVE_LOAD_TRACK";

@@ -4,7 +4,7 @@ import Root from "./components/root";
 import configureStore from "./store/store";
 import jwt_decode from "jwt-decode";
 import { setAuthToken } from "./components/session/sessionAPIUtil";
-import { logout } from "./components/session/sessionActions";
+import { logout } from "./actions/sessionActions";
 
 const preloadedState = {
   keyboard: { currentKeyboardId: "default" },

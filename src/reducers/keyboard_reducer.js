@@ -1,4 +1,4 @@
-import { RECEIVE_KEYBOARD_MAPPING, RECEIVE_KEYBOARD_NAME_LIST } from '../components/keyboard/keyboardActions';
+import { RECEIVE_KEYBOARD_MAPPING, RECEIVE_KEYBOARD_NAME_LIST } from '../actions/keyboardActions';
 
 function KeyboardReducer(state = {}, action) {
   switch (action.type) {

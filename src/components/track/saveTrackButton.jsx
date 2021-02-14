@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 
-import { openModal } from "../common/modal/modalActions";
-import { saveTrack } from "../track/trackActions";
+import { openModal } from "../../actions/modalActions";
+import { saveTrack } from "../../actions/trackActions";
 import { LOGIN } from "../common/modal/modal";
 
 import SaveIcon from "@material-ui/icons/Save";

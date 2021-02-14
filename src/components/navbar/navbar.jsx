@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import OptionItem from "./optionItem";
-import { openModal } from "../common/modal/modalActions";
-import { logout } from "../session/sessionActions";
-import { clearTrack } from "../track/trackActions";
+import { openModal } from "../../actions/modalActions";
+import { logout } from "../../actions/sessionActions";
+import { clearTrack } from "../../actions/trackActions";
 import TrackTitle from "./trackTitle";
 import {
   Collapse,

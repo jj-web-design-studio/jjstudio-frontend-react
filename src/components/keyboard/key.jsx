@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { connect, useSelector } from "react-redux";
-import { openModal } from "../common/modal/modalActions";
+import { openModal } from "../../actions/modalActions";
 import { PRO_TIP_KEYBOARD } from "../common/modal/modal";
 import { Grid } from "@material-ui/core";
 import { NUM_ROW_INDEX, QWE_ROW_INDEX, ASD_ROW_INDEX, ZXC_ROW_INDEX } from "./keys";

@@ -16,7 +16,7 @@
   position: absolute;
   display: inline;
   height: 100%;
-  z-index: 2;
+  z-index: 3;
   left: 0;
   top: 0;
 }
@@ -30,6 +30,6 @@
   opacity: 0.8;
   border-radius: 35%;
   padding: 1px;
-  z-index: 1000;
+  z-index: 2;
   text-align: center;
 }

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import RemoveCircleIcon from "@material-ui/icons/RemoveCircle";
-import { incrementRowCount, decrementRowCount } from "../../track/trackActions";
+import { incrementRowCount, decrementRowCount } from "../../../actions/trackActions";
 import { Grid } from "@material-ui/core";
 
 const RowIncrementer = (props) => {

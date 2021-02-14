@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { closeModal } from "../common/modal/modalActions";
-import { loadTrack } from "./trackActions";
+import { closeModal } from "../../actions/modalActions";
+import { loadTrack } from "../../actions/trackActions";
 import * as TrackAPIUtil from "./trackAPIUtil";
 import List from "../common/list/list";
 

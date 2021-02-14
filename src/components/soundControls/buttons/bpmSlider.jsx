@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Slider from '@material-ui/core/Slider';
-import { setBpm } from "../../track/trackActions";
+import { setBpm } from "../../../actions/trackActions";
 
 import { Grid } from "@material-ui/core";
 

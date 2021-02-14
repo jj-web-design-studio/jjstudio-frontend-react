@@ -9,7 +9,7 @@ import {
   DELETE_NOTE_FROM_ROW,
   UPDATE_TRACK_NAME,
   CLEAR_TRACK,
-} from "../components/track/trackActions";
+} from "../actions/trackActions";
 
 function TrackReducer(state = {}, action) {
   // let nextState = Object.assign({}, state);

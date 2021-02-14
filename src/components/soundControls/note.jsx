@@ -90,14 +90,14 @@ const Note = (props) => {
         className="note-label"
           
         >
-          {props.label}
+          {(props.label).toUpperCase()}
         </div>
       ) : (
         <div
         className="note-label"
           
         >
-          {props.label}
+          {(props.label).toUpperCase()}
         </div>
       )}
       </div>

@@ -47,6 +47,11 @@
   color: #888888;
   font-size: 12px;
   word-wrap: break-word;
+  cursor: default;
+}
+
+.sound-label {
+  cursor: default;
 }
 
 @media only screen and (max-width: 1000px) {

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 
-import { openModal } from "../common/modal/modalActions";
+import { openModal } from "../../actions/modalActions";
 import { LOGIN, LOAD_TRACK } from "../common/modal/modal";
 
 const LoadTrackButton = (props) => {

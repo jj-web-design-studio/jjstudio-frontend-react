@@ -2,7 +2,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import SaveTrackButton from "../track/saveTrackButton";
 import DeleteTrackButton from "../track/deleteTrackButton";
-import { updateTrackName } from "../track/trackActions";
+import { updateTrackName } from "../../actions/trackActions";
 
 const TrackTitle = (props) => {
   const [isEditing, setEditing] = useState(false);

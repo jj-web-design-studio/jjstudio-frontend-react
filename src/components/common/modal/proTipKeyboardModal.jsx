@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { deactivateProTipKeyboard } from "../../proTip/proTipActions";
-import { closeModal } from "./modalActions";
+import { deactivateProTipKeyboard } from "../../../actions/proTipActions";
+import { closeModal } from "../../../actions/modalActions";
 
 const ProTipKeyboardModal = (props) => {
   const handleClick = () => {
