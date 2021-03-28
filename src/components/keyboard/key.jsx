@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { connect, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import { openModal } from "../../actions/modalActions";
 import { PRO_TIP_KEYBOARD } from "../common/modal/modal";
 import { Grid } from "@material-ui/core";
@@ -10,11 +10,8 @@ const isLeftMouseClick = (e) => {
 };
 
 const Key = (props) => {
-  const modal = useSelector((state) => state.ui.modal);
-  const shouldPromptProTipKeyboard = useSelector(
-    (state) => state.ui.proTip.shouldPromptProTipKeyboard
-  );
-  const { openModal, isAuthenticated } = props;
+  const { isAuthenticated, isModalOpen, sounds, shouldPromptProTipKeyboard } = props;
+  const { openModal } = props;
   const [isPlaying, setPlaying] = useState(false);
 
   const handleClick = (e) => {
@@ -23,10 +20,9 @@ const Key = (props) => {
     }
   };
 
-
   const handleUserKeyDown = useCallback(
     (e) => {
-      if (modal !== null) return;
+      if (isModalOpen) return;
 
       if (e.keyCode == props.keyCode) {
         const audio = new Audio("/clap.wav");
@@ -34,18 +30,18 @@ const Key = (props) => {
         if (!isPlaying) audio.play();
       }
     },
-    [modal, props, isPlaying]
+    [props, isPlaying]
   );
 
   const handleUserKeyUp = useCallback(
     (e) => {
-      if (modal) return;
+      if (isModalOpen) return;
 
       if (e.keyCode == props.keyCode) {
         setPlaying(false);
       }
     },
-    [modal, props]
+    [props]
   );
 
   useEffect(() => {
@@ -104,6 +100,9 @@ const Key = (props) => {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.session.isAuthenticated,
+    isModalOpen: state.ui.modal !== null,
+    sounds: state.sounds,
+    shouldPromptProTipKeyboard: state.ui.proTip.shouldPromptProTipKeyboard,
   };
 };
 
