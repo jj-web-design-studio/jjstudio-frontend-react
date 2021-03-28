@@ -20,7 +20,7 @@ export const receiveSoundsError = (errors) => {
 
 // thunk action creators
 export const loadSoundsByIds = (ids) => (dispatch) => {
-  return SoundAPIUtil.getSoundByIds(ids)
+  return SoundAPIUtil.getSoundsByIds(ids)
     .then((res) => {
       dispatch(receiveSounds(res.data));
     })
