@@ -1,5 +1,5 @@
-import * as KeyboardAPIUtil from "../components/keyboard/keyboardAPIUtil";
-import * as SoundAPIUtil from "../components/soundControls/soundAPIUtil";
+import * as KeyboardAPIUtil from "../util/keyboardAPIUtil";
+import * as SoundAPIUtil from "../util/soundAPIUtil";
 
 export const RECEIVE_KEYBOARD_MAPPING = "RECEIVE_KEYBOARD_MAPPING";
 export const RECEIVE_KEYBOARD_MAPPING_ERRORS =
