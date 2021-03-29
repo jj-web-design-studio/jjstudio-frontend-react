@@ -38,7 +38,6 @@ export const receiveKeyboardNameListErrors = (errors) => {
 };
 
 // thunk action creators
-
 export const loadKeyboardById = (id) => (dispatch) =>
   KeyboardAPIUtil.getKeyboardById(id)
     .then((res) => {
@@ -89,7 +88,7 @@ function extractUniqueSoundIds(keyboard) {
     ids.add(key.soundId);
   });
   return ids;
-};
+}
 
 function soundArrayToMap(soundArray) {
   let sounds = new Map();
@@ -100,7 +99,7 @@ function soundArrayToMap(soundArray) {
     sounds.set(sound.id, data);
   });
   return sounds;
-};
+}
 
 function addAudioToKeys(keyRow, sounds) {
   keyRow.forEach((key) => {

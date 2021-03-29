@@ -13,7 +13,7 @@ const Keyboard = (props) => {
   const { keyboardMapping, currentKeyboard } = props;
 
   useEffect(() => {
-    loadKeyboardMapping(currentKeyboard)
+    loadKeyboardMapping(currentKeyboard);
   }, [loadKeyboardMapping, currentKeyboard]);
 
   const renderKeyboardRow = (row, rowIndex) => {
