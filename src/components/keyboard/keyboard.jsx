@@ -1,41 +1,22 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { withRouter } from "react-router-dom";
-
+import { connect } from "react-redux";
+import {
+  loadKeyboardById,
+  loadKeyboardNameList,
+} from "../../actions/keyboardActions";
 import KeyboardDropdown from "./keyboardDropdown";
 import Key from "./key";
-import { NUM_ROW, QWE_ROW, ASD_ROW, ZXC_ROW } from "./keys";
 import { Grid } from "@material-ui/core";
 
 const Keyboard = (props) => {
-  const currentKeyboardId = useSelector(
-    (state) => state.keyboard.currentKeyboardId
-  );
-
-  const { loadKeyboardMapping, loadKeyboardNameList, loadSoundsByIds } = props;
-  const { mapping, isAuthenticated, sounds } = props;
+  const { loadKeyboardMapping, loadKeyboardNameList } = props;
+  const { keyboardMapping, currentKeyboard } = props;
 
   useEffect(() => {
-    loadKeyboardMapping(currentKeyboardId)
-      .then(() => {
-        if (isAuthenticated) {
-          loadSoundsByIds([
-            "5fcadb14d62a7b2f68b3cb27",
-            "5fcadf1dd62a7b2f68b3cb28",
-          ]);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [
-    currentKeyboardId,
-    isAuthenticated,
-    loadKeyboardMapping,
-    loadSoundsByIds,
-  ]);
+    loadKeyboardMapping(currentKeyboard)
+  }, [loadKeyboardMapping, currentKeyboard]);
 
-  const renderKeyboardRow = (row) => {
+  const renderKeyboardRow = (row, rowIndex) => {
     return (
       <Grid
         container
@@ -50,9 +31,16 @@ const Keyboard = (props) => {
         lg={9}
         xl={9}
       >
-        {row.mappings.map((key) => {
+        {row.map((key) => {
           return (
-            <Key key={key.keyCode} keyCode={key.keyCode} keyRowIndex={row.index} label={key.label} />
+            <Key
+              key={key.keyCode}
+              keyCode={key.keyCode}
+              keyRowIndex={rowIndex}
+              label={key.keyLabel}
+              soundLabel={key.soundLabel}
+              audio={key.sound.audio}
+            />
           );
         })}
       </Grid>
@@ -61,17 +49,17 @@ const Keyboard = (props) => {
 
   return (
     <div>
-      {mapping != null ? (
+      {keyboardMapping != null ? (
         <Grid
           container
           justify="center"
           alignItems="center"
           className="keyBoard"
         >
-          {renderKeyboardRow(NUM_ROW)}
-          {renderKeyboardRow(QWE_ROW)}
-          {renderKeyboardRow(ASD_ROW)}
-          {renderKeyboardRow(ZXC_ROW)}
+          {renderKeyboardRow(keyboardMapping.numRow, 0)}
+          {renderKeyboardRow(keyboardMapping.qweRow, 1)}
+          {renderKeyboardRow(keyboardMapping.asdRow, 2)}
+          {renderKeyboardRow(keyboardMapping.zxcRow, 3)}
         </Grid>
       ) : (
         <>No keyboards found!</>
@@ -80,4 +68,18 @@ const Keyboard = (props) => {
   );
 };
 
-export default withRouter(Keyboard);
+const mapStateToProps = (state) => {
+  return {
+    keyboardMapping: state.keyboard.mapping,
+    currentKeyboard: state.keyboard.currentKeyboardId,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadKeyboardMapping: (id) => dispatch(loadKeyboardById(id)),
+    loadKeyboardNameList: () => dispatch(loadKeyboardNameList()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Keyboard);

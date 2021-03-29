@@ -3,15 +3,22 @@ import { connect } from "react-redux";
 import { openModal } from "../../actions/modalActions";
 import { PRO_TIP_KEYBOARD } from "../common/modal/modal";
 import { Grid } from "@material-ui/core";
-import { NUM_ROW_INDEX, QWE_ROW_INDEX, ASD_ROW_INDEX, ZXC_ROW_INDEX } from "./keys";
+import {
+  NUM_ROW_INDEX,
+  QWE_ROW_INDEX,
+  ASD_ROW_INDEX,
+  ZXC_ROW_INDEX,
+} from "./keys";
 
 const isLeftMouseClick = (e) => {
   return e.button === 0;
 };
 
 const Key = (props) => {
-  const { isAuthenticated, isModalOpen, sounds, shouldPromptProTipKeyboard } = props;
+  const { isAuthenticated, isModalOpen, shouldPromptProTipKeyboard } = props;
   const { openModal } = props;
+  const { keyCode, label, soundLabel, keyRowIndex, audio } = props;
+
   const [isPlaying, setPlaying] = useState(false);
 
   const handleClick = (e) => {
@@ -24,24 +31,23 @@ const Key = (props) => {
     (e) => {
       if (isModalOpen) return;
 
-      if (e.keyCode == props.keyCode) {
-        const audio = new Audio("/clap.wav");
+      if (e.keyCode === keyCode) {
         setPlaying(true);
         if (!isPlaying) audio.play();
       }
     },
-    [props, isPlaying]
+    [isModalOpen, isPlaying, keyCode, audio]
   );
 
   const handleUserKeyUp = useCallback(
     (e) => {
       if (isModalOpen) return;
 
-      if (e.keyCode == props.keyCode) {
+      if (e.keyCode === keyCode) {
         setPlaying(false);
       }
     },
-    [props]
+    [isModalOpen, keyCode]
   );
 
   useEffect(() => {
@@ -52,7 +58,7 @@ const Key = (props) => {
       window.removeEventListener("keydown", handleUserKeyDown);
       window.removeEventListener("keyup", handleUserKeyUp);
     };
-  });
+  }, [handleUserKeyDown, handleUserKeyUp]);
 
   const getKeyClassName = (keyRowIndex) => {
     switch (keyRowIndex) {
@@ -67,7 +73,7 @@ const Key = (props) => {
       default:
         return isPlaying ? "key active " : "key";
     }
-  }
+  };
 
   return (
     <Grid
@@ -89,9 +95,9 @@ const Key = (props) => {
       }}
       onClick={handleClick}
     >
-      <div className={getKeyClassName(props.keyRowIndex)}>
-        <div className="key-label">{props.label}</div>
-        <div className="sound-label">Sound 1</div>
+      <div className={getKeyClassName(keyRowIndex)}>
+        <div className="key-label">{label}</div>
+        <div className="sound-label">{soundLabel}</div>
       </div>
     </Grid>
   );
@@ -101,7 +107,6 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.session.isAuthenticated,
     isModalOpen: state.ui.modal !== null,
-    sounds: state.sounds,
     shouldPromptProTipKeyboard: state.ui.proTip.shouldPromptProTipKeyboard,
   };
 };

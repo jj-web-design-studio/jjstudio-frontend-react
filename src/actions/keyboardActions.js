@@ -1,4 +1,5 @@
 import * as KeyboardAPIUtil from "../components/keyboard/keyboardAPIUtil";
+import * as SoundAPIUtil from "../components/soundControls/soundAPIUtil";
 
 export const RECEIVE_KEYBOARD_MAPPING = "RECEIVE_KEYBOARD_MAPPING";
 export const RECEIVE_KEYBOARD_MAPPING_ERRORS =
@@ -41,7 +42,20 @@ export const receiveKeyboardNameListErrors = (errors) => {
 export const loadKeyboardById = (id) => (dispatch) =>
   KeyboardAPIUtil.getKeyboardById(id)
     .then((res) => {
-      dispatch(receiveKeyboardMapping(res.data));
+      let keyboard = res.data;
+      let ids = extractUniqueSoundIds(keyboard);
+      SoundAPIUtil.getSoundsByIds(ids)
+        .then((res) => {
+          let sounds = soundArrayToMap(res.data);
+          addAudioToKeys(keyboard.numRow, sounds);
+          addAudioToKeys(keyboard.qweRow, sounds);
+          addAudioToKeys(keyboard.asdRow, sounds);
+          addAudioToKeys(keyboard.zxcRow, sounds);
+          dispatch(receiveKeyboardMapping(keyboard));
+        })
+        .catch((err) => {
+          dispatch(receiveKeyboardMappingErrors(err.data));
+        });
     })
     .catch((err) => {
       dispatch(receiveKeyboardMappingErrors(err.data));
@@ -59,3 +73,37 @@ export const loadKeyboardNameList = () => (dispatch) =>
     .catch((err) => {
       dispatch(receiveKeyboardNameListErrors(err.data));
     });
+
+function extractUniqueSoundIds(keyboard) {
+  let ids = new Set();
+  keyboard.numRow.forEach((key) => {
+    ids.add(key.soundId);
+  });
+  keyboard.qweRow.forEach((key) => {
+    ids.add(key.soundId);
+  });
+  keyboard.asdRow.forEach((key) => {
+    ids.add(key.soundId);
+  });
+  keyboard.zxcRow.forEach((key) => {
+    ids.add(key.soundId);
+  });
+  return ids;
+};
+
+function soundArrayToMap(soundArray) {
+  let sounds = new Map();
+  soundArray.forEach((sound) => {
+    let data = {};
+    data.name = sound.name;
+    data.audio = new Audio("data:audio/wav;base64," + sound.file.data);
+    sounds.set(sound.id, data);
+  });
+  return sounds;
+};
+
+function addAudioToKeys(keyRow, sounds) {
+  keyRow.forEach((key) => {
+    key.sound = sounds.get(key.soundId);
+  });
+}

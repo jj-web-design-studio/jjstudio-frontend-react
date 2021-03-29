@@ -4,7 +4,7 @@ import { Switch } from "react-router-dom";
 import AppNavBar from "./navbar/navbar";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import KeyboardContainer from "./keyboard/keyboardContainer";
+import Keyboard from "./keyboard/keyboard";
 import SoundControls from "./soundControls/soundControls";
 
 import "../styles/app.scss";
@@ -14,7 +14,7 @@ const App = () => {
     <div className="root">
       <Modal />
       <AppNavBar />
-      <KeyboardContainer />
+      <Keyboard />
       <SoundControls />
       <Switch>
         {/* <Route exact path = "/" component={HomeContainer} /> */}
