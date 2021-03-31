@@ -7,7 +7,7 @@ import { setAuthToken } from "./util/sessionAPIUtil";
 import { logout } from "./actions/sessionActions";
 
 const preloadedState = {
-  keyboard: { currentKeyboardId: "default" },
+  keyboard: { currentKeyboardId: null },
   track: {
     track: {
       name: "",

@@ -38,6 +38,27 @@ export const receiveKeyboardNameListErrors = (errors) => {
 };
 
 // thunk action creators
+export const loadDefaultKeyboard = () => (dispatch) => {
+  KeyboardAPIUtil.getDefaultKeyboard().then((res) => {
+    let keyboard = res.data;
+      let ids = extractUniqueSoundIds(keyboard);
+      SoundAPIUtil.getSoundsByIds(ids)
+        .then((res) => {
+          let sounds = soundArrayToMap(res.data);
+          addAudioToKeys(keyboard.numRow, sounds);
+          addAudioToKeys(keyboard.qweRow, sounds);
+          addAudioToKeys(keyboard.asdRow, sounds);
+          addAudioToKeys(keyboard.zxcRow, sounds);
+          dispatch(receiveKeyboardMapping(keyboard));
+        })
+        .catch((err) => {
+          dispatch(receiveKeyboardMappingErrors(err.data));
+        });
+  }).catch((err) => {
+    dispatch(receiveKeyboardMappingErrors(err.data));
+  })
+};
+
 export const loadKeyboardById = (id) => (dispatch) =>
   KeyboardAPIUtil.getKeyboardById(id)
     .then((res) => {

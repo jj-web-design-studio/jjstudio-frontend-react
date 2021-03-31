@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import {
-  loadKeyboardById,
+  loadDefaultKeyboard,
   loadKeyboardNameList,
 } from "../../actions/keyboardActions";
 import KeyboardDropdown from "./keyboardDropdown";
@@ -9,12 +9,14 @@ import Key from "./key";
 import { Grid } from "@material-ui/core";
 
 const Keyboard = (props) => {
-  const { loadKeyboardMapping, loadKeyboardNameList } = props;
+  const { loadDefaultKeyboard, loadKeyboardNameList } = props;
   const { keyboardMapping, currentKeyboard } = props;
 
   useEffect(() => {
-    loadKeyboardMapping(currentKeyboard);
-  }, [loadKeyboardMapping, currentKeyboard]);
+    if (currentKeyboard == null) {
+      loadDefaultKeyboard();
+    }
+  }, [loadDefaultKeyboard, currentKeyboard]);
 
   const renderKeyboardRow = (row, rowIndex) => {
     return (
@@ -77,7 +79,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    loadKeyboardMapping: (id) => dispatch(loadKeyboardById(id)),
+    loadDefaultKeyboard: () => dispatch(loadDefaultKeyboard()),
     loadKeyboardNameList: () => dispatch(loadKeyboardNameList()),
   };
 };
