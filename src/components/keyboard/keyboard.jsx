@@ -7,6 +7,7 @@ import {
 import KeyboardDropdown from "./keyboardDropdown";
 import Key from "./key";
 import { Grid } from "@material-ui/core";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Keyboard = (props) => {
   const { loadDefaultKeyboard, loadKeyboardNameList } = props;
@@ -50,9 +51,10 @@ const Keyboard = (props) => {
   };
 
   return (
-    <div>
+    <Grid container justify="center" alignItems="center">
       {keyboardMapping != null ? (
         <Grid
+          item
           container
           justify="center"
           alignItems="center"
@@ -64,9 +66,9 @@ const Keyboard = (props) => {
           {renderKeyboardRow(keyboardMapping.zxcRow, 3)}
         </Grid>
       ) : (
-        <>No keyboards found!</>
+        <CircularProgress color="secondary" />
       )}
-    </div>
+    </Grid>
   );
 };
 
