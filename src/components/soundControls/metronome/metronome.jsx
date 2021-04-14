@@ -3,6 +3,8 @@ import { useSelector } from "react-redux";
 
 import RecordButton from "../buttons/recordButton";
 import PlayButton from "../buttons/playButton";
+import ToggleOnIcon from "@material-ui/icons/ToggleOn";
+import ToggleOffIcon from "@material-ui/icons/ToggleOff";
 
 import * as serviceWorker from "./metronomeWorker.js";
 
@@ -13,6 +15,7 @@ const Metronome = (props) => {
 
   const [isPlaying, setPlaying] = useState(false);
   const [isRecording, setRecording] = useState(false);
+  const [isMuted, setMuted] = useState(false);
   const [audioContext, setAudioContext] = useState(new AudioContext());
 
   const timerWorker = useRef(null);
@@ -121,7 +124,7 @@ const Metronome = (props) => {
   }, [bpm]);
 
   const handleClickRecord = () => {
-    togglePlay();
+    if (!isMuted) togglePlay();
     if (isPlaying) {
       setPlaying(false);
       togglePlayParent(false);
@@ -132,7 +135,7 @@ const Metronome = (props) => {
   };
 
   const handleClickPlay = () => {
-    togglePlay();
+    if (!isMuted) togglePlay();
     if (isRecording) {
       setRecording(false);
       toggleRecordParent(false);
@@ -143,9 +146,31 @@ const Metronome = (props) => {
   };
 
   return (
-    <Grid item container xs={4} sm={4} md={4} lg={4} xl={4} justify="flex-start" alignItems="center" className="soundBtn">
-    <Grid item xs={2} sm={2} md={2} lg={2} xl={3}><RecordButton isRecording={isRecording} onClick={handleClickRecord} /></Grid>
-      <Grid item xs={2} sm={2} md={2} lg={2} xl={3}><PlayButton isPlaying={isPlaying} onClick={handleClickPlay} /></Grid>
+    <Grid
+      item
+      container
+      xs={4}
+      sm={4}
+      md={4}
+      lg={4}
+      xl={4}
+      justify="flex-start"
+      alignItems="center"
+      className="soundBtn"
+    >
+      <Grid item xs={2} sm={2} md={2} lg={2} xl={3}>
+        <RecordButton isRecording={isRecording} onClick={handleClickRecord} />
+      </Grid>
+      <Grid item xs={2} sm={2} md={2} lg={2} xl={3}>
+        <PlayButton isPlaying={isPlaying} onClick={handleClickPlay} />
+      </Grid>
+      <Grid item xs={2} sm={2} md={2} lg={2} xl={3}>
+        {isMuted ? (
+          <ToggleOffIcon onClick={() => setMuted(false)} />
+        ) : (
+          <ToggleOnIcon onClick={() => setMuted(true)} />
+        )}
+      </Grid>
     </Grid>
   );
 };
