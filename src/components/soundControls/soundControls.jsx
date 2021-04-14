@@ -83,6 +83,7 @@ const SoundControls = (props) => {
   );
 
   const soundBars = function () {
+    console.log(rowCount)
     const soundBars = [];
     for (let i = 0; i < rowCount; i++) {
       soundBars.push(
@@ -90,7 +91,7 @@ const SoundControls = (props) => {
           key={i}
           rowIndex={i}
           windowWidth={dimensions.width}
-          isSelected={i === rowCount - 1}
+          isSelected={i + 1 === rowCount}
           isRecording={isRecording}
         />
       );

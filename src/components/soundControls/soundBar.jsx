@@ -91,7 +91,7 @@ const SoundBar = (props) => {
   }, [handleUserKeyDown, trackContents, rowIndex]);
 
   return (
-    <div className={isSelected ? "sound-bar" : "sound-bar selected"}>
+    <div className={isSelected ? "sound-bar selected" : "sound-bar"}>
       {trackContents[rowIndex].map((sound, index) => {
         console.log(trackContents);
         return (
